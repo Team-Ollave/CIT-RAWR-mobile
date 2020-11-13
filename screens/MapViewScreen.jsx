@@ -5,8 +5,11 @@ import {
   StyleSheet,
   TouchableOpacity,
   StatusBar,
+  Dimensions,
 } from 'react-native';
 import { Modalize } from 'react-native-modalize';
+
+const { height } = Dimensions.get('window');
 
 const MapViewScreen = () => {
   const modalizeRef = useRef(null);
@@ -20,8 +23,13 @@ const MapViewScreen = () => {
       <TouchableOpacity onPress={onOpen}>
         <Text>Open Modal</Text>
       </TouchableOpacity>
-      <Modalize ref={modalizeRef}>
-        <View>
+      <Modalize
+        ref={modalizeRef}
+        modalHeight={height * 0.7}
+        alwaysOpen={height * 0.3}
+        handlePosition={'inside'}
+      >
+        <View style={styles.modal}>
           <Text>This is the Modal</Text>
         </View>
       </Modalize>
@@ -34,6 +42,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: StatusBar.currentHeight,
     backgroundColor: 'skyblue',
+  },
+  modal: {
+    padding: 10,
   },
 });
 
