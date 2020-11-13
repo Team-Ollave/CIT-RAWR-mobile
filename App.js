@@ -1,11 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
-import { Poppins_900Black } from '@expo-google-fonts/poppins';
+import {
+  Poppins_500Medium,
+  Poppins_400Regular,
+  Poppins_300Light,
+  Poppins_600SemiBold,
+} from '@expo-google-fonts/poppins';
+import ViewRoomScreen from './screens/ViewRoomScreen';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default function App() {
-  const [fontsLoaded] = useFonts({ Poppins_900Black });
+  const [fontsLoaded] = useFonts({
+    Poppins_600SemiBold,
+    Poppins_500Medium,
+    Poppins_400Regular,
+    Poppins_300Light,
+  });
 
   if (!fontsLoaded) {
     return <Text>Loading...</Text>;
@@ -13,10 +24,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontFamily: 'Poppins_900Black' }}>
-        Open up App.js to start working on your app!
-      </Text>
-      <StatusBar style="auto" />
+      <ViewRoomScreen />
     </View>
   );
 }
@@ -29,3 +37,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+EStyleSheet.build({});
