@@ -1,16 +1,38 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { StyleSheet, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { useFonts } from 'expo-font';
+import {
+  Poppins_500Medium,
+  Poppins_400Regular,
+  Poppins_300Light,
+  Poppins_600SemiBold,
+} from '@expo-google-fonts/poppins';
+import ViewRoomScreen from './screens/ViewRoomScreen';
 import MapViewScreen from './screens/MapViewScreen';
+import EStyleSheet from 'react-native-extended-stylesheet';
+
 const Stack = createStackNavigator();
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Poppins_600SemiBold,
+    Poppins_500Medium,
+    Poppins_400Regular,
+    Poppins_300Light,
+  });
+
+  if (!fontsLoaded) {
+    return <Text>Loading...</Text>;
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* Add your screens here */}
         <Stack.Screen name='MapViewScreen' component={MapViewScreen} />
+        <Stack.Screen name='ViewRoomScreen' component={ViewRoomScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -24,3 +46,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+EStyleSheet.build({});

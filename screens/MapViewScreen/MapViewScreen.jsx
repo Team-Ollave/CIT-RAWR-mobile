@@ -1,17 +1,10 @@
 import React, { useRef } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  StatusBar,
-  Dimensions,
-} from 'react-native';
+import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { Modalize } from 'react-native-modalize';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 const { height } = Dimensions.get('window');
-
-const MapViewScreen = () => {
+const MapViewScreen = ({ navigation }) => {
   const modalizeRef = useRef(null);
 
   const onOpen = () => {
@@ -22,6 +15,9 @@ const MapViewScreen = () => {
     <View style={styles.container}>
       <TouchableOpacity onPress={onOpen}>
         <Text>Open Modal</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('ViewRoomScreen')}>
+        <Text>Go to View Room Screen</Text>
       </TouchableOpacity>
       <Modalize
         ref={modalizeRef}
@@ -37,14 +33,18 @@ const MapViewScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight,
+    width: '100%',
     backgroundColor: 'skyblue',
   },
   modal: {
     padding: 10,
+    height: '70%',
+  },
+  modalAlwaysOpenHeight: {
+    height: '30%',
   },
 });
 
