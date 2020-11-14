@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Typography } from '../utls/typography';
 import { Colors } from '../utls/colors';
@@ -42,25 +42,23 @@ export default function ViewRoomScreen() {
       <View style={styles.images}>
         <Text>images</Text>
       </View>
-      <View style={estyles.mainContent}>
-        <View style={estyles.header}>
-          <Text style={estyles.headerTitle}>Case Room</Text>
-          <Text style={estyles.headerDescription}>
+      <View style={styles.mainContent}>
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Case Room</Text>
+          <Text style={styles.headerDescription}>
             Lorem ipsum dolor sit amet.
           </Text>
         </View>
         <View style={styles.tabsContainer}>
-          <View style={[estyles.tab, styles.tabActive]}>
-            <Text style={[estyles.tabLabel, estyles.tabLabelActive]}>
-              Today
-            </Text>
+          <View style={[styles.tab, styles.tabActive]}>
+            <Text style={[styles.tabLabel, styles.tabLabelActive]}>Today</Text>
           </View>
-          <View style={estyles.tab}>
-            <Text style={estyles.tabLabel}>Upcoming</Text>
+          <View style={styles.tab}>
+            <Text style={styles.tabLabel}>Upcoming</Text>
           </View>
         </View>
-        <View style={estyles.tabContent}>
-          <Text style={estyles.listTitle}>Events</Text>
+        <View style={styles.tabContent}>
+          <Text style={styles.listTitle}>Events</Text>
           <View>
             {data.map(
               ({
@@ -86,7 +84,7 @@ export default function ViewRoomScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
@@ -110,9 +108,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: Colors.accentColor,
   },
-});
-
-const estyles = EStyleSheet.create({
   mainContent: {
     flex: 1,
     alignItems: 'center',
