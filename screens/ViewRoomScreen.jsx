@@ -103,9 +103,11 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     color: 'blue',
+    borderBottomColor: Colors.gray2,
+    borderBottomWidth: 1,
   },
   tabActive: {
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
     borderBottomColor: Colors.accentColor,
   },
 });
@@ -121,8 +123,6 @@ const estyles = EStyleSheet.create({
     paddingBottom: '1rem',
     paddingTop: '1.5rem',
     width: '100%',
-    borderBottomColor: Colors.gray2,
-    borderBottomWidth: 1,
   },
   headerTitle: {
     ...Typography.title3(),
