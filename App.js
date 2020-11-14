@@ -8,6 +8,7 @@ import {
   Poppins_600SemiBold,
 } from '@expo-google-fonts/poppins';
 import ViewRoomScreen from './screens/ViewRoomScreen';
+import ReservationFormScreen from './screens/ReservationFormScreen';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default function App() {

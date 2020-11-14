@@ -13,11 +13,11 @@ export default function ReservationRoomScreen() {
       <View style={estyles.mainContent}>
         <View style={estyles.eventName}>
             <Text style={estyles.eventHeaderText}>Event Name</Text>
-            <TextInput style={estyles.textInput}{estyles.eventNameTextInput}/>
+            <TextInput style={[estyles.textInput, estyles.eventNameTextInput]}/>
         </View>
         <View style={estyles.eventDescription}>
             <Text style={estyles.eventHeaderText}>Event Description</Text>
-            <TextInput style={estyles.textInput}/>
+            <TextInput style={[estyles.textInput, estyles.eventDescriptionTextInput]}/>
         </View>
         <View style={estyles.dateTime}>
             <View style={estyles.eventDate}>
@@ -47,10 +47,20 @@ const styles = StyleSheet.create({
   
 });
 const estyles = EStyleSheet.create({
+    container: {
+      flex: 1,
+      width: '100%',
+    },
     textInput: {
         borderRadius: '0.5rem',
         borderColor: Colors.gray4,
         borderWidth: 1,
+    },
+    eventNameTextInput:{
+      height: '40px',
+    },
+    eventDescriptionTextInput:{
+      height: '180px',
     },
     dateTime: {
         flexDirection: 'row',
