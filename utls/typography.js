@@ -18,4 +18,24 @@ export const Typography = {
     letterSpacing: 0.25,
     fontFamily,
   }),
+  h6: (fontFamily = 'Poppins_500Medium') => ({
+    fontSize: '1.25rem',
+    letterSpacing: 0.15,
+    fontFamily,
+  }),
+  subtitle1: (fontFamily = 'Poppins_400Regular') => ({
+    fontSize: '1 rem',
+    letterSpacing: 0.15,
+    fontFamily,
+  }),
+  body1: (fontFamily = 'Poppins_400Regular') => ({
+    fontSize: '1 rem',
+    letterSpacing: '0.5',
+    fontFamily,
+  }),
+  caption: (fontFamily = 'Poppins_400Regular') => ({
+    fontSize: '0.75rem',
+    letterSpacing: '0.4',
+    fontFamily,
+  })
 };
