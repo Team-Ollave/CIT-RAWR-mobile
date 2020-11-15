@@ -28,8 +28,8 @@ export default EStyleSheet.create({
   },
   mainContent: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+    // alignItems: 'center',
+    // justifyContent: 'flex-start',
     paddingHorizontal: '1.5rem',
   },
   header: {
@@ -60,12 +60,16 @@ export default EStyleSheet.create({
     ...Typography.small('Poppins_500Medium'),
     color: Colors.accentColor,
   },
-  tabContent: {
-    width: '100%',
-    paddingTop: '1.25rem',
-  },
+  // tabContent: {
+  //   width: '100%',
+  //   paddingTop: '1.25rem',
+  // },
   listTitle: {
     ...Typography.small('Poppins_600SemiBold'),
     marginBottom: '0.5rem',
+    marginTop: '1.25rem',
+  },
+  reservationSeparator: {
+    marginBottom: '1rem',
   },
 });
