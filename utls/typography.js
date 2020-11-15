@@ -24,18 +24,23 @@ export const Typography = {
     fontFamily,
   }),
   subtitle1: (fontFamily = 'Poppins_400Regular') => ({
-    fontSize: '1 rem',
+    fontSize: '1rem',
     letterSpacing: 0.15,
     fontFamily,
   }),
   body1: (fontFamily = 'Poppins_400Regular') => ({
-    fontSize: '1 rem',
-    letterSpacing: '0.5',
+    fontSize: '1rem',
+    letterSpacing: 0.5,
+    fontFamily,
+  }),
+  body2: (fontFamily = 'Poppins_400Regular') => ({
+    fontSize: '0.875rem',
+    letterSpacing: 0.25,
     fontFamily,
   }),
   caption: (fontFamily = 'Poppins_400Regular') => ({
-    fontSize: '0.75rem',
-    letterSpacing: '0.4',
+    fontSize: '0.5rem',
+    letterSpacing: 0.4,
     fontFamily,
-  })
+  }),
 };
