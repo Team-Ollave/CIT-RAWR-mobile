@@ -60,10 +60,9 @@ export default EStyleSheet.create({
     ...Typography.small('Poppins_500Medium'),
     color: Colors.accentColor,
   },
-  // tabContent: {
-  //   width: '100%',
-  //   paddingTop: '1.25rem',
-  // },
+  tabContent: {
+    flex: 1,
+  },
   listTitle: {
     ...Typography.small('Poppins_600SemiBold'),
     marginBottom: '0.5rem',

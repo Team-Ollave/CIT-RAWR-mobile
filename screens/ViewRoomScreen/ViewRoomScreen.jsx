@@ -63,36 +63,34 @@ export default function ViewRoomScreen() {
       <View style={styles.images}>
         <Text>images</Text>
       </View>
-      <FlatList
-        style={styles.mainContent}
-        ListHeaderComponent={
-          <>
-            <View style={styles.header}>
-              <Text style={styles.headerTitle}>Case Room</Text>
-              <Text style={styles.headerDescription}>
-                Lorem ipsum dolor sit amet.
-              </Text>
-            </View>
-            <View style={styles.tabsContainer}>
-              <View style={[styles.tab, styles.tabActive]}>
-                <Text style={[styles.tabLabel, styles.tabLabelActive]}>
-                  Today
-                </Text>
-              </View>
-              <View style={styles.tab}>
-                <Text style={styles.tabLabel}>Upcoming</Text>
-              </View>
-            </View>
-            <Text style={styles.listTitle}>Events</Text>
-          </>
-        }
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-        ItemSeparatorComponent={() => (
-          <View style={styles.reservationSeparator} />
-        )}
-      />
+      <View style={styles.mainContent}>
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Case Room</Text>
+          <Text style={styles.headerDescription}>
+            Lorem ipsum dolor sit amet.
+          </Text>
+        </View>
+        <View style={styles.tabsContainer}>
+          <View style={[styles.tab, styles.tabActive]}>
+            <Text style={[styles.tabLabel, styles.tabLabelActive]}>Today</Text>
+          </View>
+          <View style={styles.tab}>
+            <Text style={styles.tabLabel}>Upcoming</Text>
+          </View>
+        </View>
+        <View style={styles.tabContent}>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            ListHeaderComponent={<Text style={styles.listTitle}>Events</Text>}
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id.toString()}
+            ItemSeparatorComponent={() => (
+              <View style={styles.reservationSeparator} />
+            )}
+          />
+        </View>
+      </View>
     </View>
   );
 }
