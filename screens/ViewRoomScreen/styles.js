@@ -45,13 +45,13 @@ export default EStyleSheet.create({
     ...Typography.small(),
     color: Colors.gray4,
   },
-  tab: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    paddingVertical: '0.5rem',
-  },
+  // tab: {
+  //   flex: 1,
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   width: '100%',
+  //   paddingVertical: '0.5rem',
+  // },
   tabLabel: {
     ...Typography.small('Poppins_400Regular'),
     color: Colors.black,
@@ -102,5 +102,14 @@ export default EStyleSheet.create({
   reserveButtonTitle: {
     ...Typography.subtitle1('Poppins_500Medium'),
     color: 'white',
+  },
+  indicatorStyle: {
+    backgroundColor: Colors.accentColor,
+    height: 1,
+  },
+  labelStyle: {
+    ...Typography.small('Poppins_400Regular'),
+    textTransform: 'capitalize',
+    color: Colors.black,
   },
 });

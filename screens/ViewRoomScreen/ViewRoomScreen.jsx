@@ -2,65 +2,14 @@ import React from 'react';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import ReservationCard from '../../components/ReservationCard';
-import { MaterialIcons } from '@expo/vector-icons';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import styles from './styles';
+import EventsTodayTab from './tabs/EventsUpcomingTab';
+import EventsUpcomingTab from './tabs/EventsUpcomingTab';
 
-const data = [
-  {
-    id: 1,
-    eventName: 'Event 1',
-    requestorName: 'John Doe',
-    eventStartTime: '8:00',
-    eventEndTime: '12:00',
-  },
-  {
-    id: 2,
-    eventName: 'Event 2',
-    requestorName: 'Jane Doe',
-    eventStartTime: '8:00',
-    eventEndTime: '12:00',
-  },
-  {
-    id: 3,
-    eventName: 'Event 3',
-    requestorName: 'John Doe',
-    eventStartTime: '8:00',
-    eventEndTime: '12:00',
-  },
-  {
-    id: 5,
-    eventName: 'Event 4',
-    requestorName: 'Jane Doe',
-    eventStartTime: '8:00',
-    eventEndTime: '12:00',
-  },
-  {
-    id: 4,
-    eventName: 'Event 4',
-    requestorName: 'Jane Doe',
-    eventStartTime: '8:00',
-    eventEndTime: '12:00',
-  },
-  {
-    id: 6,
-    eventName: 'Event 4',
-    requestorName: 'Jane Doe',
-    eventStartTime: '8:00',
-    eventEndTime: '12:00',
-  },
-];
+const Tab = createMaterialTopTabNavigator();
 
 export default function ViewRoomScreen() {
-  const renderItem = ({ item, index }) => (
-    <ReservationCard
-      style={EStyleSheet.child(styles, 'reservationCard', index, data.length)}
-      eventName={item.eventName}
-      requestorName={item.requestorName}
-      eventStartTime={item.eventStartTime}
-      eventEndTime={item.eventEndTime}
-    />
-  );
-
   return (
     <View style={styles.container}>
       <View style={styles.images}>
@@ -73,15 +22,47 @@ export default function ViewRoomScreen() {
             Lorem ipsum dolor sit amet.
           </Text>
         </View>
-        <View style={styles.tabsContainer}>
+        <Tab.Navigator
+          // initialLayout={{ width: 100, height: 100 }}
+          // initialLayout={{ width: 20, height: 20 }}
+          barStyle={{ backgroundColor: 'transparent' }}
+          // tabBarOptions={{
+          //   // indicatorStyle: styles.indicatorStyle,
+          //   // labelStyle: styles.labelStyle,
+          //   style: {
+          //     backgroundColor: 'transparent',
+          //   },
+          // }}
+        >
+          <Tab.Screen name="Today" component={EventsTodayTab} />
+          <Tab.Screen name="Upcoming" component={EventsUpcomingTab} />
+        </Tab.Navigator>
+        {/* <View style={styles.footer}>
+          <View>
+            <Text style={styles.availabilityText}>Earliest Availability:</Text>
+            <Text style={styles.availabilityDate}>Tue Jan 12, 2020</Text>
+          </View>
+          <TouchableOpacity style={styles.reserveButton}>
+            <Text style={styles.reserveButtonTitle}>Reserve</Text>
+          </TouchableOpacity>
+        </View> */}
+      </View>
+    </View>
+  );
+}
+
+{
+  /* <View style={styles.tabsContainer}>
           <View style={[styles.tab, styles.tabActive]}>
             <Text style={[styles.tabLabel, styles.tabLabelActive]}>Today</Text>
           </View>
           <View style={styles.tab}>
             <Text style={styles.tabLabel}>Upcoming</Text>
           </View>
-        </View>
-        <View style={styles.tabContent}>
+        </View> */
+}
+{
+  /* <View style={styles.tabContent}>
           <FlatList
             style={styles.reservationList}
             showsVerticalScrollIndicator={false}
@@ -93,17 +74,5 @@ export default function ViewRoomScreen() {
               <View style={styles.reservationSeparator} />
             )}
           />
-        </View>
-      </View>
-      <View style={styles.footer}>
-        <View>
-          <Text style={styles.availabilityText}>Earliest Availability:</Text>
-          <Text style={styles.availabilityDate}>Tue Jan 12, 2020</Text>
-        </View>
-        <TouchableOpacity style={styles.reserveButton}>
-          <Text style={styles.reserveButtonTitle}>Reserve</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
+        </View> */
 }

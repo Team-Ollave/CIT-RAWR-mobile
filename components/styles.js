@@ -11,7 +11,6 @@ export default EStyleSheet.create({
     borderRadius: '0.5rem',
     borderColor: Colors.gray3,
     borderWidth: 1,
-    marginBottom: '1rem',
   },
   eventName: {
     ...Typography.regular('Poppins_500Medium'),
