@@ -6,6 +6,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import styles from './styles';
 import EventsTodayTab from './tabs/EventsUpcomingTab';
 import EventsUpcomingTab from './tabs/EventsUpcomingTab';
+import { Colors } from '../../utls/colors';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -23,16 +24,13 @@ export default function ViewRoomScreen() {
           </Text>
         </View>
         <Tab.Navigator
-          // initialLayout={{ width: 100, height: 100 }}
-          // initialLayout={{ width: 20, height: 20 }}
-          barStyle={{ backgroundColor: 'transparent' }}
-          // tabBarOptions={{
-          //   // indicatorStyle: styles.indicatorStyle,
-          //   // labelStyle: styles.labelStyle,
-          //   style: {
-          //     backgroundColor: 'transparent',
-          //   },
-          // }}
+          tabBarOptions={{
+            indicatorStyle: styles.indicatorStyle,
+            labelStyle: styles.labelStyle,
+            style: styles.tab,
+            activeTintColor: Colors.accentColor,
+            inactiveTintColor: Colors.gray3,
+          }}
         >
           <Tab.Screen name="Today" component={EventsTodayTab} />
           <Tab.Screen name="Upcoming" component={EventsUpcomingTab} />

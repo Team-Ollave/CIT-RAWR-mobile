@@ -45,13 +45,19 @@ export default EStyleSheet.create({
     ...Typography.small(),
     color: Colors.gray4,
   },
-  // tab: {
-  //   flex: 1,
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  //   width: '100%',
-  //   paddingVertical: '0.5rem',
-  // },
+  tab: {
+    // flex: 1,
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    // width: '100%',
+    // paddingVertical: '0.5rem',
+
+    elevation: 0,
+    backgroundColor: 'transparent',
+    shadowColor: 'transparent',
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.gray2,
+  },
   tabLabel: {
     ...Typography.small('Poppins_400Regular'),
     color: Colors.black,
@@ -105,11 +111,11 @@ export default EStyleSheet.create({
   },
   indicatorStyle: {
     backgroundColor: Colors.accentColor,
-    height: 1,
+    height: 2,
   },
   labelStyle: {
-    ...Typography.small('Poppins_400Regular'),
+    ...Typography.small('Poppins_500Medium'),
     textTransform: 'capitalize',
-    color: Colors.black,
+    // color: Colors.black,
   },
 });

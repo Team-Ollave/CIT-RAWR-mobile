@@ -15,7 +15,7 @@ export default function ReservationCard({
         <Text style={styles.eventName}>{eventName}</Text>
         <Text style={styles.requestorName}>Reserved by {requestorName}</Text>
       </View>
-      <Text>
+      <Text style={styles.availableTime}>
         {eventStartTime} - {eventEndTime}
       </Text>
     </View>
