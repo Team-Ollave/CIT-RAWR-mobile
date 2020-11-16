@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { useFonts } from 'expo-font';
 import {
   Poppins_500Medium,
@@ -8,7 +10,11 @@ import {
   Poppins_600SemiBold,
 } from '@expo-google-fonts/poppins';
 import ViewRoomScreen from './screens/ViewRoomScreen';
+import MapViewScreen from './screens/MapViewScreen';
+import HomeScreen from './screens/HomeScreen';
 import EStyleSheet from 'react-native-extended-stylesheet';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -23,9 +29,14 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <ViewRoomScreen />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {/* Add your screens here */}
+        <Stack.Screen name='HomeScreen' component={HomeScreen} />
+        <Stack.Screen name='MapViewScreen' component={MapViewScreen} />
+        <Stack.Screen name='ViewRoomScreen' component={ViewRoomScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
