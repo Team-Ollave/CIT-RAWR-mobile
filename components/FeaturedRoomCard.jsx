@@ -2,12 +2,12 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import styles from './styles';
 
-export default FeaturedRoomsCard = ({
+export default function FeaturedRoomCard({
   roomName,
   isAvailable,
   availableStartTime,
   availableEndTime,
-}) => {
+}) {
   return (
     <View style={styles.container}>
       <View>
@@ -21,4 +21,4 @@ export default FeaturedRoomsCard = ({
       </Text>
     </View>
   );
-};
+}

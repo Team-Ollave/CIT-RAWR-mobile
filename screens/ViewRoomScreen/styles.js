@@ -15,21 +15,8 @@ export default EStyleSheet.create({
     backgroundColor: '#333',
     opacity: 0.3,
   },
-  tabsContainer: {
-    width: '100%',
-    flexDirection: 'row',
-    color: 'blue',
-    borderBottomColor: Colors.gray2,
-    borderBottomWidth: 1,
-  },
-  tabActive: {
-    borderBottomWidth: 2,
-    borderBottomColor: Colors.accentColor,
-  },
   mainContent: {
     flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'flex-start',
     paddingHorizontal: '1.5rem',
   },
   header: {
@@ -46,38 +33,26 @@ export default EStyleSheet.create({
     color: Colors.gray4,
   },
   tab: {
-    // flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // width: '100%',
-    // paddingVertical: '0.5rem',
-
     elevation: 0,
     backgroundColor: 'transparent',
-    shadowColor: 'transparent',
     borderBottomWidth: 1,
     borderBottomColor: Colors.gray2,
   },
   tabLabel: {
-    ...Typography.small('Poppins_400Regular'),
-    color: Colors.black,
-  },
-  tabLabelActive: {
     ...Typography.small('Poppins_500Medium'),
-    color: Colors.accentColor,
+    textTransform: 'capitalize',
   },
-  tabContent: {
-    flex: 1,
+  tabIndicator: {
+    backgroundColor: Colors.accentColor,
+    height: 2,
   },
   listTitle: {
     ...Typography.small('Poppins_600SemiBold'),
+    marginTop: '1.25rem',
     marginBottom: '0.5rem',
   },
   reservationSeparator: {
-    marginBottom: '1rem',
-  },
-  reservationList: {
-    paddingTop: '1.25rem',
+    height: '1rem',
   },
   'reservationCard:last-child': {
     marginBottom: '1rem',
@@ -90,7 +65,7 @@ export default EStyleSheet.create({
     paddingHorizontal: '1.5rem',
     paddingVertical: '1rem',
   },
-  availabilityText: {
+  availabilityLabel: {
     ...Typography.caption(),
     color: Colors.gray4,
   },
@@ -108,14 +83,5 @@ export default EStyleSheet.create({
   reserveButtonTitle: {
     ...Typography.subtitle1('Poppins_500Medium'),
     color: 'white',
-  },
-  indicatorStyle: {
-    backgroundColor: Colors.accentColor,
-    height: 2,
-  },
-  labelStyle: {
-    ...Typography.small('Poppins_500Medium'),
-    textTransform: 'capitalize',
-    // color: Colors.black,
   },
 });

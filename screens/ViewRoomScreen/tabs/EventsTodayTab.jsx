@@ -62,7 +62,6 @@ export default function EventsTodayTab() {
 
   return (
     <FlatList
-      style={styles.reservationList}
       showsVerticalScrollIndicator={false}
       ListHeaderComponent={<Text style={styles.listTitle}>Events</Text>}
       data={data}
