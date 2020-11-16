@@ -9,12 +9,13 @@ export default function ReservationCard({
   requestorName,
   eventStartTime,
   eventEndTime,
+  style,
 }) {
   return (
-    <View style={estyles.container}>
+    <View style={[styles.container, style]}>
       <View>
-        <Text style={estyles.eventName}>{eventName}</Text>
-        <Text style={estyles.requestorName}>Reserved by {requestorName}</Text>
+        <Text style={styles.eventName}>{eventName}</Text>
+        <Text style={styles.requestorName}>Reserved by {requestorName}</Text>
       </View>
       <Text>
         {eventStartTime} - {eventEndTime}
@@ -23,7 +24,7 @@ export default function ReservationCard({
   );
 }
 
-const estyles = EStyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'space-between',

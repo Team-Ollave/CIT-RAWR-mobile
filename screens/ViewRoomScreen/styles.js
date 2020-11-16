@@ -66,9 +66,41 @@ export default EStyleSheet.create({
   listTitle: {
     ...Typography.small('Poppins_600SemiBold'),
     marginBottom: '0.5rem',
-    marginTop: '1.25rem',
   },
   reservationSeparator: {
     marginBottom: '1rem',
+  },
+  reservationList: {
+    paddingTop: '1.25rem',
+  },
+  'reservationCard:last-child': {
+    marginBottom: '1rem',
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderTopColor: Colors.gray1,
+    borderTopWidth: 1,
+    paddingHorizontal: '1.5rem',
+    paddingVertical: '1rem',
+  },
+  availabilityText: {
+    ...Typography.caption(),
+    color: Colors.gray4,
+  },
+  availabilityDate: {
+    ...Typography.small('Poppins_500Medium'),
+  },
+  reserveButton: {
+    paddingHorizontal: '1.5rem',
+    paddingVertical: '0.5rem',
+    borderRadius: '0.5rem',
+    backgroundColor: Colors.accentColor,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  reserveButtonTitle: {
+    ...Typography.subtitle1('Poppins_500Medium'),
+    color: 'white',
   },
 });
