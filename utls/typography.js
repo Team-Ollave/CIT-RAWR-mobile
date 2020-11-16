@@ -43,4 +43,9 @@ export const Typography = {
     letterSpacing: 0.4,
     fontFamily,
   }),
+  button: (fontFamily = 'Poppins_500Medium') => ({
+    fontSize: '0.875rem',
+    letterSpacing: 1.25,
+    fontFamily,
+  }),
 };

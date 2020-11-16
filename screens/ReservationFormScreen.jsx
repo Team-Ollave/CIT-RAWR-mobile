@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Typography } from '../utls/typography';
 import { Colors } from '../utls/colors';
@@ -37,28 +37,29 @@ export default function ReservationRoomScreen() {
               *Application may take from 1 to 3 days.
             </Text>
         </View>
-        <View style={estyles.buttonContainer}>
-          <TouchableOpacity style={estyles.reserveButton}>
-            <Text>Reserve</Text>
-          </TouchableOpacity>
-        </View>
       </View>
+      <View style={estyles.footer}>
+          <View style={estyles.footerContainer}>
+            <TouchableOpacity style={estyles.reserveButtonContainer}>
+              <Text style={estyles.reserveButtonText}>Reserve</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
     </View>
   );
 }
 
 const estyles = EStyleSheet.create({
     container: {
-      paddingHorizontal: '1.5rem',
       paddingTop: StatusBar.currentHeight,
-      flex: 1,
       width: '100%',
     },
     mainContent: {
-      flex: 1,
-      
+      paddingHorizontal: '1.5rem',
+      height: '82%',
     },
     header: {
+      paddingHorizontal: '1.5rem',
       marginTop: '1rem',
       marginBottom: '1.25rem',
     },
@@ -102,9 +103,30 @@ const estyles = EStyleSheet.create({
       height: 40,
       width: 144,
     },
-    reserveButton: {
-      height: 40,
-      color: Colors.accentColor,
+    footer: {
+      height: 72,
+      borderWidth: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderColor: Colors.gray2,
+    },
+    footerContainer: {
+      paddingHorizontal: 24,
+      paddingVertical: 16,
+      flex: 1,
+      height: '100%',
+      width: '100%',
+    },
+    reserveButtonContainer: {
+      backgroundColor: Colors.accentColor,
+      borderRadius: 8,
+      height: '100%',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    reserveButtonText:{
+      ...Typography.button('Poppins_500Medium'),
+      color: '#ffffff',
     },
     headerText: {
       ...Typography.h6('Poppins_500Medium'),
