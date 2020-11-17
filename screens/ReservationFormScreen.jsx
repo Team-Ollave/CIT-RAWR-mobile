@@ -1,12 +1,34 @@
-import React from 'react';
-import { Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import React, {useState} from 'react';
+import { Text, View, TextInput, TouchableOpacity, Button, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Typography } from '../utls/typography';
 import { Colors } from '../utls/colors';
 import { StatusBar } from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function ReservationRoomScreen() {
-
+  const [date, setDate] = useState(new Date(1598051730000));
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+ 
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+  };
+ 
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+ 
+  const showDatepicker = () => {
+    showMode('date');
+  };
+ 
+  const showTimepicker = () => {
+    showMode('time');
+  };
 
   return (
     <View style={estyles.container}>
@@ -25,12 +47,26 @@ export default function ReservationRoomScreen() {
         <View style={estyles.dateTime}>
             <View style={estyles.dateTimeContainer}>
               <Text style={estyles.eventHeaderText}>Date</Text>
-              <TextInput style={[estyles.textInput, estyles.dateTimePickerInput]}/>
+              <TouchableOpacity onPress={showDatepicker}>
+                <Text style={[estyles.textInput, estyles.dateTimePickerInput]}>{date.toLocaleDateString("en-US")}</Text>
+              </TouchableOpacity>
             </View>
             <View style={estyles.dateTimeContainer}>
-              <Text style={estyles.eventHeaderText}>Time</Text>
-              <TextInput style={[estyles.textInput, estyles.dateTimePickerInput]}/>
+              <Text style={estyles.eventHeaderText}>Set Time</Text>
+              <TouchableOpacity onPress={showTimepicker}>
+                <Text style={[estyles.textInput, estyles.dateTimePickerInput]}>{date.getHours()}:{date.getMinutes()}</Text>
+              </TouchableOpacity>
             </View>
+            {show && (
+              <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                mode={mode}
+                is24Hour={true}
+                display="default"
+                onChange={onChange}
+              />
+            )}
         </View>
         <View style={estyles.eventRemarks}>
             <Text styles={estyles.eventRemarksText}>
@@ -51,6 +87,7 @@ export default function ReservationRoomScreen() {
 
 const estyles = EStyleSheet.create({
     container: {
+      flex: 1,
       paddingTop: StatusBar.currentHeight,
       width: '100%',
     },
@@ -142,4 +179,7 @@ const estyles = EStyleSheet.create({
       color: Colors.gray4,
       fontStyle: 'italic',
     },
+
+    
 });
+
