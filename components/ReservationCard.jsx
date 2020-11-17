@@ -1,45 +1,23 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { Typography } from '../utls/typography';
-import { Colors } from '../utls/colors';
+import { View, Text } from 'react-native';
+import styles from './styles';
 
 export default function ReservationCard({
   eventName,
   requestorName,
   eventStartTime,
   eventEndTime,
+  style,
 }) {
   return (
-    <View style={estyles.container}>
+    <View style={[styles.container, style]}>
       <View>
-        <Text style={estyles.eventName}>{eventName}</Text>
-        <Text style={estyles.requestorName}>Reserved by {requestorName}</Text>
+        <Text style={styles.eventName}>{eventName}</Text>
+        <Text style={styles.requestorName}>Reserved by {requestorName}</Text>
       </View>
-      <Text>
+      <Text style={styles.availableTime}>
         {eventStartTime} - {eventEndTime}
       </Text>
     </View>
   );
 }
-
-const estyles = EStyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    padding: '0.75rem',
-    borderRadius: '0.5rem',
-    borderColor: Colors.gray3,
-    borderWidth: 1,
-    marginBottom: '1rem',
-  },
-  eventName: {
-    ...Typography.regular('Poppins_500Medium'),
-    color: Colors.black,
-  },
-  requestorName: {
-    ...Typography.extraSmall('Poppins_400Regular'),
-    color: Colors.gray4,
-  },
-});
