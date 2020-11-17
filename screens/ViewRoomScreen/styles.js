@@ -1,12 +1,15 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Typography } from '../../utils/typography';
 import { Colors } from '../../utils/colors';
-import { StatusBar } from 'react-native';
+import { StatusBar, Dimensions } from 'react-native';
+
+const { width: windowWidth, height: windowHeight } = Dimensions.get('window');
 
 export default EStyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
+    width: windowWidth,
+    height: windowHeight,
     backgroundColor: 'white',
   },
   images: {
@@ -19,7 +22,7 @@ export default EStyleSheet.create({
   },
   backButtonContainer: {
     position: 'absolute',
-    top: StatusBar.currentHeight + 16,
+    top: StatusBar.currentHeight ? StatusBar.currentHeight + 16 : '1rem',
     left: '1rem',
   },
   backButton: {

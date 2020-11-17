@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import styles from './styles';
 import EventsTodayTab from './tabs/EventsTodayTab';
@@ -7,6 +7,7 @@ import EventsUpcomingTab from './tabs/EventsUpcomingTab';
 import { Colors } from '../../utils/colors';
 import { AntDesign } from '@expo/vector-icons';
 import { CommonActions } from '@react-navigation/native';
+import Carousel from '../../components/Carousel';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -14,15 +15,7 @@ export default function ViewRoomScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.images}>
-        <Image
-          source={{ uri: 'https://source.unsplash.com/400x400/' }}
-          style={{
-            width: 400,
-            height: 400,
-            resizeMode: 'cover',
-          }}
-        />
-
+        <Carousel />
         <TouchableOpacity
           style={styles.backButtonContainer}
           onPress={() => navigation.dispatch(CommonActions.goBack())}
