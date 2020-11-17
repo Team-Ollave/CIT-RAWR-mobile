@@ -1,26 +1,24 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { estyles } from './styles';
+import styles from './styles';
 
-const FeaturedRoomsCard = ({
+export default function FeaturedRoomCard({
   roomName,
   isAvailable,
   availableStartTime,
   availableEndTime,
-}) => {
+}) {
   return (
-    <View style={estyles.container}>
+    <View style={styles.container}>
       <View>
-        <Text style={estyles.roomName}>{roomName}</Text>
-        <Text style={estyles.isAvailableTag}>
+        <Text style={styles.roomName}>{roomName}</Text>
+        <Text style={styles.isAvailableTag}>
           {isAvailable ? 'Available' : 'Not Available'}
         </Text>
       </View>
-      <Text style={estyles.availableTime}>
+      <Text style={styles.availableTime}>
         {availableStartTime} - {availableEndTime}
       </Text>
     </View>
   );
-};
-
-export default FeaturedRoomsCard;
+}

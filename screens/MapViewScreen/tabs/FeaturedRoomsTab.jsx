@@ -1,11 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
 import { styles } from '../styles';
-import FeaturedRoomsCard from '../../../components/FeaturedRoomCard';
+import FeaturedRoomCard from '../../../components/FeaturedRoomCard';
+
 const FeaturedRoomsTab = () => {
   return (
     <View style={styles.tabContainer}>
-      <FeaturedRoomsCard
+      <FeaturedRoomCard
         roomName={'Case Room'}
         isAvailable={true}
         availableStartTime={'8:00 AM'}
