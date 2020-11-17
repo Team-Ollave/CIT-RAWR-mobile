@@ -1,23 +1,36 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Typography } from '../../utils/typography';
 import { Colors } from '../../utils/colors';
+import { StatusBar } from 'react-native';
 
 export default EStyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
+    backgroundColor: 'white',
   },
   images: {
     flex: 1,
     maxHeight: '30%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#333',
-    opacity: 0.3,
+    backgroundColor: 'rgba(0,0,0, 0.5)',
+    position: 'relative',
+  },
+  backButtonContainer: {
+    position: 'absolute',
+    top: StatusBar.currentHeight + 16,
+    left: '1rem',
+  },
+  backButton: {
+    backgroundColor: 'white',
+    borderRadius: 999,
+    padding: '0.5rem',
   },
   mainContent: {
     flex: 1,
     paddingHorizontal: '1.5rem',
+    backgroundColor: 'white',
   },
   header: {
     paddingBottom: '1rem',
@@ -34,7 +47,7 @@ export default EStyleSheet.create({
   },
   tab: {
     elevation: 0,
-    backgroundColor: 'transparent',
+    // backgroundColor: 'transparent',
     borderBottomWidth: 1,
     borderBottomColor: Colors.gray2,
   },
