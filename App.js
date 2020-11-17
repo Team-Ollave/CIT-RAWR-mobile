@@ -10,7 +10,7 @@ import {
   Poppins_600SemiBold,
 } from '@expo-google-fonts/poppins';
 import ViewRoomScreen from './screens/ViewRoomScreen';
-import ReservationFormScreen from './screens/ReservationFormScreen';
+import ReservationFormScreen from './screens/ReservationFormScreen/ReservationFormScreen';
 import MapViewScreen from './screens/MapViewScreen';
 import HomeScreen from './screens/HomeScreen';
 import EStyleSheet from 'react-native-extended-stylesheet';

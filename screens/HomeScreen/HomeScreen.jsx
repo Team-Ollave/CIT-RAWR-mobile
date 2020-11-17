@@ -11,6 +11,9 @@ const HomeScreen = ({ navigation }) => {
       <TouchableOpacity onPress={() => navigation.navigate('ViewRoomScreen')}>
         <Text>Go to View Room Screen</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('ReservationFormScreen')}>
+        <Text>Go to Reservation Form Screen</Text>
+      </TouchableOpacity>
     </View>
   );
 };

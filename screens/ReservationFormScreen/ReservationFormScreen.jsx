@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { Text, View, TextInput, TouchableOpacity, Button, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Typography } from '../utls/typography';
-import { Colors } from '../utls/colors';
+import { Typography } from '../../utils/typography';
+import { Colors } from '../../utils/colors';
 import { StatusBar } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
