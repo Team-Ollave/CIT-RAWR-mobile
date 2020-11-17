@@ -4,17 +4,30 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { Typography } from '../utls/typography';
 import { Colors } from '../utls/colors';
 import { StatusBar } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import moment from 'moment';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
+
 export default function ReservationRoomScreen() {
-  const [date, setDate] = useState(new Date(1598051730000));
+  const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
+  const [formattedDate, setfDate] = useState('Set date');
+  const [formattedTime, setfTime] = useState("Set time");
  
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
+    if (mode == 'date'){
+      setfDate(moment(currentDate).format("MM-DD-YYYY"));
+    }
+    else{
+      setfTime(moment(currentDate).format("hh:mm A"));
+    }
+    
   };
  
   const showMode = (currentMode) => {
@@ -33,6 +46,9 @@ export default function ReservationRoomScreen() {
   return (
     <View style={estyles.container}>
       <View style={estyles.header}>
+        <TouchableOpacity>
+          <MaterialIcons name="arrow-back" size={24} color="black" />
+        </TouchableOpacity>
         <Text style={estyles.headerText}>Reserve a Room</Text>
       </View>
       <View style={estyles.mainContent}>
@@ -45,16 +61,18 @@ export default function ReservationRoomScreen() {
             <TextInput multiline style={[estyles.textInput, estyles.eventDescriptionTextInput]} placeholder="What will you be doing?"/>
         </View>
         <View style={estyles.dateTime}>
-            <View style={estyles.dateTimeContainer}>
-              <Text style={estyles.eventHeaderText}>Date</Text>
-              <TouchableOpacity onPress={showDatepicker}>
-                <Text style={[estyles.textInput, estyles.dateTimePickerInput]}>{date.toLocaleDateString("en-US")}</Text>
+        <View style={estyles.dateTimeContainer}>
+              <Text style={estyles.eventHeaderText}>Set Date</Text>
+              <TouchableOpacity onPress={showDatepicker} style={estyles.dateTimePickerInput}>
+                <Text style={estyles.dateTimeText}>{ formattedDate }</Text>
+                <Feather name="clock" size={24} color="black" />
               </TouchableOpacity>
             </View>
             <View style={estyles.dateTimeContainer}>
               <Text style={estyles.eventHeaderText}>Set Time</Text>
-              <TouchableOpacity onPress={showTimepicker}>
-                <Text style={[estyles.textInput, estyles.dateTimePickerInput]}>{date.getHours()}:{date.getMinutes()}</Text>
+              <TouchableOpacity onPress={showTimepicker} style={estyles.dateTimePickerInput}>
+                <Text style={estyles.dateTimeText}>{ formattedTime }</Text>
+                <Feather name="calendar" size={24} color={Colors.black} />
               </TouchableOpacity>
             </View>
             {show && (
@@ -69,7 +87,7 @@ export default function ReservationRoomScreen() {
             )}
         </View>
         <View style={estyles.eventRemarks}>
-            <Text styles={estyles.eventRemarksText}>
+            <Text style={estyles.eventRemarksText}>
               *Application may take from 1 to 3 days.
             </Text>
         </View>
@@ -96,19 +114,23 @@ const estyles = EStyleSheet.create({
       height: '82%',
     },
     header: {
+      flexDirection: 'row',
       paddingHorizontal: '1.5rem',
       marginTop: '1rem',
       marginBottom: '1.25rem',
     },
+    backButtonContainer: {
+      paddingRight: '1rem',
+    },
     textInput: {
       ...Typography.body2('Poppins_400Regular'),
       color: Colors.black,
-      paddingLeft: '1rem',
+      paddingHorizontal: '1rem',
       borderRadius: '0.5rem',
       borderColor: Colors.gray4,
       borderWidth: 1,
       textAlignVertical: 'top',
-      paddingTop: 10,
+      paddingTop: '0.5rem',
     },
     eventName: {
       marginBottom: '1.25rem',
@@ -122,7 +144,6 @@ const estyles = EStyleSheet.create({
     },
     eventDescriptionTextInput:{
       height: 180,
-      color: Colors.black,
       paddingBottom: 5,
     },
     dateTime: {
@@ -139,6 +160,18 @@ const estyles = EStyleSheet.create({
     dateTimePickerInput: {
       height: 40,
       width: 144,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      paddingHorizontal: '1rem',
+      borderRadius: '0.5rem',
+      borderColor: Colors.gray4,
+      borderWidth: 1,
+      textAlignVertical: 'top',
+    },
+    dateTimeText: {
+      ...Typography.body2('Poppins_400Regular'),
+      color: Colors.black,
     },
     footer: {
       height: 72,
@@ -166,6 +199,7 @@ const estyles = EStyleSheet.create({
       color: '#ffffff',
     },
     headerText: {
+      paddingLeft: 16,
       ...Typography.h6('Poppins_500Medium'),
       color: Colors.black,
     },
@@ -175,10 +209,14 @@ const estyles = EStyleSheet.create({
       paddingBottom: '0.25rem',
     },
     eventRemarksText: {
-      ...Typography.caption('Poppins_400Regular'),
+      ...Typography.body2('Poppins_400Regular'),
       color: Colors.gray4,
       fontStyle: 'italic',
     },
+    dateTimeText: {
+      ...Typography.body2('Poppins_400Regular'),
+      color: Colors.black,
+    }
 
     
 });
