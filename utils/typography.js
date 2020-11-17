@@ -29,12 +29,12 @@ export const Typography = {
     fontFamily,
   }),
   subtitle1: (fontFamily = 'Poppins_400Regular') => ({
-    fontSize: '1 rem',
+    fontSize: '1rem',
     letterSpacing: 0.15,
     fontFamily,
   }),
   body1: (fontFamily = 'Poppins_400Regular') => ({
-    fontSize: '1 rem',
+    fontSize: '1rem',
     letterSpacing: 0.5,
     fontFamily,
   }),

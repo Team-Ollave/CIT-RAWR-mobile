@@ -1,6 +1,6 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Typography } from '../utls/typography';
-import { Colors } from '../utls/colors';
+import { Typography } from '../utils/typography';
+import { Colors } from '../utils/colors';
 
 export default EStyleSheet.create({
   container: {

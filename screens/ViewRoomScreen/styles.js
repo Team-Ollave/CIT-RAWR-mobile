@@ -1,6 +1,6 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Typography } from '../../utls/typography';
-import { Colors } from '../../utls/colors';
+import { Typography } from '../../utils/typography';
+import { Colors } from '../../utils/colors';
 
 export default EStyleSheet.create({
   container: {
@@ -52,10 +52,10 @@ export default EStyleSheet.create({
     marginBottom: '0.5rem',
   },
   reservationSeparator: {
-    height: '1rem',
+    height: '0.5rem',
   },
   'reservationCard:last-child': {
-    marginBottom: '1rem',
+    marginBottom: '0.5rem',
   },
   footer: {
     flexDirection: 'row',
@@ -83,5 +83,8 @@ export default EStyleSheet.create({
   reserveButtonTitle: {
     ...Typography.subtitle1('Poppins_500Medium'),
     color: 'white',
+  },
+  accordionSeparator: {
+    height: '0.5rem',
   },
 });
