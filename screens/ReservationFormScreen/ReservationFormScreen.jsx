@@ -6,10 +6,11 @@ import { Colors } from '../../utils/colors';
 import { StatusBar } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import { CommonActions } from '@react-navigation/native';
 import moment from 'moment';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-export default function ReservationRoomScreen() {
+export default function ReservationRoomScreen({ navigation }) {
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
@@ -20,7 +21,7 @@ export default function ReservationRoomScreen() {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
-    if (mode == 'date') {
+    if (mode === 'date') {
       setfDate(moment(currentDate).format('MM-DD-YYYY'));
     } else {
       setfTime(moment(currentDate).format('hh:mm A'));
@@ -43,7 +44,9 @@ export default function ReservationRoomScreen() {
   return (
     <View style={estyles.container}>
       <View style={estyles.header}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.dispatch(CommonActions.goBack())}
+        >
           <MaterialIcons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
         <Text style={estyles.headerText}>Reserve a Room</Text>
