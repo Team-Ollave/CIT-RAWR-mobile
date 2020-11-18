@@ -10,6 +10,7 @@ import {
   Poppins_600SemiBold,
 } from '@expo-google-fonts/poppins';
 import ViewRoomScreen from './screens/ViewRoomScreen';
+import ReservationFormScreen from './screens/ReservationFormScreen/ReservationFormScreen';
 import MapViewScreen from './screens/MapViewScreen';
 import HomeScreen from './screens/HomeScreen';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -32,9 +33,10 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* Add your screens here */}
-        <Stack.Screen name="HomeScreen" component={HomeScreen} />
-        <Stack.Screen name="MapViewScreen" component={MapViewScreen} />
-        <Stack.Screen name="ViewRoomScreen" component={ViewRoomScreen} />
+        <Stack.Screen name='HomeScreen' component={HomeScreen} />
+        <Stack.Screen name='MapViewScreen' component={MapViewScreen} />
+        <Stack.Screen name='ViewRoomScreen' component={ViewRoomScreen} />
+        <Stack.Screen name='ReservationFormScreen' component={ReservationFormScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
