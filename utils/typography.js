@@ -43,4 +43,9 @@ export const Typography = {
     letterSpacing: 0.4,
     fontFamily,
   }),
+  overline: (fontFamily = 'Poppins_400Regular') => ({
+    fontSize: '0.625rem',
+    letterSpacing: 1.5,
+    fontFamily,
+  }),
 };
