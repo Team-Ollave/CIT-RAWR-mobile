@@ -16,6 +16,9 @@ const HomeScreen = ({ navigation }) => {
       >
         <Text>Go to Reservation Form Screen</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
+        <Text>Go to Login Screen</Text>
+      </TouchableOpacity>
     </View>
   );
 };
