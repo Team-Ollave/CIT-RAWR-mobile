@@ -40,11 +40,11 @@ const MapViewScreen = ({ navigation }) => {
       >
         <Tab.Screen
           name="Featured"
-          component={(FeaturedRoomsTab, { navigation: navigation })}
+          component={(FeaturedRoomsTab, { navigation })}
         />
         <Tab.Screen
           name="Generic"
-          component={(GenericRoomsTab, { navigation: navigation })}
+          component={(GenericRoomsTab, { navigation })}
         />
       </Tab.Navigator>
     );
