@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { styles } from '../styles';
-import FeaturedRoomsCard from '../../../components/FeaturedRoomCard';
+import RoomCard from '../../../components/RoomCard';
 
-const GenericRoomsTab = () => {
+const GenericRoomsTab = ({ navigation }) => {
   return (
     <View style={styles.tabContainer}>
       <Text style={styles.listTitle}>Classrooms</Text>
