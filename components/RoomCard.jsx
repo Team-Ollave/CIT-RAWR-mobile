@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { estyles } from './styles';
+import styles from './styles';
 
-const FeaturedRoomsCard = ({
+const FeaturedRoomCard = () => ({
   roomName,
   isAvailable,
   roomsAvailable,
@@ -15,18 +15,18 @@ const FeaturedRoomsCard = ({
   const isAvailableText = isAvailable ? 'Available' : 'Not Available';
 
   return (
-    <View style={estyles.container}>
+    <View style={styles.container}>
       <View>
         <Text style={estyles.roomName}>{roomName}</Text>
         <Text style={estyles.isAvailableTag}>
           {isGeneric ? numberOfRoomsAvailableText : isAvailableText}
         </Text>
       </View>
-      <Text style={estyles.availableTime}>
+      <Text style={styles.availableTime}>
         {availableStartTime} - {availableEndTime}
       </Text>
     </View>
   );
 };
 
-export default FeaturedRoomsCard;
+export default FeaturedRoomCard;

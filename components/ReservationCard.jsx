@@ -1,20 +1,21 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { estyles } from './styles';
+import styles from './styles';
 
 export default function ReservationCard({
   eventName,
   requestorName,
   eventStartTime,
   eventEndTime,
+  style,
 }) {
   return (
-    <View style={estyles.container}>
+    <View style={[styles.container, style]}>
       <View>
-        <Text style={estyles.eventName}>{eventName}</Text>
-        <Text style={estyles.requestorName}>Reserved by {requestorName}</Text>
+        <Text style={styles.eventName}>{eventName}</Text>
+        <Text style={styles.requestorName}>Reserved by {requestorName}</Text>
       </View>
-      <Text>
+      <Text style={styles.availableTime}>
         {eventStartTime} - {eventEndTime}
       </Text>
     </View>
