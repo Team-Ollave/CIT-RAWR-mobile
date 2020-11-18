@@ -5,14 +5,25 @@ import styles from './styles';
 import EventsTodayTab from './tabs/EventsTodayTab';
 import EventsUpcomingTab from './tabs/EventsUpcomingTab';
 import { Colors } from '../../utils/colors';
+import { AntDesign } from '@expo/vector-icons';
+import { CommonActions } from '@react-navigation/native';
+import Carousel from '../../components/Carousel';
 
 const Tab = createMaterialTopTabNavigator();
 
-export default function ViewRoomScreen() {
+export default function ViewRoomScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.images}>
-        <Text>images</Text>
+        <Carousel />
+        <TouchableOpacity
+          style={styles.backButtonContainer}
+          onPress={() => navigation.dispatch(CommonActions.goBack())}
+        >
+          <View style={styles.backButton}>
+            <AntDesign name="arrowleft" size={20} color={Colors.black} />
+          </View>
+        </TouchableOpacity>
       </View>
       <View style={styles.mainContent}>
         <View style={styles.header}>
