@@ -118,6 +118,7 @@ const estyles = EStyleSheet.create({
     flex: 1,
     paddingTop: StatusBar.currentHeight,
     width: '100%',
+    backgroundColor: '#ffffff',
   },
   mainContent: {
     paddingHorizontal: '1.5rem',
