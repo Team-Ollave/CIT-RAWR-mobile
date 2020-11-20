@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
     container: {
         width: 80,
         alignItems: 'center',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        borderRadius: 2
     }
 })
 export default FeaturedBadge;
