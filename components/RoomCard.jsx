@@ -2,7 +2,8 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import styles from './styles';
 
-const FeaturedRoomCard = () => ({
+const FeaturedRoomCard = ({
+  id,
   roomName,
   isAvailable,
   roomsAvailable,
@@ -15,10 +16,10 @@ const FeaturedRoomCard = () => ({
   const isAvailableText = isAvailable ? 'Available' : 'Not Available';
 
   return (
-    <View style={styles.container}>
+    <View key={id} style={[styles.container, styles.roomCardContainer]}>
       <View>
-        <Text style={estyles.roomName}>{roomName}</Text>
-        <Text style={estyles.isAvailableTag}>
+        <Text style={styles.roomName}>{roomName}</Text>
+        <Text style={styles.isAvailableTag}>
           {isGeneric ? numberOfRoomsAvailableText : isAvailableText}
         </Text>
       </View>
