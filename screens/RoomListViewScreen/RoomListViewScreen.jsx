@@ -15,6 +15,7 @@ const Section = ({ item }) => (
     <View>
       <FlatList
         horizontal
+        showsHorizontalScrollIndicator={false}
         data={item.rooms}
         renderItem={({ item }) => (
           <RoomCard>
@@ -28,19 +29,14 @@ const Section = ({ item }) => (
 );
 
 const RoomListViewScreen = () => (
-  <View
-    style={{
-      marginTop: StatusBar.currentHeight,
-      flex: 1,
-      justifyContent: 'space-between',
-    }}
-  >
-    <SearchInput />
-    <View style={styles.mainContent}>
+  <View style={styles.container}>
+    <View style={[styles.mainContent]}>
       <FlatList
+        ListHeaderComponent={<SearchInput />}
         data={dummydata}
         renderItem={Section}
         keyExtractor={(item) => slug(item.building)}
+        showsVerticalScrollIndicator={false}
       />
     </View>
     <ExploreMapActionButton />

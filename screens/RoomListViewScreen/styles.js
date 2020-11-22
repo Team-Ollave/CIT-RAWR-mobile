@@ -1,8 +1,16 @@
+import { StatusBar } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Colors } from '../../utils/colors';
 import { Typography } from '../../utils/typography';
 
 const styles = EStyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    paddingTop: StatusBar.currentHeight + 16,
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   img: {
     flex: 1,
     resizeMode: 'cover',
@@ -30,37 +38,30 @@ const styles = EStyleSheet.create({
   section: {
     margin: 10,
   },
-  mainContent: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    paddingTop: 50,
-  },
+  // mainContent: {
+  //   position: 'absolute',
+  //   top: 0,
+  //   bottom: 0,
+  //   paddingTop: 50,
+  // },
 
   ExploreMapActionButtonShadow: {
-    borderRadius: 100 / 2,
-    backgroundColor: 'transparent',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-
-    elevation: 3,
-
+    borderRadius: 999,
+    elevation: 5,
     alignSelf: 'center',
-    marginBottom: 10,
   },
   ExploreMapActionButtonContainer: {
     flexDirection: 'row',
     backgroundColor: 'white',
-    borderRadius: 100 / 2,
+    borderRadius: 999,
     justifyContent: 'center',
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    
+    alignItems: 'center',
+    paddingHorizontal: '1rem',
+    paddingVertical: '0.5rem',
+  },
+  exploreLabel: {
+    ...Typography.small('Poppins_500Medium'),
+    marginLeft: '0.2rem',
   },
 });
 
