@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList, SectionList } from 'react-native';
 import ReservationCard from '../../../components/ReservationCard';
-import EStyleSheet from 'react-native-extended-stylesheet';
 import Accordion from '../../../components/Accordion';
 import styles from '../styles';
 
@@ -88,6 +87,7 @@ export default function EventsTodayTab() {
 
   return (
     <FlatList
+      style={{ backgroundColor: 'white' }}
       showsVerticalScrollIndicator={false}
       ListHeaderComponent={<Text style={styles.listTitle}>Events</Text>}
       data={data}

@@ -38,9 +38,24 @@ export const Typography = {
     letterSpacing: 0.5,
     fontFamily,
   }),
+  body2: (fontFamily = 'Poppins_400Regular') => ({
+    fontSize: '0.875rem',
+    letterSpacing: 0.25,
+    fontFamily,
+  }),
   caption: (fontFamily = 'Poppins_400Regular') => ({
-    fontSize: '0.75rem',
+    fontSize: '0.5rem',
     letterSpacing: 0.4,
+    fontFamily,
+  }),
+  button: (fontFamily = 'Poppins_500Medium') => ({
+    fontSize: '0.875rem',
+    letterSpacing: 1.25,
+    fontFamily,
+  }),
+  overline: (fontFamily = 'Poppins_400Regular') => ({
+    fontSize: '0.625rem',
+    letterSpacing: 1.5,
     fontFamily,
   }),
 };

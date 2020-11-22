@@ -62,6 +62,7 @@ export default function EventsTodayTab() {
 
   return (
     <FlatList
+      style={{ backgroundColor: 'white' }}
       showsVerticalScrollIndicator={false}
       ListHeaderComponent={<Text style={styles.listTitle}>Events</Text>}
       data={data}
