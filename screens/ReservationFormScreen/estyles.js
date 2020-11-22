@@ -36,16 +36,14 @@ export default EStyleSheet.create({
   eventName: {
     marginBottom: '1.25rem',
   },
-  eventNameTextInput: {
-    height: 40,
-  },
+  eventNameTextInput: {},
   eventDescription: {
     textAlignVertical: 'top',
     marginBottom: '1.25rem',
   },
   eventDescriptionTextInput: {
-    height: 180,
-    paddingBottom: 5,
+    minHeight: 100,
+    paddingBottom: '0.5rem',
   },
   dateTime: {
     flexDirection: 'row',
@@ -53,9 +51,12 @@ export default EStyleSheet.create({
     marginBottom: '1.25rem',
     width: '100%',
   },
+  dateTimeContainer: {
+    flexGrow: 1,
+  },
   dateTimePickerInput: {
-    height: 40,
-    width: 180,
+    paddingHorizontal: '1rem',
+    paddingVertical: '0.5rem',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
