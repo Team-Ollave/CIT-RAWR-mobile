@@ -63,7 +63,7 @@ export default function ReservationRoomScreen({ navigation }) {
           />
         </View>
         <View style={estyles.dateTime}>
-          <View style={estyles.dateTimeContainer}>
+          <View style={[estyles.dateTimeContainer, { marginRight: 24 }]}>
             <Text style={estyles.eventHeaderText}>Set Date</Text>
             <TouchableOpacity
               onPress={showDatepicker}
