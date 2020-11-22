@@ -49,18 +49,13 @@ export default EStyleSheet.create({
   },
   dateTime: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     marginBottom: '1.25rem',
-  },
-  dateTimeContainer: {
-    flex: 1,
-    alignItems: 'flex-start',
-    justifyContent: 'center',
     width: '100%',
   },
   dateTimePickerInput: {
     height: 40,
-    width: 144,
+    width: 180,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
