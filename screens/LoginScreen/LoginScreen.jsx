@@ -23,13 +23,11 @@ export default function LoginScreen({ navigation }) {
           secureTextEntry={true}
           password={true}
         />
-        <View style={styles.loginButton}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('MapViewScreen')}
-          >
+        <TouchableOpacity onPress={() => navigation.navigate('MapViewScreen')}>
+          <View style={styles.loginButton}>
             <Text style={styles.loginButtonText}>Login</Text>
-          </TouchableOpacity>
-        </View>
+          </View>
+        </TouchableOpacity>
         <TouchableOpacity styles={styles.forgotPasswordContainer}>
           <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
         </TouchableOpacity>

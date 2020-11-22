@@ -106,7 +106,7 @@ export default function ReservationRoomScreen({ navigation }) {
         <View style={estyles.footerContainer}>
           <TouchableOpacity
             style={estyles.reserveButtonContainer}
-            onPress={() => navigation.navigate('MapViewScreen')}
+            onPress={() => navigation.navigate('LoginScreen')}
           >
             <Text style={estyles.reserveButtonText}>Reserve</Text>
           </TouchableOpacity>
