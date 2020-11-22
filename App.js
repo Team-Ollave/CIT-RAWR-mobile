@@ -12,9 +12,8 @@ import {
 import ViewRoomScreen from './screens/ViewRoomScreen';
 import ReservationFormScreen from './screens/ReservationFormScreen';
 import MapViewScreen from './screens/MapViewScreen';
+import RoomListViewScreen from './screens/RoomListViewScreen';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
-import HomeScreen from './screens/HomeScreen';
-import RoomListViewScreen from './screens/RoomListViewScreen'
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const Stack = createStackNavigator();
