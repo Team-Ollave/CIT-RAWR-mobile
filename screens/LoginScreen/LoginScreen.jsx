@@ -5,7 +5,7 @@ import { Typography } from '../../utils/typography';
 import { Colors } from '../../utils/colors';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
@@ -23,11 +23,11 @@ export default function LoginScreen() {
           secureTextEntry={true}
           password={true}
         />
-        <View style={styles.loginButton}>
-          <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('MapViewScreen')}>
+          <View style={styles.loginButton}>
             <Text style={styles.loginButtonText}>Login</Text>
-          </TouchableOpacity>
-        </View>
+          </View>
+        </TouchableOpacity>
         <TouchableOpacity styles={styles.forgotPasswordContainer}>
           <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
         </TouchableOpacity>
