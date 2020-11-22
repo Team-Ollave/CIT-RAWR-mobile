@@ -1,10 +1,10 @@
-import { Dimensions } from 'react-native';
+import { Dimensions, StatusBar, StyleSheet } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Colors } from '../../utils/colors';
 import { Typography } from '../../utils/typography';
 
-const { width, height } = Dimensions.get('window');
-const alwaysOpenHeight = height * 0.14;
+let { width, height } = Dimensions.get('screen');
+const alwaysOpenHeight = height * 0.12;
 const modalHeight = height * 0.7;
 
 const styles = EStyleSheet.create({
@@ -15,8 +15,6 @@ const styles = EStyleSheet.create({
   },
   mapContainer: {
     flex: 1,
-    backgroundColor: '#333',
-    opacity: 0.3,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -64,6 +62,21 @@ const styles = EStyleSheet.create({
     ...Typography.small('Poppins_600SemiBold'),
     marginBottom: '0.5rem',
   },
+  mapPlaceholder: {
+    width: width,
+    height: height,
+  },
+  backButtonContainer: {
+    position: 'absolute',
+    top: StatusBar.currentHeight ? StatusBar.currentHeight + 16 : '1rem',
+    left: '1rem',
+    padding: '.5rem',
+    borderRadius: 999,
+    backgroundColor: 'white',
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  }
 });
 
 export { styles, alwaysOpenHeight, modalHeight, width, height };
