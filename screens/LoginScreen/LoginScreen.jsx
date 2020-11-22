@@ -23,9 +23,12 @@ export default function LoginScreen({ navigation }) {
           secureTextEntry={true}
           password={true}
         />
-        <TouchableOpacity onPress={() => navigation.navigate('MapViewScreen')}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('MapViewScreen')}
+          activeOpacity={0.8}
+        >
           <View style={styles.loginButton}>
-            <Text style={styles.loginButtonText}>Login</Text>
+            <Text style={styles.loginButtonText}>Sign In</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity styles={styles.forgotPasswordContainer}>
@@ -51,6 +54,7 @@ const styles = EStyleSheet.create({
     height: '15rem',
     width: '15rem',
     alignItems: 'center',
+    marginBottom: '2rem',
   },
   welcomeMessage: {
     ...Typography.subtitle1('Poppins_400Regular'),
@@ -62,12 +66,13 @@ const styles = EStyleSheet.create({
   },
   loginTextInput: {
     ...Typography.body2('Poppins_400Regular'),
-    paddingTop: 4,
-    paddingHorizontal: '0.625rem',
+    color: Colors.black,
+    paddingHorizontal: '1rem',
+    paddingVertical: '0.4rem',
     marginBottom: '0.625rem',
     borderWidth: 1,
     borderRadius: '0.5rem',
-    height: '2.5rem',
+    borderColor: Colors.gray3,
   },
   loginButton: {
     marginVertical: '0.625rem',
@@ -78,7 +83,7 @@ const styles = EStyleSheet.create({
     borderRadius: '0.5rem',
   },
   loginButtonText: {
-    ...Typography.body1('Poppins_400Regular'),
+    ...Typography.body1('Poppins_500Medium'),
     color: '#ffffff',
   },
   forgotPasswordText: {
