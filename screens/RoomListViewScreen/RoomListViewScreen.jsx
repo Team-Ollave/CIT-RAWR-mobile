@@ -9,16 +9,28 @@ import styles from './styles';
 
 const slug = (string) => string.toLowerCase().replace(' ', '-');
 
-const Section = ({ item }) => (
-  <View style={styles.section}>
-    <Text style={styles.building}>{item.building}</Text>
+const Section = ({ item: data, index }) => (
+  <View
+    style={[
+      styles.section,
+      { marginBottom: index === dummydata.length - 1 ? 32 : 0 },
+    ]}
+  >
+    <Text style={[styles.building, { marginLeft: 16 }]}>{data.building}</Text>
     <View>
       <FlatList
+        style={{ overflow: 'visible' }}
         horizontal
         showsHorizontalScrollIndicator={false}
-        data={item.rooms}
-        renderItem={({ item }) => (
-          <RoomCard>
+        data={data.rooms}
+        ItemSeparatorComponent={() => <View style={{ width: 14 }} />}
+        renderItem={({ item, index }) => (
+          <RoomCard
+            style={{
+              marginLeft: index === 0 ? 16 : 0,
+              marginRight: index === data.rooms.length - 1 ? 16 : 0,
+            }}
+          >
             <CardContent item={item} />
           </RoomCard>
         )}
@@ -31,11 +43,15 @@ const Section = ({ item }) => (
 const RoomListViewScreen = () => (
   <View style={styles.container}>
     <View style={[styles.mainContent]}>
-      <SearchInput style={{ paddingBottom: 6, paddingHorizontal: 24 }} />
+      <SearchInput style={{ paddingBottom: 6, paddingHorizontal: 16 }} />
       <FlatList
+        style={{ marginTop: 16 }}
         data={dummydata}
         renderItem={Section}
         keyExtractor={(item) => slug(item.building)}
+        ItemSeparatorComponent={() => (
+          <View style={{ height: 32, zIndex: -1 }} />
+        )}
         showsVerticalScrollIndicator={false}
       />
     </View>

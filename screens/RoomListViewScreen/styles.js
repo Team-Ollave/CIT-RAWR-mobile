@@ -28,12 +28,12 @@ const styles = EStyleSheet.create({
     padding: 10,
   },
   building: {
-    marginLeft: 5,
+    marginBottom: 8,
     ...Typography.h6(),
   },
-  section: {
-    margin: 10,
-  },
+  // section: {
+  //   margin: 10,
+  // },
   // mainContent: {
   //   position: 'absolute',
   //   top: 0,

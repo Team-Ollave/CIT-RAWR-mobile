@@ -1,12 +1,13 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Colors } from '../../../utils/colors';
 
-const RoomCard = ({ children }) => {
+const RoomCard = ({ children, style }) => {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity activeOpacity={0.8}>
+    <TouchableOpacity activeOpacity={0.8} style={[style]}>
       <View style={styles.shadow}>
         <View style={styles.container}>{children}</View>
       </View>
@@ -18,19 +19,11 @@ const styles = StyleSheet.create({
   shadow: {
     height: 215,
     width: 235,
-    borderRadius: 10,
-    backgroundColor: 'transparent',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-
-    elevation: 3,
+    borderRadius: 8,
+    // elevation: 5,
     overflow: 'hidden',
-    margin: 5,
+    borderWidth: 1,
+    borderColor: Colors.gray1,
   },
   container: {
     flex: 1,
