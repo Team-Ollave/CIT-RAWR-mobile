@@ -65,9 +65,11 @@ const MapViewScreen = ({ navigation }) => {
         <Tab.Navigator
           initialLayout={{ width: width }}
           tabBarOptions={{
-            indicatorStyle: styles.indicatorStyle,
-            labelStyle: styles.labelStyle,
+            indicatorStyle: styles.tabIndicator,
+            labelStyle: styles.tabLabel,
             style: styles.tab,
+            activeTintColor: Colors.accentColor,
+            inactiveTintColor: Colors.gray3,
           }}
         >
           <Tab.Screen name="Featured" component={FeaturedRoomsTab} />

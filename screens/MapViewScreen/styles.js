@@ -42,17 +42,15 @@ const styles = EStyleSheet.create({
     ...Typography.small(),
     color: Colors.gray4,
   },
-  indicatorStyle: {
+  tabIndicator: {
     backgroundColor: Colors.accentColor,
-    height: 1,
+    height: 2,
   },
-  labelStyle: {
-    ...Typography.small('Poppins_400Regular'),
+  tabLabel: {
+    ...Typography.small('Poppins_500Medium'),
     textTransform: 'capitalize',
-    color: Colors.black,
   },
   tab: {
-    flex: 1,
     elevation: 0,
     borderBottomWidth: 1,
     borderBottomColor: Colors.gray2,
