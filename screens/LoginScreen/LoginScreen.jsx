@@ -8,18 +8,20 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 export default function LoginScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <View>
+      <View style={styles.logoContainer}>
         <Image
           style={styles.logo}
           source={require('../../assets/logo_transparent.png')}
         />
       </View>
+      <Text style={styles.welcomeMessage}>Welcome to CIT-RAWR!</Text>
       <View style={styles.loginContainer}>
         <TextInput style={styles.loginTextInput} placeholder="Email" />
         <TextInput
-          secureTextEntry={true}
           style={styles.loginTextInput}
           placeholder="Password"
+          secureTextEntry={true}
+          password={true}
         />
         <View style={styles.loginButton}>
           <TouchableOpacity
@@ -38,31 +40,38 @@ export default function LoginScreen({ navigation }) {
 
 const styles = EStyleSheet.create({
   container: {
+    backgroundColor: '#ffffff',
     flex: 1,
     paddingTop: StatusBar.currentHeight,
     width: '100%',
     justifyContent: 'center',
+  },
+  logoContainer: {
     alignItems: 'center',
   },
   logo: {
-    height: '11.25rem',
-    width: '11.25rem',
+    height: '15rem',
+    width: '15rem',
+    alignItems: 'center',
+  },
+  welcomeMessage: {
+    ...Typography.subtitle1('Poppins_400Regular'),
+    textAlign: 'center',
+    paddingVertical: '1rem',
   },
   loginContainer: {
     paddingHorizontal: '3rem',
-    alignItems: 'center',
   },
   loginTextInput: {
-    width: '100%',
     ...Typography.body2('Poppins_400Regular'),
-    paddingHorizontal: '0.5rem',
+    paddingTop: 4,
+    paddingHorizontal: '0.625rem',
     marginBottom: '0.625rem',
-    height: '2.5rem',
     borderWidth: 1,
     borderRadius: '0.5rem',
+    height: '2.5rem',
   },
   loginButton: {
-    width: '100%',
     marginVertical: '0.625rem',
     height: '2.5rem',
     backgroundColor: Colors.accentColor,
@@ -70,12 +79,12 @@ const styles = EStyleSheet.create({
     justifyContent: 'center',
     borderRadius: '0.5rem',
   },
-  forgotPasswordContainer: {},
   loginButtonText: {
     ...Typography.body1('Poppins_400Regular'),
     color: '#ffffff',
   },
   forgotPasswordText: {
     ...Typography.body2('Poppins_400Regular'),
+    textAlign: 'center',
   },
 });
