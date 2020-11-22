@@ -34,5 +34,10 @@
   "devDependencies": {
     "@babel/core": "~7.9.0"
   },
-  "private": true
+  "private": true,
+  "name": "CIT-RAWR-mobile",
+  "version": "1.0.0",
+  "repository": "https://github.com/Team-Ollave/CIT-RAWR-mobile.git",
+  "author": "jonathan <jollave9@gmail.com>",
+  "license": "MIT"
 }

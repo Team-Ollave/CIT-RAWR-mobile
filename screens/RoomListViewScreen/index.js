@@ -1,3 +1,3 @@
-import RoomListViewScreen from './RoomListViewScreen'
+import RoomListViewScreen from './RoomListViewScreen';
 
-export default RoomListViewScreen
+export default RoomListViewScreen;
