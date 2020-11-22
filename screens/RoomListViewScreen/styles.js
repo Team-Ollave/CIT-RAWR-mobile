@@ -31,11 +31,6 @@ const styles = EStyleSheet.create({
     marginLeft: 5,
     ...Typography.h6(),
   },
-  badge: {
-    position: 'absolute',
-    top: 15,
-    left: 15,
-  },
   section: {
     margin: 10,
   },

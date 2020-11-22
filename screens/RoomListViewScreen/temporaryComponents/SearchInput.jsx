@@ -4,23 +4,22 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Colors } from '../../../utils/colors';
 import VoiceIcon from './VoiceIcon';
 
-const SearchInput = () => {
+const SearchInput = ({ style }) => {
   const [isVoiceActivated, setIsVoiceActivated] = useState(false);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <View style={styles.inputShadow}>
         <MaterialIcons
           name={isVoiceActivated ? 'keyboard-voice' : 'search'}
-          size={25}
+          size={20}
           color={isVoiceActivated ? '#E31313' : Colors.accentColor}
-          // di mugana ang iconStyle ug backgroundColor
-          backgroundColor={isVoiceActivated ? 'red' : 'red'}
           onPress={() => setIsVoiceActivated(!isVoiceActivated)} // for testing ui only
+          style={styles.inputIcon}
         />
         <TextInput
           placeholder="Search"
-          style={styles.input}
+          style={styles.textInput}
           value={isVoiceActivated ? 'Listening...' : ''}
         />
       </View>
@@ -30,31 +29,35 @@ const SearchInput = () => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginHorizontal: 10,
+    alignItems: 'center',
   },
-  input: {
-    flex: 1,
+  inputIcon: {
+    marginRight: 8,
+  },
+  textInput: {
+    fontSize: 16,
+    letterSpacing: 0.4,
+    fontFamily: 'Poppins_400Regular',
+    width: '70%',
   },
   inputShadow: {
-    borderRadius: 100 / 2,
+    borderRadius: 999,
     backgroundColor: 'white',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
+    elevation: 5,
 
-    elevation: 3,
-    padding: 10,
-
-    flex: 1,
+    flexGrow: 1,
     flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    marginRight: 12,
   },
 });
 export default SearchInput;
