@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View, Dimensions } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import styles from './styles';
 import EventsTodayTab from './tabs/EventsTodayTab';
@@ -10,8 +10,9 @@ import { CommonActions } from '@react-navigation/native';
 import Carousel from '../../components/Carousel';
 
 const Tab = createMaterialTopTabNavigator();
+const tabWidth = Dimensions.get('window').width * 0.884;
 
-export default function ViewRoomScreen({ navigation }) {
+export default function ViewRoomScreen({ navigation, route }) {
   return (
     <View style={styles.container}>
       <View style={styles.images}>
@@ -27,12 +28,13 @@ export default function ViewRoomScreen({ navigation }) {
       </View>
       <View style={styles.mainContent}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>Case Room</Text>
+          <Text style={styles.headerTitle}>{route.params?.roomName}</Text>
           <Text style={styles.headerDescription}>
             Lorem ipsum dolor sit amet.
           </Text>
         </View>
         <Tab.Navigator
+          initialLayout={{ width: tabWidth }}
           tabBarOptions={{
             indicatorStyle: styles.tabIndicator,
             labelStyle: styles.tabLabel,
@@ -50,7 +52,11 @@ export default function ViewRoomScreen({ navigation }) {
           <Text style={styles.availabilityLabel}>Earliest Availability:</Text>
           <Text style={styles.availabilityDate}>Tue Jan 12, 2020</Text>
         </View>
-        <TouchableOpacity style={styles.reserveButton} activeOpacity={0.8}>
+        <TouchableOpacity
+          style={styles.reserveButton}
+          activeOpacity={0.8}
+          onPress={() => navigation.navigate('ReservationFormScreen')}
+        >
           <Text style={styles.reserveButtonTitle}>Reserve</Text>
         </TouchableOpacity>
       </View>
