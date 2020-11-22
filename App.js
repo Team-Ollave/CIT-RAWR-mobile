@@ -34,7 +34,6 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* Add your screens here */}
-        <Stack.Screen name='HomeScreen' component={HomeScreen} />
         <Stack.Screen name='LoginScreen' component={LoginScreen} />
         <Stack.Screen name='MapViewScreen' component={MapViewScreen} />
         <Stack.Screen name='ViewRoomScreen' component={ViewRoomScreen} />
