@@ -10,14 +10,10 @@ const ExploreMapActionButton = () => {
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={() => navigation.navigate('MapViewScreen')}
-      style={{
-        zIndex: 1,
-        position: 'absolute',
-        bottom: 32,
-      }}
+      style={styles.exploreContainer}
     >
-      <View style={styles.ExploreMapActionButtonShadow}>
-        <View style={styles.ExploreMapActionButtonContainer}>
+      <View style={styles.exploreMapActionButtonShadow}>
+        <View style={styles.exploreMapActionButtonContainer}>
           <Entypo name="location-pin" size={22} color="red" />
           <Text style={styles.exploreLabel}>Explore Map</Text>
         </View>

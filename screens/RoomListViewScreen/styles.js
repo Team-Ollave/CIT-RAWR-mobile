@@ -15,6 +15,7 @@ const styles = EStyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
     justifyContent: 'flex-end',
+    position: 'relative',
   },
   roomname: {
     ...Typography.subtitle1(),
@@ -44,19 +45,23 @@ const styles = EStyleSheet.create({
   //   bottom: 0,
   //   paddingTop: 50,
   // },
-
-  ExploreMapActionButtonShadow: {
+  exploreContainer: {
+    zIndex: 1,
+    position: 'absolute',
+    bottom: 32,
+  },
+  exploreMapActionButtonShadow: {
     borderRadius: 999,
     elevation: 5,
     alignSelf: 'center',
   },
-  ExploreMapActionButtonContainer: {
+  exploreMapActionButtonContainer: {
     flexDirection: 'row',
     backgroundColor: 'white',
     borderRadius: 999,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: '1rem',
+    paddingHorizontal: '0.75rem',
     paddingVertical: '0.5rem',
   },
   exploreLabel: {
