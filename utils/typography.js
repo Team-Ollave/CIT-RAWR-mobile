@@ -44,7 +44,7 @@ export const Typography = {
     fontFamily,
   }),
   caption: (fontFamily = 'Poppins_400Regular') => ({
-    fontSize: '0.5rem',
+    fontSize: '0.75rem',
     letterSpacing: 0.4,
     fontFamily,
   }),
