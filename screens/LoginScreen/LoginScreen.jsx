@@ -24,8 +24,7 @@ export default function LoginScreen({ navigation }) {
           password={true}
         />
         <TouchableOpacity
-          onPress={() => navigation.navigate('MapViewScreen')}
-          activeOpacity={0.8}
+          onPress={() => navigation.navigate('RoomListViewScreen')}
         >
           <View style={styles.loginButton}>
             <Text style={styles.loginButtonText}>Sign In</Text>
