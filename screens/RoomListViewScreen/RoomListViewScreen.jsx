@@ -6,8 +6,18 @@ import CardContent from './temporaryComponents/CardContent';
 import SearchInput from './temporaryComponents/SearchInput';
 import ExploreMapActionButton from './temporaryComponents/ExploreMapActionButton';
 import styles from './styles';
+import axios from 'axios';
 
 const slug = (string) => string.toLowerCase().replace(' ', '-');
+
+axios
+  .get('127.0.0.1:8000/api/buildings')
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
 const Section = ({ item: data, index }) => (
   <View
