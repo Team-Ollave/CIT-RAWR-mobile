@@ -33,7 +33,7 @@ const Section = ({ item: data, index }) => (
         horizontal
         showsHorizontalScrollIndicator={false}
         data={data.rooms}
-        ItemSeparatorComponent={() => <View style={{ width: 14 }} />}
+        ItemSeparatorComponent={() => <View style={{ width: 18 }} />}
         renderItem={({ item, index }) => (
           <RoomCard
             style={{
