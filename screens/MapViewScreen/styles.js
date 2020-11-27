@@ -20,7 +20,6 @@ const styles = EStyleSheet.create({
   },
   tabContainer: {
     flex: 1,
-    paddingTop: '1.25 rem',
     backgroundColor: 'white',
   },
   modal: {
@@ -74,6 +73,12 @@ const styles = EStyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject,
+  },
+  reservationSeparator: {
+    height: '0.5rem',
+  },
+  headerHeight: {
+    height: '1rem',
   }
 });
 

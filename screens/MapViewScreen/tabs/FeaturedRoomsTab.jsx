@@ -3,6 +3,7 @@ import { View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from '../styles';
 import RoomCard from '../../../components/RoomCard';
+import { FlatList } from 'react-native-gesture-handler';
 
 const DATA = [
   {
@@ -42,32 +43,38 @@ const DATA = [
 const FeaturedRoomsTab = () => {
   const navigation = useNavigation();
 
+  const renderItem = ({ item }) => {
+    return (
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('ViewRoomScreen', { roomName: item.roomName })
+        }
+      >
+        <RoomCard
+          roomName={item.roomName}
+          isAvailable={item.isAvailable}
+          isGeneric={item.isGeneric}
+          availableStartTime={item.availableStartTime}
+          availableEndTime={item.availableEndTime}
+        />
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <View style={styles.tabContainer}>
-      {DATA.map(
-        ({
-          id,
-          roomName,
-          isAvailable,
-          isGeneric,
-          availableStartTime,
-          availableEndTime,
-        }) => (
-          <TouchableOpacity
-            key={id}
-            onPress={() => navigation.navigate('ViewRoomScreen', { roomName })}
-          >
-            <RoomCard
-              id={id}
-              roomName={roomName}
-              isAvailable={isAvailable}
-              isGeneric={isGeneric}
-              availableStartTime={availableStartTime}
-              availableEndTime={availableEndTime}
-            />
-          </TouchableOpacity>
-        ),
-      )}
+      <FlatList
+        data={DATA}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => item.id.toString()}
+        ListHeaderComponent={() => {
+          return <View style={styles.headerHeight} />;
+        }}
+        renderItem={renderItem}
+        ItemSeparatorComponent={() => (
+          <View style={styles.reservationSeparator} />
+        )}
+      />
     </View>
   );
 };

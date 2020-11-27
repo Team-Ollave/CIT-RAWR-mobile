@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { FlatList, View, TouchableOpacity } from 'react-native';
 import { styles } from '../styles';
 import RoomCard from '../../../components/RoomCard';
 
@@ -27,18 +27,31 @@ const DATA = [
 ];
 
 const GenericRoomsTab = ({ navigation }) => {
+  const renderItem = ({ item }) => {
+    return (
+      <TouchableOpacity>
+        <RoomCard
+          roomName={item.genericRoomType}
+          roomsAvailable={item.roomsAvailable}
+          isGeneric={true}
+        />
+      </TouchableOpacity>
+    );
+  };
   return (
     <View style={styles.tabContainer}>
-      {DATA.map(({ id, genericRoomType, roomsAvailable }) => (
-        <TouchableOpacity key={id}>
-          <RoomCard
-            id={id}
-            roomName={genericRoomType}
-            roomsAvailable={roomsAvailable}
-            isGeneric
-          />
-        </TouchableOpacity>
-      ))}
+      <FlatList
+        data={DATA}
+        keyExtractor={(item) => item.id.toString()}
+        showsVerticalScrollIndicator={false}
+        ListHeaderComponent={() => {
+          return <View style={styles.headerHeight} />;
+        }}
+        renderItem={renderItem}
+        ItemSeparatorComponent={() => (
+          <View style={styles.reservationSeparator} />
+        )}
+      />
     </View>
   );
 };

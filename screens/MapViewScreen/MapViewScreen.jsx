@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { Animated, View, Text, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Modalize } from 'react-native-modalize';
 import { CommonActions } from '@react-navigation/native';
@@ -61,21 +61,24 @@ const MapViewScreen = ({ navigation }) => {
         modalHeight={modalHeight}
         alwaysOpen={alwaysOpenHeight}
         handlePosition={'inside'}
-      >
-        <Tab.Navigator
-          initialLayout={{ width: width }}
-          tabBarOptions={{
-            indicatorStyle: styles.tabIndicator,
-            labelStyle: styles.tabLabel,
-            style: styles.tab,
-            activeTintColor: Colors.accentColor,
-            inactiveTintColor: Colors.gray3,
-          }}
-        >
-          <Tab.Screen name="Featured" component={FeaturedRoomsTab} />
-          <Tab.Screen name="Generic" component={GenericRoomsTab} />
-        </Tab.Navigator>
-      </Modalize>
+        customRenderer={
+          <Animated.View style={{ flex: 1 }}>
+            <Tab.Navigator
+              initialLayout={{ width: width }}
+              tabBarOptions={{
+                indicatorStyle: styles.tabIndicator,
+                labelStyle: styles.tabLabel,
+                style: styles.tab,
+                activeTintColor: Colors.accentColor,
+                inactiveTintColor: Colors.gray3,
+              }}
+            >
+              <Tab.Screen name="Featured" component={FeaturedRoomsTab} />
+              <Tab.Screen name="Generic" component={GenericRoomsTab} />
+            </Tab.Navigator>
+          </Animated.View>
+        }
+      />
     </View>
   );
 };
