@@ -10,15 +10,6 @@ import axios from 'axios';
 
 const slug = (string) => string.toLowerCase().replace(' ', '-');
 
-axios
-  .get('127.0.0.1:8000/api/buildings')
-  .then((response) => {
-    console.log(response);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-
 const Section = ({ item: data, index }) => (
   <View
     style={[
@@ -50,23 +41,34 @@ const Section = ({ item: data, index }) => (
   </View>
 );
 
-const RoomListViewScreen = () => (
-  <View style={styles.container}>
-    <View style={[styles.mainContent]}>
-      <SearchInput style={{ paddingBottom: 6, paddingHorizontal: 16 }} />
-      <FlatList
-        style={{ marginTop: 16 }}
-        data={dummydata}
-        renderItem={Section}
-        keyExtractor={(item) => slug(item.building)}
-        ItemSeparatorComponent={() => (
-          <View style={{ height: 32, zIndex: -1 }} />
-        )}
-        showsVerticalScrollIndicator={false}
-      />
+const RoomListViewScreen = () => {
+  axios
+    .get('http:192.168.8.113:8000/api/buildings')
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(JSON.stringify(error));
+      console.log('error ngari');
+    });
+  return (
+    <View style={styles.container}>
+      <View style={[styles.mainContent]}>
+        <SearchInput style={{ paddingBottom: 6, paddingHorizontal: 16 }} />
+        <FlatList
+          style={{ marginTop: 16 }}
+          data={dummydata}
+          renderItem={Section}
+          keyExtractor={(item) => slug(item.building)}
+          ItemSeparatorComponent={() => (
+            <View style={{ height: 32, zIndex: -1 }} />
+          )}
+          showsVerticalScrollIndicator={false}
+        />
+      </View>
+      <ExploreMapActionButton />
     </View>
-    <ExploreMapActionButton />
-  </View>
-);
+  );
+};
 
 export default RoomListViewScreen;
