@@ -23,8 +23,8 @@ const RoomCard = ({ children, style }) => {
 
 const styles = StyleSheet.create({
   shadow: {
-    height: 215,
-    width: 235,
+    height: 250,
+    width: 270,
     borderRadius: 8,
     // elevation: 5,
     overflow: 'hidden',

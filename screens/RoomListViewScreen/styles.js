@@ -18,7 +18,7 @@ const styles = EStyleSheet.create({
     position: 'relative',
   },
   roomname: {
-    ...Typography.subtitle1(),
+    ...Typography.large('Poppins_500Medium'),
   },
   description: {
     ...Typography.extraSmall(),
