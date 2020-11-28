@@ -4,7 +4,7 @@ import { Colors } from '../../utils/colors';
 import { Typography } from '../../utils/typography';
 
 let { width, height } = Dimensions.get('screen');
-const alwaysOpenHeight = height * 0.12;
+const alwaysOpenHeight = height * 0.15;
 const modalHeight = height * 0.7;
 
 const styles = EStyleSheet.create({

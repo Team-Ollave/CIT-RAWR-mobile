@@ -6,7 +6,6 @@ import CardContent from './temporaryComponents/CardContent';
 import SearchInput from './temporaryComponents/SearchInput';
 import ExploreMapActionButton from './temporaryComponents/ExploreMapActionButton';
 import styles from './styles';
-import axios from 'axios';
 
 const slug = (string) => string.toLowerCase().replace(' ', '-');
 
@@ -42,15 +41,6 @@ const Section = ({ item: data, index }) => (
 );
 
 const RoomListViewScreen = () => {
-  axios
-    .get('http:192.168.8.113:8000/api/buildings')
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(JSON.stringify(error));
-      console.log('error ngari');
-    });
   return (
     <View style={styles.container}>
       <View style={[styles.mainContent]}>
