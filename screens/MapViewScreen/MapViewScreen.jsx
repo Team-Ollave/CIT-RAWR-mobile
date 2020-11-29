@@ -135,6 +135,7 @@ const MapViewScreen = ({ navigation }) => {
                   key={id}
                   coordinate={{ latitude: latitude, longitude: longitude }}
                   description={description}
+                  image={require('../../assets/building-pin.png')}
                   title={name}
                   onPress={() => handleMarkerPress(name, description, id)}
                 />
