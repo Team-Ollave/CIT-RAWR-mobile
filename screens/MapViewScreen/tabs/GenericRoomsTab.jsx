@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { FlatList, View, TouchableOpacity } from 'react-native';
 import { styles } from '../styles';
+import roomsContext from '../roomsContext';
 import RoomCard from '../../../components/RoomCard';
+import axios from 'axios';
 
 const DATA = [
   {
@@ -27,13 +29,28 @@ const DATA = [
 ];
 
 const GenericRoomsTab = ({ navigation }) => {
+  const { genericRooms } = useContext(roomsContext);
+  const [roomCategories, setRoomCategories] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('http://192.168.8.113:8000/api/room-categories/')
+      .then((response) => {
+        setRoomCategories(response.data);
+      }, console.error);
+  }, []);
+
+  const categoryIDs = genericRooms.map(({ room_category }) => room_category);
+
+  console.log(categoryIDs);
+
   const renderItem = ({ item }) => {
     return (
       <TouchableOpacity>
         <RoomCard
           roomName={item.genericRoomType}
           roomsAvailable={item.roomsAvailable}
-          isGeneric={true}
+          isGeneric
         />
       </TouchableOpacity>
     );

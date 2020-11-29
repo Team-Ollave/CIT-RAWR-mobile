@@ -4,7 +4,7 @@ import { Colors } from '../../utils/colors';
 import { Typography } from '../../utils/typography';
 
 let { width, height } = Dimensions.get('screen');
-const alwaysOpenHeight = height * 0.15;
+const alwaysOpenHeight = height * 0.14;
 const modalHeight = height * 0.7;
 
 const styles = EStyleSheet.create({
@@ -79,7 +79,19 @@ const styles = EStyleSheet.create({
   },
   headerHeight: {
     height: '1rem',
+  },
+  overlayStyle: {
+    backgroundColor: 'transparent',
+  },
+  animatedViewStyle: {
+    flex: 1,
+  },
+  tabNavInitialLayout: {
+    width: width
+  },
+  handleStyle: {
+    backgroundColor: Colors.gray2,
   }
 });
 
-export { styles, alwaysOpenHeight, modalHeight, width, height };
+export { styles, alwaysOpenHeight, modalHeight, height };

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, createContext } from 'react';
 import { Animated, View, Text, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Modalize } from 'react-native-modalize';
@@ -7,29 +7,62 @@ import { styles, modalHeight, width, alwaysOpenHeight } from './styles';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Colors } from '../../utils/colors';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+import roomsContext from './roomsContext';
 import GenericRoomsTab from './tabs/GenericRoomsTab';
 import FeaturedRoomsTab from './tabs/FeaturedRoomsTab';
+import axios from 'axios';
 
 const Tab = createMaterialTopTabNavigator();
 
 const MapViewScreen = ({ navigation }) => {
+  // hooks
   const modalizeRef = useRef(null);
   const [buildingName, setBuildingName] = useState('Select a building');
   const [buildingDescription, setBuildingDescription] = useState('');
-  const [region, setRegion] = useState({
-    latitude: 10.295573416419819,
-    longitude: 123.8806080375,
-    latitudeDelta: 0.0017,
-    longitudeDelta: 0.0017,
-  });
+  const [buildingID, setBuildingID] = useState(null);
+  const [modalCurrentHeight, setModalCurrentHeight] = useState(
+    alwaysOpenHeight,
+  );
+  const [buildingData, setBuildingData] = useState([]);
+  const [featuredRooms, setFeaturedRooms] = useState([]);
+  const [genericRooms, setGenericRooms] = useState([]);
 
-  const handleMarkerPress = (buildingName, description) => {
+  useEffect(() => {
+    axios.get('http://192.168.8.113:8000/api/buildings/').then((response) => {
+      setBuildingData(response.data);
+    }, console.error);
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get('http://192.168.8.113:8000/api/rooms/', {
+        params: { building_id: buildingID },
+      })
+      .then(distributeRooms, console.error);
+  }, [buildingID]);
+
+  const distributeRooms = (response) => {
+    const featured = response.data.filter(
+      ({ is_generic: isGeneric }) => !isGeneric,
+    );
+    setFeaturedRooms(featured);
+    const generic = response.data.filter(
+      ({ is_generic: isGeneric }) => isGeneric,
+    );
+    setGenericRooms(generic);
+  };
+
+  const handleMarkerPress = (buildingName, description, id) => {
+    modalizeRef.current?.close();
+    modalizeRef.current?.open();
+    setModalCurrentHeight(modalHeight);
     setBuildingName(buildingName);
+    setBuildingID(id);
     setBuildingDescription(description);
     modalizeRef.current?.open();
   };
 
-  const Header = (props) => {
+  const Header = () => {
     return (
       <View>
         <View style={styles.header}>
@@ -40,43 +73,19 @@ const MapViewScreen = ({ navigation }) => {
     );
   };
 
-  const buildingCoordinates = [
-    {
-      id: 1,
-      buildingName: 'ST Building',
-      description: 'This is the ST Building',
-      latitude: 10.294319963606112,
-      longitude: 123.88102723728441,
-    },
-    {
-      id: 2,
-      buildingName: 'Main Building',
-      description: 'This is the Main Building',
-      latitude: 10.294751445183108,
-      longitude: 123.88060210717293,
-    },
-    {
-      id: 3,
-      buildingName: 'Library',
-      description: 'This is the library',
-      latitude: 10.295214594471053,
-      longitude: 123.8807026900071,
-    },
-    {
-      id: 4,
-      buildingName: 'Engineering Building',
-      description: 'This is the Engineering Building',
-      latitude: 10.295778685623082,
-      longitude: 123.88099773297772,
-    },
-  ];
+  const citRegion = {
+    latitude: 10.295074924419716,
+    longitude: 123.88105035466462,
+    latitudeDelta: 0.00185,
+    longitudeDelta: 0.00185,
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.mapContainer}>
         <MapView
           style={styles.map}
-          initialRegion={region}
+          initialRegion={citRegion}
           provider={PROVIDER_GOOGLE}
           zoomEnabled={false}
           rotateEnabled={false}
@@ -84,17 +93,15 @@ const MapViewScreen = ({ navigation }) => {
           showsBuildings={false}
           moveOnMarkerPress
         >
-          {buildingCoordinates.map(
-            ({ id, buildingName, latitude, longitude, description }) => {
+          {buildingData.map(
+            ({ id, name, latitude, longitude, description }) => {
               return (
                 <Marker
                   key={id}
                   coordinate={{ latitude: latitude, longitude: longitude }}
                   description={description}
-                  title={buildingName}
-                  onPress={({ coordinate }) =>
-                    handleMarkerPress(buildingName, description, coordinate)
-                  }
+                  title={name}
+                  onPress={() => handleMarkerPress(name, description, id)}
                 />
               );
             },
@@ -112,26 +119,31 @@ const MapViewScreen = ({ navigation }) => {
 
       <Modalize
         ref={modalizeRef}
+        modalHeight={modalCurrentHeight}
+        alwaysOpen={alwaysOpenHeight}
         HeaderComponent={Header}
-        modalStyle={styles.modalStyle}
-        modalHeight={modalHeight}
-        snapPoint={alwaysOpenHeight}
         handlePosition={'inside'}
+        modalStyle={styles.modalStyle}
+        handleStyle={styles.handleStyle}
+        withOverlay={false}
+        openAnimationConfig={{ timing: { duration: 400 } }}
         customRenderer={
-          <Animated.View style={{ flex: 1 }}>
-            <Tab.Navigator
-              initialLayout={{ width: width }}
-              tabBarOptions={{
-                indicatorStyle: styles.tabIndicator,
-                labelStyle: styles.tabLabel,
-                style: styles.tab,
-                activeTintColor: Colors.accentColor,
-                inactiveTintColor: Colors.gray3,
-              }}
-            >
-              <Tab.Screen name="Featured" component={FeaturedRoomsTab} />
-              <Tab.Screen name="Generic" component={GenericRoomsTab} />
-            </Tab.Navigator>
+          <Animated.View style={styles.animatedViewStyle}>
+            <roomsContext.Provider value={{ featuredRooms, genericRooms }}>
+              <Tab.Navigator
+                initialLayout={styles.tabNavInitialLayout}
+                tabBarOptions={{
+                  indicatorStyle: styles.tabIndicator,
+                  labelStyle: styles.tabLabel,
+                  style: styles.tab,
+                  activeTintColor: Colors.accentColor,
+                  inactiveTintColor: Colors.gray3,
+                }}
+              >
+                <Tab.Screen name="Featured" component={FeaturedRoomsTab} />
+                <Tab.Screen name="Generic" component={GenericRoomsTab} />
+              </Tab.Navigator>
+            </roomsContext.Provider>
           </Animated.View>
         }
       />
