@@ -34,17 +34,11 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* Add your screens here */}
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
-        <Stack.Screen
-          name="RoomListViewScreen"
-          component={RoomListViewScreen}
-        />
-        <Stack.Screen name="MapViewScreen" component={MapViewScreen} />
-        <Stack.Screen name="ViewRoomScreen" component={ViewRoomScreen} />
-        <Stack.Screen
-          name="ReservationFormScreen"
-          component={ReservationFormScreen}
-        />
+        <Stack.Screen name='LoginScreen' component={LoginScreen} />
+        <Stack.Screen name='RoomListViewScreen' component={RoomListViewScreen} />
+        <Stack.Screen name='MapViewScreen' component={MapViewScreen} />
+        <Stack.Screen name='ViewRoomScreen' component={ViewRoomScreen} />
+        <Stack.Screen name='ReservationFormScreen' component={ReservationFormScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

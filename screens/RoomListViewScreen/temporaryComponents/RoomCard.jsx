@@ -7,7 +7,13 @@ const RoomCard = ({ children, style }) => {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity activeOpacity={0.8} style={[style]}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      style={[style]}
+      onPress={() =>
+        navigation.navigate('ViewRoomScreen', { roomName: 'Case Room' })
+      }
+    >
       <View style={styles.shadow}>
         <View style={styles.container}>{children}</View>
       </View>
