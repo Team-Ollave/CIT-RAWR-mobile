@@ -62,19 +62,29 @@ export default function ReservationRoomScreen({ navigation }) {
             placeholder="What will you be doing?"
           />
         </View>
+        <View>
+          <Text style={estyles.eventHeaderText}>Set Date</Text>
+          <TouchableOpacity
+            onPress={showDatepicker}
+            style={[estyles.dateTimePickerInput, estyles.datePickerInput]}
+          >
+            <Text style={estyles.dateTimeText}>{formattedDate}</Text>
+            <Feather name="calendar" size={20} color="black" />
+          </TouchableOpacity>
+        </View>
         <View style={estyles.dateTime}>
-          <View style={[estyles.dateTimeContainer, { marginRight: 24 }]}>
-            <Text style={estyles.eventHeaderText}>Set Date</Text>
+          <View style={estyles.dateTimeContainer}>
+            <Text style={estyles.eventHeaderText}>Start Time</Text>
             <TouchableOpacity
-              onPress={showDatepicker}
-              style={estyles.dateTimePickerInput}
+              onPress={showTimepicker}
+              style={[estyles.dateTimePickerInput, { marginRight: 24 }]}
             >
-              <Text style={estyles.dateTimeText}>{formattedDate}</Text>
-              <Feather name="calendar" size={20} color="black" />
+              <Text style={estyles.dateTimeText}>{formattedTime}</Text>
+              <Feather name="clock" size={20} color={Colors.black} />
             </TouchableOpacity>
           </View>
           <View style={estyles.dateTimeContainer}>
-            <Text style={estyles.eventHeaderText}>Set Time</Text>
+            <Text style={estyles.eventHeaderText}>End Time</Text>
             <TouchableOpacity
               onPress={showTimepicker}
               style={estyles.dateTimePickerInput}
@@ -85,6 +95,7 @@ export default function ReservationRoomScreen({ navigation }) {
           </View>
           {show && (
             <DateTimePicker
+              style={{ position: 'absolute' }}
               testID="dateTimePicker"
               value={date}
               mode={mode}
@@ -104,7 +115,7 @@ export default function ReservationRoomScreen({ navigation }) {
         <View style={estyles.footerContainer}>
           <TouchableOpacity
             style={estyles.reserveButtonContainer}
-            onPress={() => navigation.navigate('MapViewScreen')}
+            onPress={() => navigation.navigate('ReservationSuccessScreen')}
           >
             <Text style={estyles.reserveButtonText}>Reserve</Text>
           </TouchableOpacity>
