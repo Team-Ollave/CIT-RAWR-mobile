@@ -4,7 +4,7 @@ import { Colors } from '../../utils/colors';
 import { Typography } from '../../utils/typography';
 
 let { width, height } = Dimensions.get('screen');
-const alwaysOpenHeight = height * 0.12;
+const alwaysOpenHeight = height * 0.14;
 const modalHeight = height * 0.7;
 
 const styles = EStyleSheet.create({
@@ -18,11 +18,6 @@ const styles = EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  tabContainer: {
-    flex: 1,
-    paddingTop: '1.25 rem',
-    backgroundColor: 'white',
-  },
   modal: {
     padding: 10,
   },
@@ -30,7 +25,7 @@ const styles = EStyleSheet.create({
     paddingHorizontal: '1.5 rem',
   },
   header: {
-    paddingBottom: '.1 rem',
+    paddingBottom: '1 rem',
     paddingTop: '1.5 rem',
     width: '100%',
   },
@@ -42,22 +37,9 @@ const styles = EStyleSheet.create({
     ...Typography.small(),
     color: Colors.gray4,
   },
-  tabIndicator: {
-    backgroundColor: Colors.accentColor,
-    height: 2,
-  },
-  tabLabel: {
-    ...Typography.small('Poppins_500Medium'),
-    textTransform: 'capitalize',
-  },
-  tab: {
-    elevation: 0,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.gray2,
-  },
-
   listTitle: {
     ...Typography.small('Poppins_600SemiBold'),
+    marginTop: '1.25rem',
     marginBottom: '0.5rem',
   },
   mapPlaceholder: {
@@ -74,7 +56,26 @@ const styles = EStyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject,
+  },
+  reservationSeparator: {
+    height: '1 rem',
+  },
+  headerHeight: {
+    height: '1rem',
+  },
+  overlayStyle: {
+    backgroundColor: 'transparent',
+  },
+  tabNavInitialLayout: {
+    width: width
+  },
+  handleStyle: {
+    backgroundColor: Colors.gray2,
+  },
+  modalFooter: {
+    height: '1.5rem',
+    opacity: 0.1,
   }
 });
 
-export { styles, alwaysOpenHeight, modalHeight, width, height };
+export { styles, alwaysOpenHeight, modalHeight, height };

@@ -40,23 +40,25 @@ const Section = ({ item: data, index }) => (
   </View>
 );
 
-const RoomListViewScreen = () => (
-  <View style={styles.container}>
-    <View style={[styles.mainContent]}>
-      <SearchInput style={{ paddingBottom: 6, paddingHorizontal: 16 }} />
-      <FlatList
-        style={{ marginTop: 16 }}
-        data={dummydata}
-        renderItem={Section}
-        keyExtractor={(item) => slug(item.building)}
-        ItemSeparatorComponent={() => (
-          <View style={{ height: 32, zIndex: -1 }} />
-        )}
-        showsVerticalScrollIndicator={false}
-      />
+const RoomListViewScreen = () => {
+  return (
+    <View style={styles.container}>
+      <View style={[styles.mainContent]}>
+        <SearchInput style={{ paddingBottom: 6, paddingHorizontal: 16 }} />
+        <FlatList
+          style={{ marginTop: 16 }}
+          data={dummydata}
+          renderItem={Section}
+          keyExtractor={(item) => slug(item.building)}
+          ItemSeparatorComponent={() => (
+            <View style={{ height: 32, zIndex: -1 }} />
+          )}
+          showsVerticalScrollIndicator={false}
+        />
+      </View>
+      <ExploreMapActionButton />
     </View>
-    <ExploreMapActionButton />
-  </View>
-);
+  );
+};
 
 export default RoomListViewScreen;

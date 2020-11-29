@@ -32,7 +32,4 @@ export default EStyleSheet.create({
     ...Typography.small('Poppins_500Medium'),
     color: Colors.black,
   },
-  roomCardContainer: {
-    marginBottom: '1 rem',
-  }
 });
