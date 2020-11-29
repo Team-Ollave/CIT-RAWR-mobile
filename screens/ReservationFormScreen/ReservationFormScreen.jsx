@@ -13,7 +13,8 @@ export default function ReservationRoomScreen({ navigation }) {
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
   const [formattedDate, setfDate] = useState('Set date');
-  const [formattedTime, setfTime] = useState('Set time');
+  const [formattedStartTime, setfStartTime] = useState('Set start');
+  const [formattedEndTime, setfEndTime] = useState('Set end');
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -21,8 +22,10 @@ export default function ReservationRoomScreen({ navigation }) {
     setDate(currentDate);
     if (mode === 'date') {
       setfDate(moment(currentDate).format('MM-DD-YYYY'));
+    } else if (mode === 'start') {
+      setfStartTime(moment(currentDate).format('hh:mm A'));
     } else {
-      setfTime(moment(currentDate).format('hh:mm A'));
+      setfEndTime(moment(currentDate).format('hh:mm A'));
     }
   };
 
@@ -35,10 +38,13 @@ export default function ReservationRoomScreen({ navigation }) {
     showMode('date');
   };
 
-  const showTimepicker = () => {
-    showMode('time');
+  const showStartTimepicker = () => {
+    showMode('start');
   };
 
+  const showEndTimepicker = () => {
+    showMode('end');
+  };
   return (
     <View style={estyles.container}>
       <View style={estyles.header}>
@@ -76,20 +82,20 @@ export default function ReservationRoomScreen({ navigation }) {
           <View style={estyles.dateTimeContainer}>
             <Text style={estyles.eventHeaderText}>Start Time</Text>
             <TouchableOpacity
-              onPress={showTimepicker}
+              onPress={showStartTimepicker}
               style={[estyles.dateTimePickerInput, { marginRight: 24 }]}
             >
-              <Text style={estyles.dateTimeText}>{formattedTime}</Text>
+              <Text style={estyles.dateTimeText}>{formattedStartTime}</Text>
               <Feather name="clock" size={20} color={Colors.black} />
             </TouchableOpacity>
           </View>
           <View style={estyles.dateTimeContainer}>
             <Text style={estyles.eventHeaderText}>End Time</Text>
             <TouchableOpacity
-              onPress={showTimepicker}
+              onPress={showEndTimepicker}
               style={estyles.dateTimePickerInput}
             >
-              <Text style={estyles.dateTimeText}>{formattedTime}</Text>
+              <Text style={estyles.dateTimeText}>{formattedEndTime}</Text>
               <Feather name="clock" size={20} color={Colors.black} />
             </TouchableOpacity>
           </View>
@@ -98,7 +104,7 @@ export default function ReservationRoomScreen({ navigation }) {
               style={{ position: 'absolute' }}
               testID="dateTimePicker"
               value={date}
-              mode={mode}
+              mode={mode === 'date' ? mode : 'time'}
               is24Hour={true}
               display="default"
               onChange={onChange}
