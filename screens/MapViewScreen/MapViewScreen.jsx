@@ -1,18 +1,13 @@
-import React, { useEffect, useRef, useState, createContext } from 'react';
-import { Animated, View, Text, TouchableOpacity } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Modalize } from 'react-native-modalize';
 import { CommonActions } from '@react-navigation/native';
-import { styles, modalHeight, width, alwaysOpenHeight } from './styles';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { styles, modalHeight, alwaysOpenHeight } from './styles';
 import { Colors } from '../../utils/colors';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
-import roomsContext from './roomsContext';
-import GenericRoomsTab from './tabs/GenericRoomsTab';
-import FeaturedRoomsTab from './tabs/FeaturedRoomsTab';
+import RoomCard from '../../components/RoomCard';
 import axios from 'axios';
-
-const Tab = createMaterialTopTabNavigator();
 
 const MapViewScreen = ({ navigation }) => {
   // hooks
@@ -24,8 +19,7 @@ const MapViewScreen = ({ navigation }) => {
     alwaysOpenHeight,
   );
   const [buildingData, setBuildingData] = useState([]);
-  const [featuredRooms, setFeaturedRooms] = useState([]);
-  const [genericRooms, setGenericRooms] = useState([]);
+  const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
     axios.get('http://192.168.8.113:8000/api/buildings/').then((response) => {
@@ -38,19 +32,8 @@ const MapViewScreen = ({ navigation }) => {
       .get('http://192.168.8.113:8000/api/rooms/', {
         params: { building_id: buildingID },
       })
-      .then(distributeRooms, console.error);
+      .then((response) => setRooms(response.data), console.error);
   }, [buildingID]);
-
-  const distributeRooms = (response) => {
-    const featured = response.data.filter(
-      ({ is_generic: isGeneric }) => !isGeneric,
-    );
-    setFeaturedRooms(featured);
-    const generic = response.data.filter(
-      ({ is_generic: isGeneric }) => isGeneric,
-    );
-    setGenericRooms(generic);
-  };
 
   const handleMarkerPress = (buildingName, description, id) => {
     modalizeRef.current?.close();
@@ -62,7 +45,14 @@ const MapViewScreen = ({ navigation }) => {
     modalizeRef.current?.open();
   };
 
-  const Header = () => {
+  const citRegion = {
+    latitude: 10.295074924419716,
+    longitude: 123.88105035466462,
+    latitudeDelta: 0.00185,
+    longitudeDelta: 0.00185,
+  };
+
+  const ModalHeader = () => {
     return (
       <View>
         <View style={styles.header}>
@@ -73,11 +63,56 @@ const MapViewScreen = ({ navigation }) => {
     );
   };
 
-  const citRegion = {
-    latitude: 10.295074924419716,
-    longitude: 123.88105035466462,
-    latitudeDelta: 0.00185,
-    longitudeDelta: 0.00185,
+  const ModalFooter = () => {
+    return <View style={styles.modalFooter} />;
+  };
+
+  const BackButton = () => {
+    return (
+      <TouchableOpacity
+        style={styles.backButtonContainer}
+        onPress={() => navigation.dispatch(CommonActions.goBack())}
+      >
+        <View style={styles.backButton}>
+          <AntDesign name="arrowleft" size={20} color={Colors.black} />
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
+  const renderItem = ({ item }) => {
+    const {
+      name: roomName,
+      is_generic: isGeneric,
+      available_start_time: availableStartTime,
+      available_end_time: availableEndTime,
+    } = item;
+
+    return (
+      <TouchableOpacity
+        onPress={() => navigation.navigate('ViewRoomScreen', item)}
+      >
+        <RoomCard
+          roomName={roomName}
+          isAvailable
+          isGeneric={isGeneric}
+          availableStartTime={availableStartTime}
+          availableEndTime={availableEndTime}
+        />
+      </TouchableOpacity>
+    );
+  };
+
+  const ViewSeparator = () => {
+    return <View style={styles.reservationSeparator} />;
+  };
+
+  const ListHeader = () => {
+    return (
+      <View style={{ flex: 1 }}>
+        <Text style={styles.listTitle}>Rooms</Text>
+      </View>
+    );
   };
 
   return (
@@ -108,44 +143,26 @@ const MapViewScreen = ({ navigation }) => {
           )}
         </MapView>
       </View>
-      <TouchableOpacity
-        style={styles.backButtonContainer}
-        onPress={() => navigation.dispatch(CommonActions.goBack())}
-      >
-        <View style={styles.backButton}>
-          <AntDesign name="arrowleft" size={20} color={Colors.black} />
-        </View>
-      </TouchableOpacity>
-
+      <BackButton />
       <Modalize
         ref={modalizeRef}
         modalHeight={modalCurrentHeight}
         alwaysOpen={alwaysOpenHeight}
-        HeaderComponent={Header}
+        HeaderComponent={ModalHeader}
+        FooterComponent={ModalFooter}
         handlePosition={'inside'}
         modalStyle={styles.modalStyle}
         handleStyle={styles.handleStyle}
         withOverlay={false}
-        openAnimationConfig={{ timing: { duration: 400 } }}
-        customRenderer={
-          <Animated.View style={styles.animatedViewStyle}>
-            <roomsContext.Provider value={{ featuredRooms, genericRooms }}>
-              <Tab.Navigator
-                initialLayout={styles.tabNavInitialLayout}
-                tabBarOptions={{
-                  indicatorStyle: styles.tabIndicator,
-                  labelStyle: styles.tabLabel,
-                  style: styles.tab,
-                  activeTintColor: Colors.accentColor,
-                  inactiveTintColor: Colors.gray3,
-                }}
-              >
-                <Tab.Screen name="Featured" component={FeaturedRoomsTab} />
-                <Tab.Screen name="Generic" component={GenericRoomsTab} />
-              </Tab.Navigator>
-            </roomsContext.Provider>
-          </Animated.View>
-        }
+        flatListProps={{
+          style: { flex: 1 },
+          data: rooms,
+          renderItem: renderItem,
+          keyExtractor: (item) => item.id.toString(),
+          showsVerticalScrollIndicator: false,
+          ListHeaderComponent: ListHeader,
+          ItemSeparatorComponent: ViewSeparator,
+        }}
       />
     </View>
   );

@@ -18,10 +18,6 @@ const styles = EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  tabContainer: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
   modal: {
     padding: 10,
   },
@@ -29,7 +25,7 @@ const styles = EStyleSheet.create({
     paddingHorizontal: '1.5 rem',
   },
   header: {
-    paddingBottom: '.1 rem',
+    paddingBottom: '1 rem',
     paddingTop: '1.5 rem',
     width: '100%',
   },
@@ -41,22 +37,9 @@ const styles = EStyleSheet.create({
     ...Typography.small(),
     color: Colors.gray4,
   },
-  tabIndicator: {
-    backgroundColor: Colors.accentColor,
-    height: 2,
-  },
-  tabLabel: {
-    ...Typography.small('Poppins_500Medium'),
-    textTransform: 'capitalize',
-  },
-  tab: {
-    elevation: 0,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.gray2,
-  },
-
   listTitle: {
     ...Typography.small('Poppins_600SemiBold'),
+    marginTop: '1.25rem',
     marginBottom: '0.5rem',
   },
   mapPlaceholder: {
@@ -75,7 +58,7 @@ const styles = EStyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   },
   reservationSeparator: {
-    height: '0.5rem',
+    height: '1 rem',
   },
   headerHeight: {
     height: '1rem',
@@ -83,14 +66,15 @@ const styles = EStyleSheet.create({
   overlayStyle: {
     backgroundColor: 'transparent',
   },
-  animatedViewStyle: {
-    flex: 1,
-  },
   tabNavInitialLayout: {
     width: width
   },
   handleStyle: {
     backgroundColor: Colors.gray2,
+  },
+  modalFooter: {
+    height: '1.5rem',
+    opacity: 0.1,
   }
 });
 
