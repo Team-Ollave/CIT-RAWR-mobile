@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, FlatList, Text, StatusBar } from 'react-native';
+import { View, FlatList, Text, StatusBar, TouchableOpacity } from 'react-native';
 import dummydata from './dummydata';
-import RoomCard from './temporaryComponents/RoomCard';
+import Card from './temporaryComponents/Card';
 import CardContent from './temporaryComponents/CardContent';
 import SearchInput from './temporaryComponents/SearchInput';
 import ExploreMapActionButton from './temporaryComponents/ExploreMapActionButton';
@@ -25,14 +25,15 @@ const Section = ({ item: data, index }) => (
         data={data.rooms}
         ItemSeparatorComponent={() => <View style={{ width: 14 }} />}
         renderItem={({ item, index }) => (
-          <RoomCard
+          <Card
             style={{
               marginLeft: index === 0 ? 16 : 0,
               marginRight: index === data.rooms.length - 1 ? 16 : 0,
+              marginVertical: 8 // para makita ang shadow
             }}
           >
             <CardContent item={item} />
-          </RoomCard>
+          </Card>
         )}
         keyExtractor={(item, index) => `${slug(item.roomname)}-${index}`}
       />
@@ -50,7 +51,7 @@ const RoomListViewScreen = () => (
         renderItem={Section}
         keyExtractor={(item) => slug(item.building)}
         ItemSeparatorComponent={() => (
-          <View style={{ height: 32, zIndex: -1 }} />
+          <View style={{ height: 20, zIndex: -1 }} />
         )}
         showsVerticalScrollIndicator={false}
       />
@@ -58,5 +59,4 @@ const RoomListViewScreen = () => (
     <ExploreMapActionButton />
   </View>
 );
-
 export default RoomListViewScreen;
