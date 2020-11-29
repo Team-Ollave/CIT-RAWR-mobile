@@ -12,7 +12,12 @@ import Carousel from '../../components/Carousel';
 const Tab = createMaterialTopTabNavigator();
 const tabWidth = Dimensions.get('window').width * 0.884;
 
-export default function ViewRoomScreen({ navigation, route }) {
+export default function ViewRoomScreen({
+  navigation,
+  route: {
+    params: { name: roomName, id: roomId },
+  },
+}) {
   return (
     <View style={styles.container}>
       <View style={styles.images}>
@@ -28,7 +33,7 @@ export default function ViewRoomScreen({ navigation, route }) {
       </View>
       <View style={styles.mainContent}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>{route.params?.roomName}</Text>
+          <Text style={styles.headerTitle}>{roomName}</Text>
           <Text style={styles.headerDescription}>
             Lorem ipsum dolor sit amet.
           </Text>
