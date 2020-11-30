@@ -10,16 +10,14 @@ import Axios from 'axios';
 
 const host = 'http://192.168.1.11:8000';
 
-const Section = ({ item, index, rooms }) => {
-  const roomsInThisBuilding = rooms?.filter(
-    (room) => room.building === item.id,
-  );
+const Section = ({ item, index, rooms, buildings }) => {
+  const roomsInThisBuilding = rooms.filter((room) => room.building === item.id);
   return (
     <View
-    // style={[
-    //   styles.section,
-    //   { marginBottom: index === dummydata.length - 1 ? 32 : 0 },
-    // ]}
+      style={[
+        styles.section,
+        { marginBottom: index === buildings.length - 1 ? 32 : 0 },
+      ]}
     >
       <Text style={[styles.building, { marginLeft: 16 }]}>{item.name}</Text>
       <View>
@@ -36,6 +34,7 @@ const Section = ({ item, index, rooms }) => {
                 marginRight: index === roomsInThisBuilding.length - 1 ? 16 : 0,
                 marginVertical: 8, // para makita ang shadow
               }}
+              room={item}
             >
               <CardContent item={item} />
             </Card>
@@ -48,8 +47,8 @@ const Section = ({ item, index, rooms }) => {
 };
 
 const RoomListViewScreen = () => {
-  const [buildings, setBuildings] = useState();
-  const [rooms, setRooms] = useState();
+  const [buildings, setBuildings] = useState([]);
+  const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
     Axios.get(`${host}/api/buildings/`)
@@ -69,7 +68,12 @@ const RoomListViewScreen = () => {
           style={styles.flatListMarginTop}
           data={buildings}
           renderItem={({ item, index }) => (
-            <Section item={item} index={index} rooms={rooms} />
+            <Section
+              item={item}
+              index={index}
+              rooms={rooms}
+              buildings={buildings}
+            />
           )}
           keyExtractor={(item) => item.id + ''}
           ItemSeparatorComponent={() => (

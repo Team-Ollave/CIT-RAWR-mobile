@@ -56,7 +56,7 @@ const styles = EStyleSheet.create({
   },
   searchInputPadding: {
     // paddingBottom: '0.375rem,',
-    paddingHorizontal: '1rem'
+    paddingHorizontal: '1rem',
   },
   exploreContainer: {
     zIndex: 1,
@@ -81,17 +81,17 @@ const styles = EStyleSheet.create({
   featuredBadge: {
     position: 'absolute',
     top: '0.75rem',
-    left: '0.75rem'
+    left: '0.75rem',
   },
   cardContentImageBackground: {
     flex: 1,
-    resizeMode: 'cover'
+    resizeMode: 'cover',
   },
   cardContentContainer: {
-    flex: 1
+    flex: 1,
   },
   cardContentImageContainer: {
-    flex: 3
+    flex: 3,
   },
   cardContainer: {
     height: '13.438rem',
@@ -108,8 +108,8 @@ const styles = EStyleSheet.create({
     backgroundColor: 'white',
   },
   flatListMarginTop: {
-    marginTop: '1rem'
-  }
+    marginTop: '1rem',
+  },
 });
 
 export default styles;
