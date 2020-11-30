@@ -52,6 +52,9 @@ const styles = EStyleSheet.create({
     paddingHorizontal: '1rem',
     paddingVertical: '0.5rem',
     marginRight: '0.75rem',
+    borderWidth: 1,
+    borderColor: Colors.gray1,
+    elevation: 1,
   },
   searchInputPadding: {
     // paddingBottom: '0.375rem,',
@@ -100,8 +103,7 @@ const styles = EStyleSheet.create({
     borderRadius: '0.5rem',
     backgroundColor: 'white',
     overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: Colors.gray1,
+    elevation: 2,
   },
   voiceIconContainer: {
     padding: '0.625rem',
