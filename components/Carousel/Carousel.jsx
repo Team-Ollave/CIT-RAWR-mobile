@@ -4,12 +4,14 @@ import styles from './styles';
 
 const { width: windowWidth } = Dimensions.get('window');
 
-const data = Array.from({ length: 10 }).map((_, index) => ({
-  key: index.toString(),
-  image: `https://picsum.photos/1600/900?random=${index}`,
-}));
+const placeholderImage = [
+  {
+    key: '1',
+    image: 'https://i.stack.imgur.com/y9DpT.jpg',
+  },
+];
 
-export default function Carousel2({ images }) {
+export default function Carousel({ images }) {
   const [index, setIndex] = useState(1);
 
   const onScroll = (event) => {
@@ -23,8 +25,9 @@ export default function Carousel2({ images }) {
         pagingEnabled
         horizontal
         showsHorizontalScrollIndicator={false}
-        data={images}
+        data={images.length ? images : placeholderImage}
         onScroll={onScroll}
+        keyExtractor={(item) => item.id + ''}
         renderItem={({ item }) => (
           <Image
             source={{ uri: item.image }}
@@ -35,9 +38,10 @@ export default function Carousel2({ images }) {
           />
         )}
       />
+
       <View style={styles.paginationContainer}>
         <Text style={styles.paginationLabel}>
-          {index} / {images.length}
+          {index} / {images.length ? images.length : placeholderImage.length}
         </Text>
       </View>
     </View>
