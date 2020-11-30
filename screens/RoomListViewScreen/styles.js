@@ -55,7 +55,7 @@ const styles = EStyleSheet.create({
     marginRight: '0.75rem',
   },
   searchInputPadding: {
-    paddingBottom: '0.375rem,',
+    // paddingBottom: '0.375rem,',
     paddingHorizontal: '1rem'
   },
   exploreContainer: {
