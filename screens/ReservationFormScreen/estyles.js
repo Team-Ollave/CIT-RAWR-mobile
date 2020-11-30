@@ -47,7 +47,7 @@ export default EStyleSheet.create({
   },
   dateTime: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     marginBottom: '1.25rem',
     width: '100%',
   },
@@ -65,6 +65,10 @@ export default EStyleSheet.create({
     borderColor: Colors.gray4,
     borderWidth: 1,
     textAlignVertical: 'top',
+
+  },
+  datePickerInput: {
+    marginBottom: '1.5rem',
   },
   dateTimeText: {
     ...Typography.body2('Poppins_400Regular'),
@@ -72,6 +76,10 @@ export default EStyleSheet.create({
   },
   footer: {
     height: 72,
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    left: 0,
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -114,4 +122,9 @@ export default EStyleSheet.create({
     ...Typography.body2('Poppins_400Regular'),
     color: Colors.black,
   },
+  errorMessage: {
+    color: 'red',
+    marginTop: '.5rem',
+    fontStyle: 'italic',
+  }
 });

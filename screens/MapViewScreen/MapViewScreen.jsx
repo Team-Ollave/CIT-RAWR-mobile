@@ -1,33 +1,117 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Modalize } from 'react-native-modalize';
 import { CommonActions } from '@react-navigation/native';
-import { styles, modalHeight, width, alwaysOpenHeight } from './styles';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { styles, modalHeight, alwaysOpenHeight } from './styles';
 import { Colors } from '../../utils/colors';
-import MapView from 'react-native-maps';
-import GenericRoomsTab from './tabs/GenericRoomsTab';
-import FeaturedRoomsTab from './tabs/FeaturedRoomsTab';
-
-const Tab = createMaterialTopTabNavigator();
+import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+import RoomCard from '../../components/RoomCard';
+import ipConfig from '../../ipConfig';
+import axios from 'axios';
 
 const MapViewScreen = ({ navigation }) => {
+  // hooks
   const modalizeRef = useRef(null);
+  const [buildingName, setBuildingName] = useState('Select a building');
+  const [buildingDescription, setBuildingDescription] = useState('');
+  const [buildingID, setBuildingID] = useState(null);
+  const [modalCurrentHeight, setModalCurrentHeight] = useState(
+    alwaysOpenHeight,
+  );
+  const [buildingData, setBuildingData] = useState([]);
+  const [rooms, setRooms] = useState([]);
 
-  const onOpen = () => {
+  useEffect(() => {
+    axios.get(ipConfig + '/api/buildings/').then((response) => {
+      setBuildingData(response.data);
+    }, console.error);
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(ipConfig + '/api/rooms/', {
+        params: { building_id: buildingID },
+      })
+      .then((response) => setRooms(response.data), console.error);
+  }, [buildingID]);
+
+  const handleMarkerPress = (buildingName, description, id) => {
+    modalizeRef.current?.close();
+    modalizeRef.current?.open();
+    setModalCurrentHeight(modalHeight);
+    setBuildingName(buildingName);
+    setBuildingID(id);
+    setBuildingDescription(description);
     modalizeRef.current?.open();
   };
 
-  const Header = () => {
+  const citRegion = {
+    latitude: 10.295074924419716,
+    longitude: 123.88105035466462,
+    latitudeDelta: 0.00185,
+    longitudeDelta: 0.00185,
+  };
+
+  const ModalHeader = () => {
     return (
       <View>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>ST Building</Text>
-          <Text style={styles.headerDescription}>
-            Lorem ipsum dolor sit amet.
-          </Text>
+          <Text style={styles.headerTitle}>{buildingName}</Text>
+          <Text style={styles.headerDescription}>{buildingDescription}</Text>
         </View>
+      </View>
+    );
+  };
+
+  const ModalFooter = () => {
+    return <View style={styles.modalFooter} />;
+  };
+
+  const BackButton = () => {
+    return (
+      <TouchableOpacity
+        style={styles.backButtonContainer}
+        onPress={() => navigation.dispatch(CommonActions.goBack())}
+      >
+        <View style={styles.backButton}>
+          <AntDesign name="arrowleft" size={20} color={Colors.black} />
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
+  const renderItem = ({ item }) => {
+    const {
+      name: roomName,
+      is_generic: isGeneric,
+      available_start_time: availableStartTime,
+      available_end_time: availableEndTime,
+    } = item;
+
+    return (
+      <TouchableOpacity
+        onPress={() => navigation.navigate('ViewRoomScreen', item)}
+      >
+        <RoomCard
+          roomName={roomName}
+          isAvailable
+          isGeneric={isGeneric}
+          availableStartTime={availableStartTime}
+          availableEndTime={availableEndTime}
+        />
+      </TouchableOpacity>
+    );
+  };
+
+  const ViewSeparator = () => {
+    return <View style={styles.reservationSeparator} />;
+  };
+
+  const ListHeader = () => {
+    return (
+      <View style={{ flex: 1 }}>
+        <Text style={styles.listTitle}>Rooms</Text>
       </View>
     );
   };
@@ -37,45 +121,51 @@ const MapViewScreen = ({ navigation }) => {
       <View style={styles.mapContainer}>
         <MapView
           style={styles.map}
-          initialRegion={{
-            latitude: 10.295663912051328,
-            longitude: 123.88045402698751,
-            latitudeDelta: 0.0015,
-            longitudeDelta: 0.0015,
-          }}
-        />
+          initialRegion={citRegion}
+          provider={PROVIDER_GOOGLE}
+          zoomEnabled={false}
+          rotateEnabled={false}
+          scrollEnabled={false}
+          showsBuildings={false}
+          moveOnMarkerPress
+        >
+          {buildingData.map(
+            ({ id, name, latitude, longitude, description }) => {
+              return (
+                <Marker
+                  key={id}
+                  coordinate={{ latitude: latitude, longitude: longitude }}
+                  description={description}
+                  image={require('../../assets/building-pin.png')}
+                  title={name}
+                  onPress={() => handleMarkerPress(name, description, id)}
+                />
+              );
+            },
+          )}
+        </MapView>
       </View>
-      <TouchableOpacity
-        style={styles.backButtonContainer}
-        onPress={() => navigation.dispatch(CommonActions.goBack())}
-      >
-        <View style={styles.backButton}>
-          <AntDesign name="arrowleft" size={20} color={Colors.black} />
-        </View>
-      </TouchableOpacity>
-
+      <BackButton />
       <Modalize
         ref={modalizeRef}
-        HeaderComponent={Header}
-        modalStyle={styles.modalStyle}
-        modalHeight={modalHeight}
+        modalHeight={modalCurrentHeight}
         alwaysOpen={alwaysOpenHeight}
+        HeaderComponent={ModalHeader}
+        FooterComponent={ModalFooter}
         handlePosition={'inside'}
-      >
-        <Tab.Navigator
-          initialLayout={{ width: width }}
-          tabBarOptions={{
-            indicatorStyle: styles.tabIndicator,
-            labelStyle: styles.tabLabel,
-            style: styles.tab,
-            activeTintColor: Colors.accentColor,
-            inactiveTintColor: Colors.gray3,
-          }}
-        >
-          <Tab.Screen name="Featured" component={FeaturedRoomsTab} />
-          <Tab.Screen name="Generic" component={GenericRoomsTab} />
-        </Tab.Navigator>
-      </Modalize>
+        modalStyle={styles.modalStyle}
+        handleStyle={styles.handleStyle}
+        withOverlay={false}
+        flatListProps={{
+          style: { flex: 1 },
+          data: rooms,
+          renderItem: renderItem,
+          keyExtractor: (item) => item.id.toString(),
+          showsVerticalScrollIndicator: false,
+          ListHeaderComponent: ListHeader,
+          ItemSeparatorComponent: ViewSeparator,
+        }}
+      />
     </View>
   );
 };

@@ -9,12 +9,14 @@ import {
   Poppins_300Light,
   Poppins_600SemiBold,
 } from '@expo-google-fonts/poppins';
+import { userContext } from './userContext';
 import ViewRoomScreen from './screens/ViewRoomScreen';
 import ReservationFormScreen from './screens/ReservationFormScreen';
 import MapViewScreen from './screens/MapViewScreen';
 import RoomListViewScreen from './screens/RoomListViewScreen';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import ReservationSuccessScreen from './screens/ReservationSuccessScreen';
 
 const Stack = createStackNavigator();
 
@@ -32,14 +34,17 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {/* Add your screens here */}
-        <Stack.Screen name='LoginScreen' component={LoginScreen} />
-        <Stack.Screen name='RoomListViewScreen' component={RoomListViewScreen} />
-        <Stack.Screen name='MapViewScreen' component={MapViewScreen} />
-        <Stack.Screen name='ViewRoomScreen' component={ViewRoomScreen} />
-        <Stack.Screen name='ReservationFormScreen' component={ReservationFormScreen} />
-      </Stack.Navigator>
+      <userContext.Provider value={{ user: {} }}>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          {/* Add your screens here */}
+          <Stack.Screen name='LoginScreen' component={LoginScreen} />
+          <Stack.Screen name='RoomListViewScreen' component={RoomListViewScreen} />
+          <Stack.Screen name='MapViewScreen' component={MapViewScreen} />
+          <Stack.Screen name='ViewRoomScreen' component={ViewRoomScreen} />
+          <Stack.Screen name='ReservationFormScreen' component={ReservationFormScreen} />
+          <Stack.Screen name='ReservationSuccessScreen' component={ReservationSuccessScreen} />
+        </Stack.Navigator>
+      </userContext.Provider>
     </NavigationContainer>
   );
 }

@@ -36,7 +36,7 @@ export default EStyleSheet.create({
     backgroundColor: 'white',
   },
   header: {
-    paddingBottom: '1rem',
+    paddingBottom: '0.5rem',
     paddingTop: '1.5rem',
     width: '100%',
   },

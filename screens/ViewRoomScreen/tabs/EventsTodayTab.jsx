@@ -49,14 +49,24 @@ const data = [
   },
 ];
 
-export default function EventsTodayTab() {
-  const renderItem = ({ item, index }) => (
+export default function EventsTodayTab({ events }) {
+  const renderItem = ({
+    item: {
+      event_name: eventName,
+      start_time: eventStartTime,
+      end_time: eventEndTime,
+      requestor_data: {
+        profile_data: { display_name: requestorName },
+      },
+    },
+    index,
+  }) => (
     <ReservationCard
       style={EStyleSheet.child(styles, 'reservationCard', index, data.length)}
-      eventName={item.eventName}
-      requestorName={item.requestorName}
-      eventStartTime={item.eventStartTime}
-      eventEndTime={item.eventEndTime}
+      eventName={eventName}
+      requestorName={requestorName}
+      eventStartTime={eventStartTime}
+      eventEndTime={eventEndTime}
     />
   );
 
@@ -65,7 +75,7 @@ export default function EventsTodayTab() {
       style={{ backgroundColor: 'white' }}
       showsVerticalScrollIndicator={false}
       ListHeaderComponent={<Text style={styles.listTitle}>Events</Text>}
-      data={data}
+      data={events}
       renderItem={renderItem}
       keyExtractor={(item) => item.id.toString()}
       ItemSeparatorComponent={() => (

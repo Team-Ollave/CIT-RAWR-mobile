@@ -12,7 +12,7 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
   },
   roomname: {
-    ...Typography.subtitle1(),
+    ...Typography.large('Poppins_500Medium'),
   },
   description: {
     ...Typography.extraSmall(),
