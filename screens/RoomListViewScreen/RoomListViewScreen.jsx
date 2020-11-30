@@ -44,9 +44,9 @@ const Section = ({ item: data, index }) => (
 const RoomListViewScreen = () => (
   <View style={styles.container}>
     <View style={[styles.mainContent]}>
-      <SearchInput style={{ paddingBottom: 6, paddingHorizontal: 16 }} />
+      <SearchInput style={styles.searchInputPadding} />
       <FlatList
-        style={{ marginTop: 16 }}
+        style={styles.flatListMarginTop}
         data={dummydata}
         renderItem={Section}
         keyExtractor={(item) => slug(item.building)}

@@ -54,6 +54,10 @@ const styles = EStyleSheet.create({
     paddingVertical: '0.5rem',
     marginRight: '0.75rem',
   },
+  searchInputPadding: {
+    paddingBottom: '0.375rem,',
+    paddingHorizontal: '1rem'
+  },
   exploreContainer: {
     zIndex: 1,
     position: 'absolute',
@@ -103,6 +107,9 @@ const styles = EStyleSheet.create({
     elevation: 5,
     backgroundColor: 'white',
   },
+  flatListMarginTop: {
+    marginTop: '1rem'
+  }
 });
 
 export default styles;

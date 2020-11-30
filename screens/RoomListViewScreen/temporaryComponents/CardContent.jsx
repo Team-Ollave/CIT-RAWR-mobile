@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, ImageBackground } from 'react-native';
-import FeaturedBadge from '../../../components/FeaturedBadge';
 import styles from '../styles';
 
 const imgURI = {
@@ -12,9 +11,7 @@ const CardContent = ({ item }) => (
   <View style={styles.cardContentContainer}>
     <View style={styles.cardContentImageContainer}>
       <ImageBackground source={imgURI} style={styles.cardContentImageBackground}>
-        {item.featured && (
-          <FeaturedBadge style={styles.featuredBadge} />
-        )}
+
       </ImageBackground>
     </View>
 
