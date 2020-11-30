@@ -71,6 +71,9 @@ const styles = EStyleSheet.create({
     alignSelf: 'center',
     paddingHorizontal: '0.75rem',
     paddingVertical: '0.5rem',
+    borderColor: Colors.gray1,
+    borderWidth: 1,
+    elevation: 1,
   },
   exploreLabel: {
     ...Typography.small('Poppins_500Medium'),
