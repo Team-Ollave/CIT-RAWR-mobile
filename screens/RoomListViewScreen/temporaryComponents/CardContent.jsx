@@ -32,7 +32,7 @@ const CardContent = ({ item }) => {
         <Text style={styles.roomname} numberOfLines={1}>
           {item.name}
         </Text>
-        <Text style={styles.description}>
+        <Text style={styles.description} numberOfLines={1}>
           Lorem ipsum dolor, sit amet sicing
         </Text>
       </View>
