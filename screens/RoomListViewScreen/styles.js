@@ -43,7 +43,6 @@ const styles = EStyleSheet.create({
   searchInputTextInputContainer: {
     borderRadius: 999,
     backgroundColor: 'white',
-    elevation: 5,
 
     flexGrow: 1,
     flexDirection: 'row',
@@ -67,7 +66,6 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white',
     borderRadius: 999,
-    elevation: 5,
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
@@ -97,9 +95,10 @@ const styles = EStyleSheet.create({
     height: '13.438rem',
     width: '14.688rem',
     borderRadius: '0.5rem',
-    elevation: 5,
     backgroundColor: 'white',
     overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: Colors.gray1,
   },
   voiceIconContainer: {
     padding: '0.625rem',
