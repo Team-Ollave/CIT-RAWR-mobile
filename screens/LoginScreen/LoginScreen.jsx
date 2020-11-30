@@ -11,7 +11,6 @@ import ipConfig from '../../ipConfig';
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [buttonDisabled, setButtonDisabled] = useState(true);
   const [error, setError] = useState('');
   const context = useContext(userContext);
 
@@ -31,6 +30,8 @@ export default function LoginScreen({ navigation }) {
     }
   };
 
+  const isDisabled = !email || !password;
+
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
@@ -46,7 +47,6 @@ export default function LoginScreen({ navigation }) {
           style={styles.loginTextInput}
           placeholder="Email"
           value={email}
-          onKeyPress={() => setButtonDisabled(!(email && password))}
           onChangeText={(text) => {
             setEmail(text);
           }}
@@ -56,16 +56,13 @@ export default function LoginScreen({ navigation }) {
           placeholder="Password"
           secureTextEntry={true}
           password={true}
-          onKeyPress={() => setButtonDisabled(!(email && password))}
           value={password}
           onChangeText={(text) => {
             setPassword(text);
           }}
         />
-        <TouchableOpacity onPress={HandleLogin} disabled={buttonDisabled}>
-          <View
-            style={[styles.loginButton, { opacity: buttonDisabled ? 0.7 : 1 }]}
-          >
+        <TouchableOpacity onPress={HandleLogin} disabled={isDisabled}>
+          <View style={[styles.loginButton, { opacity: isDisabled ? 0.7 : 1 }]}>
             <Text style={styles.loginButtonText}>Sign In</Text>
           </View>
         </TouchableOpacity>
