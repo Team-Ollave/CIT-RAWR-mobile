@@ -7,8 +7,7 @@ import SearchInput from './temporaryComponents/SearchInput';
 import ExploreMapActionButton from './temporaryComponents/ExploreMapActionButton';
 import styles from './styles';
 import Axios from 'axios';
-
-const host = 'http://192.168.1.11:8000';
+import ipConfig from '../../ipConfig';
 
 const Section = ({ item, index, rooms, buildings }) => {
   const roomsInThisBuilding = rooms.filter((room) => room.building === item.id);
@@ -51,11 +50,11 @@ const RoomListViewScreen = () => {
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
-    Axios.get(`${host}/api/buildings/`)
+    Axios.get(`${ipConfig}/api/buildings/`)
       .then((response) => setBuildings(response.data))
       .catch((e) => console.log(e));
 
-    Axios.get(`${host}/api/rooms/`)
+    Axios.get(`${ipConfig}/api/rooms/`)
       .then((response) => setRooms(response.data))
       .catch((e) => console.log(e));
   }, []);
