@@ -19,8 +19,6 @@ const CardContent = ({ item }) => {
     ? item.room_images[0].image
     : placeholderImage[0].image;
 
-  console.log(roomImage);
-
   return (
     <View style={styles.cardContentContainer}>
       <View style={styles.cardContentImageContainer}>
@@ -31,7 +29,9 @@ const CardContent = ({ item }) => {
       </View>
 
       <View style={styles.caption}>
-        <Text style={styles.roomname}>{item.name}</Text>
+        <Text style={styles.roomname} numberOfLines={1}>
+          {item.name}
+        </Text>
         <Text style={styles.description}>
           Lorem ipsum dolor, sit amet sicing
         </Text>
