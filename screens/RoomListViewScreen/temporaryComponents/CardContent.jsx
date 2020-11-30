@@ -29,7 +29,9 @@ const CardContent = ({ item }) => {
       </View>
 
       <View style={styles.caption}>
-        <Text style={styles.roomname}>{item.name}</Text>
+        <Text style={styles.roomname} numberOfLines={1}>
+          {item.name}
+        </Text>
         <Text style={styles.description}>
           Lorem ipsum dolor, sit amet sicing
         </Text>

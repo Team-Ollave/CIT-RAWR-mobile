@@ -14,11 +14,13 @@ const FeaturedRoomCard = ({
 
   return (
     <View key={id} style={[styles.container, styles.roomCardContainer]}>
-      <View>
-        <Text style={styles.roomName}>{roomName}</Text>
+      <View style={{ maxWidth: '55%' }}>
+        <Text style={styles.roomName} numberOfLines={1}>
+          {roomName}
+        </Text>
         <Text style={styles.isAvailableTag}>{isAvailableText}</Text>
       </View>
-      <Text style={styles.availableTime}>
+      <Text style={[styles.availableTime]}>
         {moment(availableStartTime, 'HH:mm:ss').format('hh:mm A')} -{' '}
         {moment(availableEndTime, 'HH:mm:ss').format('hh:mm A')}
       </Text>
