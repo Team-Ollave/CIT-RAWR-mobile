@@ -24,7 +24,9 @@ export default function ViewRoomScreen({
   const [eventsToday, setEventsToday] = useState([]);
   const [eventsUpcoming, setEventsUpcoming] = useState([]);
 
-  let earliestAvailabilityDate = new Date().toDateString();
+  const [earliestAvailability, setEarliestAvailability] = useState(
+    new Date().toDateString(),
+  );
 
   useEffect(() => {
     axios
@@ -44,19 +46,15 @@ export default function ViewRoomScreen({
           status: reservationStatusTypes.ACCEPTED,
           room: roomId,
           upcoming: true,
+          today: false,
         },
       })
       .then((res) => setEventsUpcoming(res.data))
       .catch((err) => console.warn(err));
+
     axios
-      .get(`${ipConfig}/api/rooms/${roomId}/`, {
-        params: {
-          status: reservationStatusTypes.ACCEPTED,
-          room: roomId,
-          upcoming: true,
-        },
-      })
-      .then((res) => (earliestAvailabilityDate = res.data))
+      .get(`${ipConfig}/api/rooms/${roomId}/earliest-availability`)
+      .then((res) => setEarliestAvailability(new Date(res.data).toDateString()))
       .catch((err) => console.warn(err));
   }, []);
 
@@ -96,16 +94,14 @@ export default function ViewRoomScreen({
           />
           <Tab.Screen
             name="Upcoming"
-            children={() => <EventsUpcomingTab eventsList={eventsUpcoming} />}
+            children={() => <EventsUpcomingTab events={eventsUpcoming} />}
           />
         </Tab.Navigator>
       </View>
       <View style={styles.footer}>
         <View>
           <Text style={styles.availabilityLabel}>Earliest Availability:</Text>
-          <Text style={styles.availabilityDate}>
-            {earliestAvailabilityDate}
-          </Text>
+          <Text style={styles.availabilityDate}>{earliestAvailability}</Text>
         </View>
         <TouchableOpacity
           style={styles.reserveButton}
