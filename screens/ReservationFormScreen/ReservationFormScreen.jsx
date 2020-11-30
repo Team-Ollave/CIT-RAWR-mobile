@@ -17,6 +17,7 @@ export default function ReservationRoomScreen({ navigation, route }) {
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
+  const [showError, setShowError] = useState(false);
   const [formattedDate, setfDate] = useState('Set date');
   const [formattedStartTime, setfStartTime] = useState('Set start');
   const [formattedEndTime, setfEndTime] = useState('Set end');
@@ -24,35 +25,23 @@ export default function ReservationRoomScreen({ navigation, route }) {
   const { roomId } = route.params;
 
   const submitReservationRequest = async () => {
-    if (isValidInputs()) {
-      try {
-        const response = await axios.post(ipConfig + '/api/reservations', {
-          event_name: eventName,
-          date: formattedDate,
-          start_time: formattedStartTime,
-          end_time: formattedEndTime,
-          event_description: eventDesc,
-          room: roomId,
-          requestor: user.id,
-        });
-        console.log(response.status);
-        if (response.status === 200) {
-          navigation.navigate('ReservationSuccessScreen');
-        }
-      } catch (error) {
-        console.log(error);
+    try {
+      const response = await axios.post(ipConfig + '/api/reservations/', {
+        event_name: eventName,
+        event_date: formattedDate,
+        start_time: formattedStartTime,
+        end_time: formattedEndTime,
+        event_description: eventDesc,
+        room: roomId,
+        requestor: user.id,
+      });
+      console.log(response.status);
+      if (response.status === 201) {
+        navigation.navigate('ReservationSuccessScreen');
       }
-    } else {
-      console.log('Invalid inputs');
+    } catch (error) {
+      showError(true);
     }
-  };
-
-  const isValidInputs = () => {
-    const isValidTextInputs = eventName && eventDescription;
-    // const isValidDate = formattedDate.getTime() >= new Date().getTime();
-    // const isValidTime =
-    // formattedStartTime.getTime() < formattedEndTime.getTime();
-    return isValidTextInputs;
   };
 
   const onChange = (event, selectedDate) => {
@@ -158,6 +147,9 @@ export default function ReservationRoomScreen({ navigation, route }) {
         </View>
         <View style={estyles.eventRemarks}>
           <Text style={estyles.eventRemarksText}>
+            *Application may take from 1 to 3 days.
+          </Text>
+          <Text style={estyles.errorMessage}>
             *Application may take from 1 to 3 days.
           </Text>
         </View>

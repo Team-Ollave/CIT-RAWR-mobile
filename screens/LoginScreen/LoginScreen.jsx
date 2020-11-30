@@ -46,9 +46,7 @@ export default function LoginScreen({ navigation }) {
           style={styles.loginTextInput}
           placeholder="Email"
           value={email}
-          onContentSizeChange={() => {
-            setButtonDisabled(!(email && password));
-          }}
+          onKeyPress={() => setButtonDisabled(!(email && password))}
           onChangeText={(text) => {
             setEmail(text);
           }}
@@ -58,10 +56,8 @@ export default function LoginScreen({ navigation }) {
           placeholder="Password"
           secureTextEntry={true}
           password={true}
+          onKeyPress={() => setButtonDisabled(!(email && password))}
           value={password}
-          onContentSizeChange={() => {
-            setButtonDisabled(!(email && password));
-          }}
           onChangeText={(text) => {
             setPassword(text);
           }}
