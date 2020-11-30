@@ -10,6 +10,7 @@ import { CommonActions } from '@react-navigation/native';
 import Carousel from '../../components/Carousel';
 import axios from 'axios';
 import ipConfig from '../../ipConfig';
+import { reservationStatusTypes } from '../../utils/constants';
 
 const Tab = createMaterialTopTabNavigator();
 const tabWidth = Dimensions.get('window').width * 0.884;
@@ -17,13 +18,52 @@ const tabWidth = Dimensions.get('window').width * 0.884;
 export default function ViewRoomScreen({
   navigation,
   route: {
-    params: { name: roomName, id: roomId },
+    params: { name: roomName, id: roomId, room_images: roomImages },
   },
 }) {
+  const [eventsToday, setEventsToday] = useState([]);
+  const [eventsUpcoming, setEventsUpcoming] = useState([]);
+
+  let earliestAvailabilityDate = new Date().toDateString();
+
+  useEffect(() => {
+    axios
+      .get(`${ipConfig}/api/reservations/`, {
+        params: {
+          status: reservationStatusTypes.ACCEPTED,
+          room: roomId,
+          today: true,
+        },
+      })
+      .then((res) => setEventsToday(res.data))
+      .catch((err) => console.warn(err));
+
+    axios
+      .get(`${ipConfig}/api/reservations/`, {
+        params: {
+          status: reservationStatusTypes.ACCEPTED,
+          room: roomId,
+          upcoming: true,
+        },
+      })
+      .then((res) => setEventsUpcoming(res.data))
+      .catch((err) => console.warn(err));
+    axios
+      .get(`${ipConfig}/api/rooms/${roomId}/`, {
+        params: {
+          status: reservationStatusTypes.ACCEPTED,
+          room: roomId,
+          upcoming: true,
+        },
+      })
+      .then((res) => (earliestAvailabilityDate = res.data))
+      .catch((err) => console.warn(err));
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.images}>
-        <Carousel />
+        <Carousel images={roomImages} />
         <TouchableOpacity
           style={styles.backButtonContainer}
           onPress={() => navigation.dispatch(CommonActions.goBack())}
@@ -50,14 +90,22 @@ export default function ViewRoomScreen({
             inactiveTintColor: Colors.gray3,
           }}
         >
-          <Tab.Screen name="Today" component={EventsTodayTab} />
-          <Tab.Screen name="Upcoming" component={EventsUpcomingTab} />
+          <Tab.Screen
+            name="Today"
+            children={() => <EventsTodayTab events={eventsToday} />}
+          />
+          <Tab.Screen
+            name="Upcoming"
+            children={() => <EventsUpcomingTab eventsList={eventsUpcoming} />}
+          />
         </Tab.Navigator>
       </View>
       <View style={styles.footer}>
         <View>
           <Text style={styles.availabilityLabel}>Earliest Availability:</Text>
-          <Text style={styles.availabilityDate}>Tue Jan 12, 2020</Text>
+          <Text style={styles.availabilityDate}>
+            {earliestAvailabilityDate}
+          </Text>
         </View>
         <TouchableOpacity
           style={styles.reserveButton}

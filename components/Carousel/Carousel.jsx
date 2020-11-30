@@ -9,7 +9,7 @@ const data = Array.from({ length: 10 }).map((_, index) => ({
   image: `https://picsum.photos/1600/900?random=${index}`,
 }));
 
-export default function Carousel2() {
+export default function Carousel2({ images }) {
   const [index, setIndex] = useState(1);
 
   const onScroll = (event) => {
@@ -23,7 +23,7 @@ export default function Carousel2() {
         pagingEnabled
         horizontal
         showsHorizontalScrollIndicator={false}
-        data={data}
+        data={images}
         onScroll={onScroll}
         renderItem={({ item }) => (
           <Image
@@ -37,7 +37,7 @@ export default function Carousel2() {
       />
       <View style={styles.paginationContainer}>
         <Text style={styles.paginationLabel}>
-          {index} / {data.length}
+          {index} / {images.length}
         </Text>
       </View>
     </View>
