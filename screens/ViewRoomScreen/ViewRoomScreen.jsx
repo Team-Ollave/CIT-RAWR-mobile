@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View, Dimensions } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import styles from './styles';
@@ -8,11 +8,24 @@ import { Colors } from '../../utils/colors';
 import { AntDesign } from '@expo/vector-icons';
 import { CommonActions } from '@react-navigation/native';
 import Carousel from '../../components/Carousel';
+import axios from 'axios';
+import ipConfig from '../../ipConfig';
 
 const Tab = createMaterialTopTabNavigator();
 const tabWidth = Dimensions.get('window').width * 0.884;
 
 export default function ViewRoomScreen({ navigation, route }) {
+  const { name: roomName, id: roomId } = route.params;
+  const [eventsToday, setEventsToday] = useState([]);
+  const [eventsUpcoming, setEventsUpcoming] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(ipConfig + '/api/reservations/', { params: { room: roomId } })
+      .then((response) => {
+        // TODO: distribute reservations data to
+      }, console.error);
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.images}>
@@ -28,8 +41,8 @@ export default function ViewRoomScreen({ navigation, route }) {
       </View>
       <View style={styles.mainContent}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>{route.params?.roomName}</Text>
-          <Text style={styles.headerDescription}>
+          <Text style={styles.headerTitle}>{roomName}</Text>
+          <Text style={[styles.headerDescription]}>
             Lorem ipsum dolor sit amet.
           </Text>
         </View>
@@ -55,7 +68,9 @@ export default function ViewRoomScreen({ navigation, route }) {
         <TouchableOpacity
           style={styles.reserveButton}
           activeOpacity={0.8}
-          onPress={() => navigation.navigate('ReservationFormScreen')}
+          onPress={() =>
+            navigation.navigate('ReservationFormScreen', { roomId })
+          }
         >
           <Text style={styles.reserveButtonTitle}>Reserve</Text>
         </TouchableOpacity>

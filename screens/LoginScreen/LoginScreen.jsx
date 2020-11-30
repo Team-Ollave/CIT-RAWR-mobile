@@ -6,6 +6,7 @@ import { Colors } from '../../utils/colors';
 import { userContext } from '../../userContext';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import axios from 'axios';
+import ipConfig from '../../ipConfig';
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
@@ -16,17 +17,13 @@ export default function LoginScreen({ navigation }) {
 
   const HandleLogin = async () => {
     try {
-      const response = await axios.post(
-        'http://192.168.8.113:8000/api/users/login/',
-        {
-          email: email,
-          password: password,
-        },
-      );
+      const response = await axios.post(ipConfig + '/api/users/login/', {
+        email: email,
+        password: password,
+      });
       if (response.status === 200) {
         setError('');
         context.user = response.data;
-        console.log(context.user);
         navigation.navigate('RoomListViewScreen');
       }
     } catch (error) {
