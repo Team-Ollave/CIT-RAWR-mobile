@@ -14,18 +14,12 @@ import ipConfig from '../../ipConfig';
 const Tab = createMaterialTopTabNavigator();
 const tabWidth = Dimensions.get('window').width * 0.884;
 
-export default function ViewRoomScreen({ navigation, route }) {
-  const { name: roomName, id: roomId } = route.params;
-  const [eventsToday, setEventsToday] = useState([]);
-  const [eventsUpcoming, setEventsUpcoming] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get(ipConfig + '/api/reservations/', { params: { room: roomId } })
-      .then((response) => {
-        // TODO: distribute reservations data to
-      }, console.error);
-  }, []);
+export default function ViewRoomScreen({
+  navigation,
+  route: {
+    params: { name: roomName, id: roomId },
+  },
+}) {
   return (
     <View style={styles.container}>
       <View style={styles.images}>
@@ -42,7 +36,7 @@ export default function ViewRoomScreen({ navigation, route }) {
       <View style={styles.mainContent}>
         <View style={styles.header}>
           <Text style={styles.headerTitle}>{roomName}</Text>
-          <Text style={[styles.headerDescription]}>
+          <Text style={styles.headerDescription}>
             Lorem ipsum dolor sit amet.
           </Text>
         </View>
