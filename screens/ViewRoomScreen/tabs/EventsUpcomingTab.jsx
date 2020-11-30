@@ -29,7 +29,7 @@ export default function EventsTodayTab({ events }) {
         }) => (
           <ReservationCard
             style={[styles['reservationCard:last-child']]}
-            key={id}
+            key={id.toString()}
             eventName={eventName}
             requestorName={requestorName}
             eventStartTime={eventStartTime}
@@ -47,7 +47,7 @@ export default function EventsTodayTab({ events }) {
       ListHeaderComponent={<Text style={styles.listTitle}>Events</Text>}
       data={formattedData}
       renderItem={renderAccordionItem}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item) => item.id.toString()}
       ItemSeparatorComponent={() => <View style={styles.accordionSeparator} />}
     />
   );
