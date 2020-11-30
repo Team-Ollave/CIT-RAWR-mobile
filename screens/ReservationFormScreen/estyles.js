@@ -122,4 +122,9 @@ export default EStyleSheet.create({
     ...Typography.body2('Poppins_400Regular'),
     color: Colors.black,
   },
+  errorMessage: {
+    color: 'red',
+    marginTop: '.5rem',
+    fontStyle: 'italic',
+  }
 });

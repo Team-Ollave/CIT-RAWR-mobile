@@ -40,7 +40,7 @@ export default function ReservationRoomScreen({ navigation, route }) {
         navigation.navigate('ReservationSuccessScreen');
       }
     } catch (error) {
-      showError(true);
+      setShowError(true);
     }
   };
 
@@ -149,8 +149,13 @@ export default function ReservationRoomScreen({ navigation, route }) {
           <Text style={estyles.eventRemarksText}>
             *Application may take from 1 to 3 days.
           </Text>
-          <Text style={estyles.errorMessage}>
-            *Application may take from 1 to 3 days.
+          <Text
+            style={[
+              estyles.errorMessage,
+              { display: showError ? 'flex' : 'none' },
+            ]}
+          >
+            Make sure your inputs are valid.
           </Text>
         </View>
       </View>
