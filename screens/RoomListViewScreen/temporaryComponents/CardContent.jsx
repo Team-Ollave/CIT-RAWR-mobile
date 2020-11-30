@@ -19,8 +19,6 @@ const CardContent = ({ item }) => {
     ? item.room_images[0].image
     : placeholderImage[0].image;
 
-  console.log(roomImage);
-
   return (
     <View style={styles.cardContentContainer}>
       <View style={styles.cardContentImageContainer}>
