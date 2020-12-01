@@ -11,12 +11,6 @@ const styles = EStyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  img: {
-    flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'flex-end',
-    position: 'relative',
-  },
   roomname: {
     ...Typography.large('Poppins_500Medium'),
   },
@@ -24,31 +18,52 @@ const styles = EStyleSheet.create({
     ...Typography.extraSmall(),
   },
   caption: {
+    flex: 1,
     backgroundColor: 'white',
-    padding: 10,
+    padding: '0.625rem',
   },
   building: {
-    marginBottom: 8,
+    marginBottom: '0.5rem',
     ...Typography.h6(),
   },
-  // section: {
-  //   margin: 10,
-  // },
-  // mainContent: {
-  //   position: 'absolute',
-  //   top: 0,
-  //   bottom: 0,
-  //   paddingTop: 50,
-  // },
+  searchInputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  searchInputSearchIcon: {
+    marginRight: '0.5rem',
+  },
+  searchInputTextInput: {
+    fontSize: '1rem',
+    letterSpacing: 0.4,
+    fontFamily: 'Poppins_400Regular',
+    width: '70%',
+  },
+  searchInputTextInputContainer: {
+    borderRadius: 999,
+    backgroundColor: 'white',
+
+    flexGrow: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+
+    paddingHorizontal: '1rem',
+    paddingVertical: '0.5rem',
+    marginRight: '0.75rem',
+    borderWidth: 1,
+    borderColor: Colors.gray1,
+    elevation: 1,
+  },
+  searchInputPadding: {
+    // paddingBottom: '0.375rem,',
+    paddingHorizontal: '1rem',
+  },
   exploreContainer: {
     zIndex: 1,
     position: 'absolute',
-    bottom: 32,
-  },
-  exploreMapActionButtonShadow: {
-    borderRadius: 999,
-    elevation: 5,
-    alignSelf: 'center',
+    bottom: '2rem',
   },
   exploreMapActionButtonContainer: {
     flexDirection: 'row',
@@ -56,12 +71,48 @@ const styles = EStyleSheet.create({
     borderRadius: 999,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
     paddingHorizontal: '0.75rem',
     paddingVertical: '0.5rem',
+    borderColor: Colors.gray1,
+    borderWidth: 1,
+    elevation: 1,
   },
   exploreLabel: {
     ...Typography.small('Poppins_500Medium'),
     marginLeft: '0.2rem',
+  },
+  featuredBadge: {
+    position: 'absolute',
+    top: '0.75rem',
+    left: '0.75rem',
+  },
+  cardContentImageBackground: {
+    flex: 1,
+    resizeMode: 'cover',
+  },
+  cardContentContainer: {
+    flex: 1,
+  },
+  cardContentImageContainer: {
+    flex: 3,
+  },
+  cardContainer: {
+    height: '13.438rem',
+    width: '14.688rem',
+    borderRadius: '0.5rem',
+    backgroundColor: 'white',
+    overflow: 'hidden',
+    elevation: 2,
+  },
+  voiceIconContainer: {
+    padding: '0.625rem',
+    borderRadius: 999,
+    elevation: 5,
+    backgroundColor: 'white',
+  },
+  flatListMarginTop: {
+    marginTop: '1rem',
   },
 });
 

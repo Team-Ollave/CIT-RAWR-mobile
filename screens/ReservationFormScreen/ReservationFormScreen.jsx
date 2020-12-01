@@ -102,16 +102,6 @@ export default function ReservationRoomScreen({ navigation, route }) {
             onChangeText={(text) => setEventDesc(text)}
           />
         </View>
-        <View>
-          <Text style={estyles.eventHeaderText}>Set Date</Text>
-          <TouchableOpacity
-            onPress={showDatepicker}
-            style={[estyles.dateTimePickerInput, estyles.datePickerInput]}
-          >
-            <Text style={estyles.dateTimeText}>{formattedDate}</Text>
-            <Feather name="calendar" size={20} color="black" />
-          </TouchableOpacity>
-        </View>
         <View style={estyles.dateTime}>
           <View style={estyles.dateTimeContainer}>
             <Text style={estyles.eventHeaderText}>Start Time</Text>
@@ -122,6 +112,16 @@ export default function ReservationRoomScreen({ navigation, route }) {
               <Text style={estyles.dateTimeText}>{formattedStartTime}</Text>
               <Feather name="clock" size={20} color={Colors.black} />
             </TouchableOpacity>
+            <View style={estyles.dateContainer}>
+              <Text style={estyles.eventHeaderText}>Set Date</Text>
+              <TouchableOpacity
+                onPress={showDatepicker}
+                style={[estyles.dateTimePickerInput, estyles.datePickerInput]}
+              >
+                <Text style={estyles.dateTimeText}>{formattedDate}</Text>
+                <Feather name="calendar" size={20} color="black" />
+              </TouchableOpacity>
+            </View>
           </View>
           <View style={estyles.dateTimeContainer}>
             <Text style={estyles.eventHeaderText}>End Time</Text>
@@ -133,6 +133,7 @@ export default function ReservationRoomScreen({ navigation, route }) {
               <Feather name="clock" size={20} color={Colors.black} />
             </TouchableOpacity>
           </View>
+
           {show && (
             <DateTimePicker
               style={{ position: 'absolute' }}

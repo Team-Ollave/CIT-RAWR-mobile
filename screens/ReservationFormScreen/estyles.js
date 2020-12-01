@@ -126,5 +126,9 @@ export default EStyleSheet.create({
     color: 'red',
     marginTop: '.5rem',
     fontStyle: 'italic',
+  },
+  dateContainer: {
+    marginRight: 24,
+    marginTop: '1rem',
   }
 });
