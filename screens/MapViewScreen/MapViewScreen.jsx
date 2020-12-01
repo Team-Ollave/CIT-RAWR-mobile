@@ -7,6 +7,7 @@ import { styles, modalHeight, alwaysOpenHeight } from './styles';
 import { Colors } from '../../utils/colors';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import RoomCard from '../../components/RoomCard';
+import ipConfig from '../../ipConfig';
 import axios from 'axios';
 
 const MapViewScreen = ({ navigation }) => {
@@ -22,14 +23,14 @@ const MapViewScreen = ({ navigation }) => {
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
-    axios.get('http://192.168.8.113:8000/api/buildings/').then((response) => {
+    axios.get(ipConfig + '/api/buildings/').then((response) => {
       setBuildingData(response.data);
     }, console.error);
   }, []);
 
   useEffect(() => {
     axios
-      .get('http://192.168.8.113:8000/api/rooms/', {
+      .get(ipConfig + '/api/rooms/', {
         params: { building_id: buildingID },
       })
       .then((response) => setRooms(response.data), console.error);
@@ -135,6 +136,7 @@ const MapViewScreen = ({ navigation }) => {
                   key={id}
                   coordinate={{ latitude: latitude, longitude: longitude }}
                   description={description}
+                  image={require('../../assets/building-pin.png')}
                   title={name}
                   onPress={() => handleMarkerPress(name, description, id)}
                 />

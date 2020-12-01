@@ -1,11 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { Text, TextInput, TouchableOpacity, View, Image } from 'react-native';
 import { Typography } from '../../utils/typography';
 import { Colors } from '../../utils/colors';
+import { userContext } from '../../userContext';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import axios from 'axios';
+import ipConfig from '../../ipConfig';
 
 export default function LoginScreen({ navigation }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const context = useContext(userContext);
+
+  const HandleLogin = async () => {
+    try {
+      const response = await axios.post(ipConfig + '/api/users/login/', {
+        email: email,
+        password: password,
+      });
+      if (response.status === 200) {
+        setError('');
+        context.user = response.data;
+        navigation.navigate('RoomListViewScreen');
+      }
+    } catch (error) {
+      setError('Invalid email or password');
+    }
+  };
+
+  const isDisabled = !email || !password;
+
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
@@ -15,18 +41,28 @@ export default function LoginScreen({ navigation }) {
         />
       </View>
       <Text style={styles.welcomeMessage}>Welcome to CIT-RAWR!</Text>
+      <Text style={styles.errorMessage}>{error}</Text>
       <View style={styles.loginContainer}>
-        <TextInput style={styles.loginTextInput} placeholder="Email" />
+        <TextInput
+          style={styles.loginTextInput}
+          placeholder="Email"
+          value={email}
+          onChangeText={(text) => {
+            setEmail(text);
+          }}
+        />
         <TextInput
           style={styles.loginTextInput}
           placeholder="Password"
           secureTextEntry={true}
           password={true}
+          value={password}
+          onChangeText={(text) => {
+            setPassword(text);
+          }}
         />
-        <TouchableOpacity
-          onPress={() => navigation.navigate('RoomListViewScreen')}
-        >
-          <View style={styles.loginButton}>
+        <TouchableOpacity onPress={HandleLogin} disabled={isDisabled}>
+          <View style={[styles.loginButton, { opacity: isDisabled ? 0.7 : 1 }]}>
             <Text style={styles.loginButtonText}>Sign In</Text>
           </View>
         </TouchableOpacity>
@@ -53,7 +89,6 @@ const styles = EStyleSheet.create({
     height: '15rem',
     width: '15rem',
     alignItems: 'center',
-    marginBottom: '2rem',
   },
   welcomeMessage: {
     ...Typography.subtitle1('Poppins_400Regular'),
@@ -88,5 +123,12 @@ const styles = EStyleSheet.create({
   forgotPasswordText: {
     ...Typography.body2('Poppins_400Regular'),
     textAlign: 'center',
+  },
+  errorMessage: {
+    color: 'red',
+    textAlign: 'center',
+    fontStyle: 'italic',
+    height: '1.5rem',
+    paddingBottom: '.5rem',
   },
 });
