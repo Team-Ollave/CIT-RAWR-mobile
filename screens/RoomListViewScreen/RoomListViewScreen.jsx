@@ -8,6 +8,7 @@ import ExploreMapActionButton from './temporaryComponents/ExploreMapActionButton
 import styles from './styles';
 import Axios from 'axios';
 import ipConfig from '../../ipConfig';
+import RoomListViewBottomTab from './temporaryComponents/RoomListViewBottomTab';
 
 const Section = ({ item, index, rooms, buildings }) => {
   const roomsInThisBuilding = rooms.filter((room) => room.building === item.id);
@@ -60,29 +61,33 @@ const RoomListViewScreen = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <View style={[styles.mainContent]}>
-        <SearchInput style={styles.searchInputPadding} />
-        <FlatList
-          style={styles.flatListMarginTop}
-          data={buildings}
-          renderItem={({ item, index }) => (
-            <Section
-              item={item}
-              index={index}
-              rooms={rooms}
-              buildings={buildings}
-            />
-          )}
-          keyExtractor={(item) => item.id + ''}
-          ItemSeparatorComponent={() => (
-            <View style={{ height: 20, zIndex: -1 }} />
-          )}
-          showsVerticalScrollIndicator={false}
-        />
+    <>
+      <View style={styles.container}>
+        <View style={[styles.mainContent]}>
+          <SearchInput style={styles.searchInputPadding} />
+          <FlatList
+            style={styles.flatListMarginTop}
+            data={buildings}
+            renderItem={({ item, index }) => (
+              <Section
+                item={item}
+                index={index}
+                rooms={rooms}
+                buildings={buildings}
+              />
+            )}
+            keyExtractor={(item) => item.id + ''}
+            ItemSeparatorComponent={() => (
+              <View style={{ height: 20, zIndex: -1 }} />
+            )}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
+        <ExploreMapActionButton />
       </View>
-      <ExploreMapActionButton />
-    </View>
+      {/* <RoomListViewBottomTab /> */}
+    </>
   );
 };
+
 export default RoomListViewScreen;
