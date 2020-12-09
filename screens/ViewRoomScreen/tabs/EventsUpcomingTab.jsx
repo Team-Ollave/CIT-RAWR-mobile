@@ -42,6 +42,7 @@ export default function EventsTodayTab({ events }) {
             eventDescription={eventDescription}
             status={status}
             roomId={roomId}
+            subtitle={`Reserved by ${requestorName}`}
           />
         ),
       )}

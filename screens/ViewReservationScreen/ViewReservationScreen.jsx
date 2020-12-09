@@ -51,27 +51,27 @@ const ViewReservationScreen = ({
       </View>
       <Text style={styles.eventName}>{eventName}</Text>
 
-      <View style={styles.details}>
-        <SimpleLineIcons name="location-pin" size={16} color={Colors.gray4} />
-        <Text style={styles.detailText}>
-          {roomData.building_data?.name} - {roomData.name}
-        </Text>
-      </View>
-
-      <View style={styles.details}>
-        <Feather name="calendar" size={16} color={Colors.gray4} />
-        <Text style={styles.detailText}>
-          {new Date(eventDate).toDateString()} {eventStartTime}-{eventEndTime}
-        </Text>
-      </View>
-
-      <View style={styles.details}>
-        <MaterialCommunityIcons
-          name="account-circle-outline"
-          size={16}
-          color={Colors.gray4}
-        />
-        <Text style={styles.detailText}>Reserved by {requestorName}</Text>
+      <View style={{ marginBottom: 16 }}>
+        <View style={styles.details}>
+          <SimpleLineIcons name="location-pin" size={16} color={Colors.gray4} />
+          <Text style={styles.detailText}>
+            {roomData.building_data?.name} - {roomData.name}
+          </Text>
+        </View>
+        <View style={styles.details}>
+          <Feather name="calendar" size={16} color={Colors.gray4} />
+          <Text style={styles.detailText}>
+            {new Date(eventDate).toDateString()} {eventStartTime}-{eventEndTime}
+          </Text>
+        </View>
+        <View style={styles.details}>
+          <MaterialCommunityIcons
+            name="account-circle-outline"
+            size={16}
+            color={Colors.gray4}
+          />
+          <Text style={styles.detailText}>Reserved by {requestorName}</Text>
+        </View>
       </View>
 
       <Text style={styles.description}>{eventDescription}</Text>
