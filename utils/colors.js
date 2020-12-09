@@ -7,4 +7,7 @@ export const Colors = {
   gray4: '#717171',
   accentColor: '#741E1E',
   citYellow: '#FACA10',
+  acceptedGreen: '#27ae60',
+  pendingYellow: '#faca10',
+  declinedRed: '#eb5757',
 };
