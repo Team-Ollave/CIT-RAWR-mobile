@@ -37,8 +37,6 @@ export default function RoomsListScreen() {
     rooms: rooms?.filter((room) => room.building === building.id),
   }));
 
-  console.log(formattedData);
-
   const renderItem = ({ item: building, index }) => (
     <View
       style={{
