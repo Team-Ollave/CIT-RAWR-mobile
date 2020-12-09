@@ -11,6 +11,7 @@ import Carousel from '../../components/Carousel';
 import axios from 'axios';
 import ipConfig from '../../ipConfig';
 import { reservationStatusTypes } from '../../utils/constants';
+import { Entypo, Feather } from '@expo/vector-icons';
 
 const Tab = createMaterialTopTabNavigator();
 const tabWidth = Dimensions.get('window').width * 0.884;
@@ -18,7 +19,14 @@ const tabWidth = Dimensions.get('window').width * 0.884;
 export default function ViewRoomScreen({
   navigation,
   route: {
-    params: { name: roomName, id: roomId, room_images: roomImages },
+    params: {
+      name: roomName,
+      id: roomId,
+      room_images: roomImages,
+      building_data: buildingData,
+      available_start_time: openingTime,
+      available_end_time: closingTime,
+    },
   },
 }) {
   const [eventsToday, setEventsToday] = useState([]);
@@ -74,9 +82,28 @@ export default function ViewRoomScreen({
       <View style={styles.mainContent}>
         <View style={styles.header}>
           <Text style={styles.headerTitle}>{roomName}</Text>
-          <Text style={styles.headerDescription}>
-            Lorem ipsum dolor sit amet.
-          </Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}
+          >
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Entypo name="location-pin" size={20} color={Colors.gray4} />
+              <Text style={styles.headerDescription}>{buildingData.name}</Text>
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+                marginLeft: 16,
+              }}
+            >
+              <Feather name="calendar" size={16} color={Colors.gray4} />
+              <Text style={styles.headerDescription}>
+                {openingTime} - {closingTime}
+              </Text>
+            </View>
+          </View>
         </View>
         <Tab.Navigator
           initialLayout={{ width: tabWidth }}
