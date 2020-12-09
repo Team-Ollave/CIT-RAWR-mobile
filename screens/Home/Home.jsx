@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import styles from './styles';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import RoomsListScreen from './RoomsListScreen';
@@ -16,6 +16,7 @@ export default function Home() {
         barStyle={styles.barStyle}
         activeColor={Colors.accentColor}
         inactiveColor={Colors.gray4}
+        shifting
       >
         <Tab.Screen
           name="Rooms"

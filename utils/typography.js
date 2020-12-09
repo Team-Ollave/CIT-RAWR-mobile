@@ -1,4 +1,8 @@
 export const Typography = {
+  screenTitle: (fontFamily = 'Poppins_600SemiBold') => ({
+    fontSize: '1.5rem',
+    fontFamily,
+  }),
   title3: (fontFamily = 'Poppins_500Medium') => ({
     fontSize: '1.5rem',
     fontFamily,

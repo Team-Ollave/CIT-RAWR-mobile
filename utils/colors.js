@@ -6,4 +6,5 @@ export const Colors = {
   gray3: '#ACB5BD',
   gray4: '#717171',
   accentColor: '#741E1E',
+  citYellow: '#FACA10',
 };
