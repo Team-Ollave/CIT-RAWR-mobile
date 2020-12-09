@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, SectionList } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import ReservationCard from '../../../components/ReservationCard';
 import Accordion from '../../../components/Accordion';
 import styles from '../styles';
@@ -23,6 +23,10 @@ export default function EventsTodayTab({ events }) {
           event_name: eventName,
           start_time: eventStartTime,
           end_time: eventEndTime,
+          event_description: eventDescription,
+          event_date: eventDate,
+          room: roomId,
+          status,
           requestor_data: {
             profile_data: { display_name: requestorName },
           },
@@ -34,6 +38,11 @@ export default function EventsTodayTab({ events }) {
             requestorName={requestorName}
             eventStartTime={eventStartTime}
             eventEndTime={eventEndTime}
+            eventDate={eventDate}
+            eventDescription={eventDescription}
+            status={status}
+            roomId={roomId}
+            subtitle={`Reserved by ${requestorName}`}
           />
         ),
       )}

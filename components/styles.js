@@ -32,4 +32,15 @@ export default EStyleSheet.create({
     ...Typography.small('Poppins_500Medium'),
     color: Colors.black,
   },
+  badge: {
+    paddingVertical: '0.125rem',
+    paddingHorizontal: '0.75rem',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 999,
+  },
+  badgeLabel: {
+    ...Typography.extraSmall('Poppins_500Medium'),
+    color: 'white',
+  },
 });

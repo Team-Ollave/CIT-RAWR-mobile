@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
+import { useNavigation } from '@react-navigation/native';
 
 export default function ReservationCard({
   eventName,
@@ -8,16 +9,40 @@ export default function ReservationCard({
   eventStartTime,
   eventEndTime,
   style,
+  eventDescription,
+  eventDate,
+  status,
+  roomId,
+  subtitle,
 }) {
+  const navigation = useNavigation();
+
   return (
-    <View style={[styles.container, style]}>
-      <View>
-        <Text style={styles.eventName}>{eventName}</Text>
-        <Text style={styles.requestorName}>Reserved by {requestorName}</Text>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate('ViewReservationScreen', {
+          eventName,
+          requestorName,
+          eventStartTime,
+          eventEndTime,
+          eventDescription,
+          eventDate,
+          status,
+          roomId,
+        })
+      }
+    >
+      <View style={[styles.container, style]}>
+        <View>
+          <Text style={styles.eventName} numberOfLines={1}>
+            {eventName}
+          </Text>
+          <Text style={styles.requestorName}>{subtitle}</Text>
+        </View>
+        <Text style={styles.availableTime}>
+          {eventStartTime} - {eventEndTime}
+        </Text>
       </View>
-      <Text style={styles.availableTime}>
-        {eventStartTime} - {eventEndTime}
-      </Text>
-    </View>
+    </TouchableOpacity>
   );
 }

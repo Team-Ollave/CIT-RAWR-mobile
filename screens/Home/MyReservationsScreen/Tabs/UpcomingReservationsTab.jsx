@@ -51,6 +51,11 @@ export default function UpcomingReservationsTab({ navigation }) {
             eventStartTime={item.start_time}
             eventEndTime={item.end_time}
             requestorName={item.requestor_data.profile_data.display_name}
+            eventDate={item.event_date}
+            eventDescription={item.event_description}
+            status={item.status}
+            roomId={item.room}
+            subtitle={item?.room_data.name}
           />
         )}
       />
