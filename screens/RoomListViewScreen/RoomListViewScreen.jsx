@@ -53,11 +53,11 @@ const RoomListViewScreen = () => {
   useEffect(() => {
     Axios.get(`${ipConfig}/api/buildings/`)
       .then((response) => setBuildings(response.data))
-      .catch((e) => console.log(e));
+      .catch((e) => console.error(e));
 
     Axios.get(`${ipConfig}/api/rooms/`)
       .then((response) => setRooms(response.data))
-      .catch((e) => console.log(e));
+      .catch((e) => console.error(e));
   }, []);
 
   return (

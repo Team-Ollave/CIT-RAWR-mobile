@@ -12,7 +12,6 @@ import {
   MaterialCommunityIcons,
 } from '@expo/vector-icons';
 import StatusBadge from '../../components/StatusBadge';
-import moment from 'moment';
 import { formatTime } from '../../utils/constants';
 
 const ViewReservationScreen = ({
@@ -37,10 +36,6 @@ const ViewReservationScreen = ({
       setRoomData(response.data);
     }, console.error);
   }, []);
-
-  console.log(
-    moment(new Date().toDateString() + ' ' + eventStartTime).format('hh:mm A'),
-  );
 
   return (
     <View style={styles.container}>
