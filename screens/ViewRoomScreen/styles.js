@@ -47,6 +47,7 @@ export default EStyleSheet.create({
   headerDescription: {
     ...Typography.small(),
     color: Colors.gray4,
+    marginLeft: '0.25rem',
   },
   tab: {
     elevation: 0,

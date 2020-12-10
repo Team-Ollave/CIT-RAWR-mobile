@@ -13,7 +13,7 @@ import { userContext } from './userContext';
 import ViewRoomScreen from './screens/ViewRoomScreen';
 import ReservationFormScreen from './screens/ReservationFormScreen';
 import MapViewScreen from './screens/MapViewScreen';
-import RoomListViewScreen from './screens/RoomListViewScreen';
+import ViewReservationScreen from './screens/ViewReservationScreen';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import ReservationSuccessScreen from './screens/ReservationSuccessScreen';
@@ -50,6 +50,7 @@ export default function App() {
             name="ReservationFormScreen"
             component={ReservationFormScreen}
           />
+          <Stack.Screen name="ViewReservationScreen" component={ViewReservationScreen} />
           <Stack.Screen
             name="ReservationSuccessScreen"
             component={ReservationSuccessScreen}

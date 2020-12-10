@@ -35,7 +35,6 @@ export default function ReservationRoomScreen({ navigation, route }) {
         room: roomId,
         requestor: user.id,
       });
-      console.log(response.status);
       if (response.status === 201) {
         navigation.navigate('ReservationSuccessScreen');
       }
