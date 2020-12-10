@@ -14,7 +14,7 @@ export default function RoomsListScreen() {
   const [rooms, setRooms] = useState([]);
   const [buildings, setBuildings] = useState([]);
 
-  const [searchValue, setSearchValue] = useState('')
+  const [searchValue, setSearchValue] = useState('');
 
   const navigation = useNavigation();
 
@@ -35,12 +35,14 @@ export default function RoomsListScreen() {
   useEffect(() => {
     axios
       .get(`${ipConfig}/api/rooms/`)
-      .then((res) => setRooms(res.data.filter(item => {
-
-        const regexTemp = new RegExp(searchValue, 'i')
-        return item.name.search(regexTemp) !== -1
-
-      })))
+      .then((res) =>
+        setRooms(
+          res.data.filter((item) => {
+            const regexTemp = new RegExp(searchValue, 'i');
+            return item.name.search(regexTemp) !== -1;
+          }),
+        ),
+      )
       .catch((err) => console.error(err));
 
     axios
@@ -53,10 +55,12 @@ export default function RoomsListScreen() {
 
   if (isloading) return <Text>Loading...</Text>;
 
-  const formattedData = buildings?.map((building) => ({
-    ...building,
-    rooms: rooms?.filter((room) => room.building === building.id),
-  }));
+  const formattedData = buildings
+    ?.map((building) => ({
+      ...building,
+      rooms: rooms?.filter((room) => room.building === building.id),
+    }))
+    .filter((building) => building?.rooms.length !== 0);
 
   const renderItem = ({ item: building, index }) => (
     <View
@@ -92,6 +96,7 @@ export default function RoomsListScreen() {
     <View style={styles.container}>
       <Search onSubmitEditing={(e) => setSearchValue(e.nativeEvent.text)} />
       <FlatList
+        style={{ alignSelf: 'flex-start' }}
         data={formattedData}
         keyExtractor={(item) => item?.id.toString()}
         renderItem={renderItem}
