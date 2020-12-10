@@ -41,7 +41,12 @@ export default function ReservationCard({
           >
             {eventName}
           </Text>
-          <Text style={styles.requestorName}>{subtitle}</Text>
+          <Text
+            style={[styles.requestorName, { maxWidth: '90%' }]}
+            numberOfLines={1}
+          >
+            {subtitle}
+          </Text>
         </View>
         <Text style={styles.availableTime}>
           {formatTime(eventStartTime)} - {formatTime(eventEndTime)}
