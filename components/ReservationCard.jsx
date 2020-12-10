@@ -33,8 +33,11 @@ export default function ReservationCard({
       }
     >
       <View style={[styles.container, style]}>
-        <View>
-          <Text style={styles.eventName} numberOfLines={1}>
+        <View style={{ flex: 1 }}>
+          <Text
+            style={[styles.eventName, { maxWidth: '90%' }]}
+            numberOfLines={1}
+          >
             {eventName}
           </Text>
           <Text style={styles.requestorName}>{subtitle}</Text>

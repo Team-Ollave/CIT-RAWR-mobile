@@ -6,7 +6,8 @@ import Constants from 'expo-constants';
 export default EStyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: '1rem',
+    backgroundColor: 'white',
+    paddingHorizontal: '1.5rem',
     paddingTop: Constants.statusBarHeight,
   },
   headerText: {
