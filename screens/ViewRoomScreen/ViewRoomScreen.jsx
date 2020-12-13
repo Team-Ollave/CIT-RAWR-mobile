@@ -10,7 +10,7 @@ import { CommonActions } from '@react-navigation/native';
 import Carousel from '../../components/Carousel';
 import axios from 'axios';
 import ipConfig from '../../ipConfig';
-import { formatTime, reservationStatusTypes } from '../../utils/constants';
+import { reservationStatusTypes } from '../../utils/constants';
 import { Entypo, Feather } from '@expo/vector-icons';
 
 const Tab = createMaterialTopTabNavigator();
@@ -100,7 +100,7 @@ export default function ViewRoomScreen({
             >
               <Feather name="calendar" size={16} color={Colors.gray4} />
               <Text style={styles.headerDescription}>
-                {formatTime(openingTime)} - {formatTime(closingTime)}
+                {openingTime} - {closingTime}
               </Text>
             </View>
           </View>

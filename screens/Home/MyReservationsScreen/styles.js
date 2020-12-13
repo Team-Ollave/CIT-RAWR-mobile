@@ -7,12 +7,12 @@ export default EStyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     position: 'relative',
-    paddingTop: '1.5rem',
-    paddingHorizontal: '1.5rem',
   },
   title: {
     ...Typography.screenTitle(),
-    marginBottom: '1.5rem',
+    marginLeft: '1.5rem',
+    marginTop: '1.5rem',
+    marginBottom: '1rem',
   },
   tabIndicator: {
     backgroundColor: Colors.black,
@@ -22,6 +22,7 @@ export default EStyleSheet.create({
     elevation: 0,
     borderBottomWidth: 1,
     borderBottomColor: Colors.gray2,
+    marginHorizontal: '1.5rem',
   },
   tabLabel: {
     ...Typography.small('Poppins_500Medium'),

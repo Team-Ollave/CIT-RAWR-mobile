@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, TextInput } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { Colors } from '../../utils/colors';

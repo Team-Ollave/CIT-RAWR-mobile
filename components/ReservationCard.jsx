@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
-import { formatTime } from '../utils/constants';
 
 export default function ReservationCard({
   eventName,
@@ -49,7 +48,7 @@ export default function ReservationCard({
           </Text>
         </View>
         <Text style={styles.availableTime}>
-          {formatTime(eventStartTime)} - {formatTime(eventEndTime)}
+          {eventStartTime} - {eventEndTime}
         </Text>
       </View>
     </TouchableOpacity>
