@@ -12,7 +12,6 @@ import {
   MaterialCommunityIcons,
 } from '@expo/vector-icons';
 import StatusBadge from '../../components/StatusBadge';
-import { formatTime } from '../../utils/constants';
 
 const ViewReservationScreen = ({
   navigation,
@@ -62,8 +61,8 @@ const ViewReservationScreen = ({
         <View style={styles.details}>
           <Feather name="calendar" size={16} color={Colors.gray4} />
           <Text style={styles.detailText}>
-            {new Date(eventDate).toDateString()} {formatTime(eventStartTime)} -{' '}
-            {formatTime(eventEndTime)}
+            {new Date(eventDate).toDateString()} {' | '} {eventStartTime} -{' '}
+            {eventEndTime}
           </Text>
         </View>
         <View style={styles.details}>

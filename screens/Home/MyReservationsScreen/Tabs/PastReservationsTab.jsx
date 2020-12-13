@@ -5,6 +5,7 @@ import { useUserData } from '../../../../userContext';
 import axios from 'axios';
 import ipConfig from '../../../../ipConfig';
 import ReservationCard from '../../../../components/ReservationCard';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default function PastReservationsTab({ navigation }) {
   const [reservations, setReservations] = useState([]);
@@ -37,8 +38,10 @@ export default function PastReservationsTab({ navigation }) {
     ),
   }));
 
-  const renderItem = ({ item }) => (
-    <>
+  const renderItem = ({ item, index }) => (
+    <View
+      style={EStyleSheet.child(styles, 'section', index, formattedData.length)}
+    >
       <Text style={styles.dateLabel}>{item.title}</Text>
       <FlatList
         style={{ marginTop: 12 }}
@@ -59,7 +62,7 @@ export default function PastReservationsTab({ navigation }) {
           />
         )}
       />
-    </>
+    </View>
   );
 
   return (

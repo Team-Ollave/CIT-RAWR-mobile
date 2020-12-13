@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import styles from './styles';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import RoomsListScreen from './RoomsListScreen';
@@ -9,6 +9,8 @@ import { Feather } from '@expo/vector-icons';
 
 const Tab = createMaterialBottomTabNavigator();
 
+const tempt = () => <Text>notifs</Text>;
+
 export default function Home() {
   return (
     <View style={styles.container}>
@@ -16,7 +18,6 @@ export default function Home() {
         barStyle={styles.barStyle}
         activeColor={Colors.accentColor}
         inactiveColor={Colors.gray4}
-        shifting
       >
         <Tab.Screen
           name="Rooms"

@@ -43,6 +43,7 @@ export default EStyleSheet.create({
   headerTitle: {
     ...Typography.title3(),
     color: Colors.black,
+    marginBottom: 8,
   },
   headerDescription: {
     ...Typography.small(),
@@ -51,7 +52,6 @@ export default EStyleSheet.create({
   },
   tab: {
     elevation: 0,
-    // backgroundColor: 'transparent',
     borderBottomWidth: 1,
     borderBottomColor: Colors.gray2,
   },

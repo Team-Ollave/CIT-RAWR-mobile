@@ -4,8 +4,8 @@ import { Typography } from '../../../utils/typography';
 
 export default EStyleSheet.create({
   container: {
-    height: '13rem',
-    width: '19rem',
+    height: '12rem',
+    width: '17rem',
     // height: '13.438rem',
     // width: '14.688rem',
     borderRadius: '0.5rem',

@@ -5,6 +5,7 @@ import { useUserData } from '../../../../userContext';
 import axios from 'axios';
 import ipConfig from '../../../../ipConfig';
 import ReservationCard from '../../../../components/ReservationCard';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default function UpcomingReservationsTab({ navigation }) {
   const [reservations, setReservations] = useState([]);
@@ -37,14 +38,16 @@ export default function UpcomingReservationsTab({ navigation }) {
     ),
   }));
 
-  const renderItem = ({ item }) => (
-    <>
+  const renderItem = ({ item, index }) => (
+    <View
+      style={EStyleSheet.child(styles, 'section', index, formattedData.length)}
+    >
       <Text style={styles.dateLabel}>{item.title}</Text>
       <FlatList
-        style={{ marginTop: 12 }}
+        style={{ marginTop: 8 }}
         data={item.reservations}
         keyExtractor={(item) => item?.id.toString()}
-        ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
+        ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
         renderItem={({ item }) => (
           <ReservationCard
             eventName={item.event_name}
@@ -59,7 +62,7 @@ export default function UpcomingReservationsTab({ navigation }) {
           />
         )}
       />
-    </>
+    </View>
   );
 
   return (

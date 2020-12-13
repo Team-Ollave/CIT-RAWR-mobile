@@ -3,9 +3,10 @@ import { Colors } from '../../utils/colors';
 
 export default StyleSheet.create({
   container: {
-    margin: 16,
-    paddingHorizontal: 16,
-    paddingVertical: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    flex: 1,
+    maxWidth: '70%',
 
     backgroundColor: 'white',
     borderColor: Colors.gray1,
@@ -21,7 +22,8 @@ export default StyleSheet.create({
     fontSize: 16,
     letterSpacing: 0.4,
     fontFamily: 'Poppins_400Regular',
-    width: '95%',
+    maxWidth: '95%',
+    flexGrow: 1,
     marginLeft: 8,
   },
 });

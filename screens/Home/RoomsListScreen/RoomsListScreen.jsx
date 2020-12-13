@@ -6,17 +6,15 @@ import Search from '../../../components/Search';
 import ipConfig from '../../../ipConfig';
 import styles from './styles';
 import RoomCard from '../RoomCard/RoomCard';
-import { useNavigation } from '@react-navigation/native';
 import { Entypo } from '@expo/vector-icons';
+import { ActivityIndicator } from 'react-native-paper';
 
-export default function RoomsListScreen() {
+export default function RoomsListScreen({ navigation }) {
   const [isloading, setIsloading] = useState(true);
   const [rooms, setRooms] = useState([]);
   const [buildings, setBuildings] = useState([]);
 
   const [searchValue, setSearchValue] = useState('');
-
-  const navigation = useNavigation();
 
   useEffect(() => {
     axios
@@ -33,6 +31,8 @@ export default function RoomsListScreen() {
   }, []);
 
   useEffect(() => {
+    setIsloading(true);
+
     axios
       .get(`${ipConfig}/api/rooms/`)
       .then((res) =>
@@ -51,9 +51,7 @@ export default function RoomsListScreen() {
       .catch((err) => console.error(err));
 
     setIsloading(false);
-  }, [searchValue]);
-
-  if (isloading) return <Text>Loading...</Text>;
+  }, [searchValue, navigation]);
 
   const formattedData = buildings
     ?.map((building) => ({
@@ -65,6 +63,7 @@ export default function RoomsListScreen() {
   const renderItem = ({ item: building, index }) => (
     <View
       style={{
+        marginTop: index === 0 ? 16 : 0,
         marginBottom: index === buildings.length - 1 ? 32 : 0,
         overflow: 'visible',
       }}
@@ -92,9 +91,14 @@ export default function RoomsListScreen() {
     </View>
   );
 
+  if (isloading) return <ActivityIndicator />;
+
   return (
     <View style={styles.container}>
-      <Search onSubmitEditing={(e) => setSearchValue(e.nativeEvent.text)} />
+      <View style={styles.header}>
+        <Text style={[styles.title]}>Rooms</Text>
+        <Search onSubmitEditing={(e) => setSearchValue(e.nativeEvent.text)} />
+      </View>
       <FlatList
         style={{ alignSelf: 'flex-start' }}
         data={formattedData}

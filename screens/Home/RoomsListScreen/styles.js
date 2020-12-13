@@ -1,5 +1,8 @@
+import { Dimensions } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Typography } from '../../../utils/typography';
+
+const { width } = Dimensions.get('screen');
 
 export default EStyleSheet.create({
   container: {
@@ -29,5 +32,18 @@ export default EStyleSheet.create({
   exploreLabel: {
     ...Typography.small('Poppins_500Medium'),
     marginLeft: '0.2rem',
+  },
+  title: {
+    ...Typography.screenTitle(),
+  },
+  header: {
+    width,
+    paddingLeft: 24,
+    paddingRight: 16,
+    marginTop: 24,
+    marginBottom: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 });
