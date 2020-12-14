@@ -4,8 +4,9 @@ import styles from './styles';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import RoomsListScreen from './RoomsListScreen';
 import MyReservationsScreen from './MyReservationsScreen';
+import NotificationsScreen from './NotificationsScreen';
 import { Colors } from '../../utils/colors';
-import { Feather } from '@expo/vector-icons';
+import { Feather, Ionicons } from '@expo/vector-icons';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -34,6 +35,19 @@ export default function Home() {
           options={{
             tabBarIcon: ({ color }) => (
               <Feather name="calendar" size={20} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Notifications"
+          component={NotificationsScreen}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <Ionicons
+                name="ios-notifications-outline"
+                size={20}
+                color="black"
+              />
             ),
           }}
         />
