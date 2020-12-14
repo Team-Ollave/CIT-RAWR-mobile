@@ -15,7 +15,7 @@ export default EStyleSheet.create({
     marginBottom: '0.5rem',
     borderRadius: '0.5rem',
   },
-  seen: {
+  notSeen: {
     // backgroundColor: Colors.gray0,
     backgroundColor: 'rgba(116, 30, 30, 0.05)',
   },

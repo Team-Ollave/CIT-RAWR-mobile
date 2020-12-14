@@ -9,17 +9,21 @@ import { Colors } from '../../utils/colors';
 import { Feather } from '@expo/vector-icons';
 import axios from 'axios';
 import ipConfig from '../../ipConfig';
+import { useUserData } from '../../userContext';
 
 const Tab = createMaterialBottomTabNavigator();
 
 export default function Home() {
   const [notificationsCount, setNotificationsCount] = useState(null);
+  const {
+    user: { id: userId },
+  } = useUserData();
 
   useEffect(() => {
     setInterval(() => {
       axios
         .get(`${ipConfig}/api/notifications/count/`, {
-          params: { is_seen: false },
+          params: { is_seen: false, user_id: userId },
         })
         .then((res) => setNotificationsCount(res.data))
         .catch((err) => console.error(err));

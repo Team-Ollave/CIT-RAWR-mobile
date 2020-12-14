@@ -32,7 +32,7 @@ const NotificationCard = ({
       roomId: reservation.room_data.id,
     });
 
-    if (isSeen) {
+    if (!isSeen) {
       axios.patch(`${ipConfig}/api/notifications/${notificationId}/`, {
         is_seen: true,
       });
@@ -41,7 +41,7 @@ const NotificationCard = ({
 
   return (
     <TouchableOpacity onPress={handleOnPress}>
-      <View style={[styles.cardContainer, isSeen ? styles.seen : {}]}>
+      <View style={[styles.cardContainer, !isSeen ? styles.notSeen : {}]}>
         <Text style={styles.mainText}>
           Your reservation on <Text style={styles.boldText}>{roomName}</Text>{' '}
           has been{' '}
