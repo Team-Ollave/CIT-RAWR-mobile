@@ -3,22 +3,20 @@ import { Colors } from '../../../utils/colors';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-        paddingHorizontal: '1rem',
-    },
-    headerText: {
-        ...Typography.screenTitle(),
-        color: Colors.black,
-
-    },
-    header: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingTop: '1rem',
-        paddingBottom: '1.25rem',
-        borderBottomColor: Colors.gray1,
-        borderBottomWidth: 1,
-    },
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    paddingHorizontal: '1.5rem',
+    paddingTop: '1.5rem',
+  },
+  headerText: {
+    ...Typography.screenTitle(),
+    color: Colors.black,
+  },
+  notificationsList: {
+    marginTop: '1.5rem',
+    paddingTop: '1rem',
+    borderTopColor: Colors.gray0,
+    borderTopWidth: 2,
+  },
 });

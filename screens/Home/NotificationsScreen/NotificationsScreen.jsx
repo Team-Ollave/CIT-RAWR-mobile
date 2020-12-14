@@ -34,10 +34,9 @@ const DATA = [
 const NotificationsScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Notifications</Text>
-      </View>
+      <Text style={styles.headerText}>Notifications</Text>
       <FlatList
+        style={styles.notificationsList}
         data={DATA}
         keyExtractor={(item) => item?.id.toString()}
         renderItem={({ item }) => (
@@ -48,7 +47,7 @@ const NotificationsScreen = ({ navigation }) => {
           />
         )}
         ItemSeparatorComponent={() => (
-          <View style={{ height: 1, backgroundColor: Colors.gray1 }} />
+          <View style={{ height: 2, backgroundColor: Colors.gray0 }} />
         )}
       />
     </View>
