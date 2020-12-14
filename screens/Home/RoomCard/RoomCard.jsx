@@ -22,6 +22,7 @@ export default function RoomCard({ room, style }) {
     <TouchableOpacity
       style={[styles.container, style]}
       onPress={() => navigation.navigate('ViewRoomScreen', room)}
+      activeOpacity={0.7}
     >
       <ImageBackground source={{ uri: roomImage }} style={{ flex: 1 }} />
       <LinearGradient
