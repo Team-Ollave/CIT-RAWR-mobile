@@ -1,10 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import ReservationCard from '../../../components/ReservationCard';
 import Accordion from '../../../components/Accordion';
 import styles from '../styles';
+import ipConfig from '../../../ipConfig';
+import { reservationStatusTypes } from '../../../utils/constants';
+import axios from 'axios';
 
-export default function EventsTodayTab({ events }) {
+export default function EventsUpcomingTab({
+  navigation,
+  route: {
+    params: { roomId },
+  },
+}) {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      axios
+        .get(`${ipConfig}/api/reservations/`, {
+          params: {
+            status: reservationStatusTypes.ACCEPTED,
+            room: roomId,
+            upcoming: true,
+            today: false,
+          },
+        })
+        .then((res) => setEvents(res.data))
+        .catch((err) => console.warn(err));
+    });
+    return unsubscribe;
+  }, []);
+
   const uniqueEventDates = [
     ...new Set(events.map((event) => event.event_date)),
   ];
