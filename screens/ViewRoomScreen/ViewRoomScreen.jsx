@@ -10,7 +10,6 @@ import { CommonActions } from '@react-navigation/native';
 import Carousel from '../../components/Carousel';
 import axios from 'axios';
 import ipConfig from '../../ipConfig';
-import { reservationStatusTypes } from '../../utils/constants';
 import { Entypo, Feather } from '@expo/vector-icons';
 
 const Tab = createMaterialTopTabNavigator();

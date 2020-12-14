@@ -28,7 +28,7 @@ const ViewReservationScreen = ({
     },
   },
 }) => {
-  const [roomData, setRoomData] = useState([]);
+  const [roomData, setRoomData] = useState({});
 
   useEffect(() => {
     axios.get(`${ipConfig}/api/rooms/${roomId}`).then((response) => {

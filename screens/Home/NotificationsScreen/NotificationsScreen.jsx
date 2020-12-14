@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { Colors } from '../../../utils/colors';
 import styles from './styles';
 import NotificationCard from '../../../components/NotificationCard';
+import { useUserData } from '../../../userContext';
+import axios from 'axios';
+import ipConfig from '../../../ipConfig';
 
 const DATA = [
   {
@@ -32,24 +35,75 @@ const DATA = [
 ];
 
 const NotificationsScreen = ({ navigation }) => {
+  const {
+    user: { id: userId },
+  } = useUserData();
+
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      axios
+        .get(`${ipConfig}/api/notifications`, { params: { user_id: userId } })
+        .then((res) => setNotifications(res.data))
+        .catch((err) => console.err(err));
+    });
+
+    return unsubscribe;
+  }, []);
+
+  const unseen = [];
+  const seen = [];
+
+  notifications.forEach((notif) => {
+    if (notif.is_seen) seen.push(notif);
+    else unseen.push(notif);
+  });
+
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Notifications</Text>
-      <FlatList
-        style={styles.notificationsList}
-        data={DATA}
-        keyExtractor={(item) => item?.id.toString()}
-        renderItem={({ item }) => (
-          <NotificationCard
-            roomName={item.roomName}
-            status={item.status}
-            dateOfReservation={item.dateOfReservation}
-          />
-        )}
-        ItemSeparatorComponent={() => (
-          <View style={{ height: 2, backgroundColor: Colors.gray0 }} />
-        )}
-      />
+      <View style={styles.notificationsList}>
+        <FlatList
+          data={unseen}
+          keyExtractor={(item) => item?.id.toString()}
+          renderItem={({
+            item: {
+              id,
+              datetime_created: datetimeCreated,
+              reservation_data: reservation,
+            },
+          }) => (
+            <NotificationCard
+              notificationId={id}
+              roomName={reservation.room_data.name}
+              status={reservation.status}
+              dateOfReservation={datetimeCreated}
+              reservation={reservation}
+              isSeen
+            />
+          )}
+        />
+        <FlatList
+          data={seen}
+          keyExtractor={(item) => item?.id.toString()}
+          renderItem={({
+            item: {
+              id,
+              datetime_created: datetimeCreated,
+              reservation_data: reservation,
+            },
+          }) => (
+            <NotificationCard
+              notificationId={id}
+              roomName={reservation.room_data.name}
+              status={reservation.status}
+              dateOfReservation={datetimeCreated}
+              reservation={reservation}
+            />
+          )}
+        />
+      </View>
     </View>
   );
 };
