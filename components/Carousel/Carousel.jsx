@@ -32,8 +32,11 @@ export default function Carousel({ images }) {
           <Image
             source={{ uri: item.image }}
             style={[
-              { width: windowWidth, height: windowWidth },
-              styles.carouselItem,
+              {
+                width: windowWidth,
+                height: 'auto',
+                resizeMode: 'cover',
+              },
             ]}
           />
         )}
