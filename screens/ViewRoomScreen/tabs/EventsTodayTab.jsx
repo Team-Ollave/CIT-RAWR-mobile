@@ -1,10 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import ReservationCard from '../../../components/ReservationCard';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import styles from '../styles';
+import axios from 'axios';
+import { reservationStatusTypes } from '../../../utils/constants';
+import ipConfig from '../../../ipConfig';
 
-export default function EventsTodayTab({ events }) {
+export default function EventsTodayTab({
+  navigation,
+  route: {
+    params: { roomId },
+  },
+}) {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      axios
+        .get(`${ipConfig}/api/reservations/`, {
+          params: {
+            status: reservationStatusTypes.ACCEPTED,
+            room: roomId,
+            today: true,
+          },
+        })
+        .then((res) => setEvents(res.data))
+        .catch((err) => console.warn(err));
+    });
+
+    return unsubscribe;
+  }, []);
+
   const renderItem = ({
     item: {
       event_name: eventName,

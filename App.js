@@ -50,7 +50,10 @@ export default function App() {
             name="ReservationFormScreen"
             component={ReservationFormScreen}
           />
-          <Stack.Screen name="ViewReservationScreen" component={ViewReservationScreen} />
+          <Stack.Screen
+            name="ViewReservationScreen"
+            component={ViewReservationScreen}
+          />
           <Stack.Screen
             name="ReservationSuccessScreen"
             component={ReservationSuccessScreen}

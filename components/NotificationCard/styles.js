@@ -8,14 +8,24 @@ export default EStyleSheet.create({
   },
   cardContainer: {
     flex: 1,
-    padding: '0.5rem',
+    padding: '0.75rem',
+    borderBottomColor: Colors.gray1,
+    borderBottomWidth: 1,
+    backgroundColor: 'white',
+    marginBottom: '0.5rem',
+    borderRadius: '0.5rem',
+  },
+  notSeen: {
+    // backgroundColor: Colors.gray0,
+    backgroundColor: 'rgba(116, 30, 30, 0.05)',
   },
   mainText: {
-    ...Typography.regular(),
+    ...Typography.body1(),
+    marginBottom: '.5rem',
     color: Colors.black,
   },
   dateText: {
-    paddingTop: '.5rem',
-    color: Colors.gray3,
+    ...Typography.small(),
+    color: Colors.gray4,
   },
 });

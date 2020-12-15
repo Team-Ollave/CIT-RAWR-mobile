@@ -6,9 +6,6 @@ export default EStyleSheet.create({
     flex: 1,
     position: 'relative',
   },
-  carouselItem: {
-    resizeMode: 'cover',
-  },
   paginationContainer: {
     backgroundColor: 'rgba(0,0,0, 0.5)',
     borderRadius: '0.25rem',

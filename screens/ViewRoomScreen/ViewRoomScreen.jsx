@@ -10,7 +10,6 @@ import { CommonActions } from '@react-navigation/native';
 import Carousel from '../../components/Carousel';
 import axios from 'axios';
 import ipConfig from '../../ipConfig';
-import { reservationStatusTypes } from '../../utils/constants';
 import { Entypo, Feather } from '@expo/vector-icons';
 
 const Tab = createMaterialTopTabNavigator();
@@ -29,37 +28,11 @@ export default function ViewRoomScreen({
     },
   },
 }) {
-  const [eventsToday, setEventsToday] = useState([]);
-  const [eventsUpcoming, setEventsUpcoming] = useState([]);
-
   const [earliestAvailability, setEarliestAvailability] = useState(
     new Date().toDateString(),
   );
 
   useEffect(() => {
-    axios
-      .get(`${ipConfig}/api/reservations/`, {
-        params: {
-          status: reservationStatusTypes.ACCEPTED,
-          room: roomId,
-          today: true,
-        },
-      })
-      .then((res) => setEventsToday(res.data))
-      .catch((err) => console.warn(err));
-
-    axios
-      .get(`${ipConfig}/api/reservations/`, {
-        params: {
-          status: reservationStatusTypes.ACCEPTED,
-          room: roomId,
-          upcoming: true,
-          today: false,
-        },
-      })
-      .then((res) => setEventsUpcoming(res.data))
-      .catch((err) => console.warn(err));
-
     axios
       .get(`${ipConfig}/api/rooms/${roomId}/earliest-availability`)
       .then((res) => setEarliestAvailability(new Date(res.data).toDateString()))
@@ -117,11 +90,13 @@ export default function ViewRoomScreen({
         >
           <Tab.Screen
             name="Today"
-            children={() => <EventsTodayTab events={eventsToday} />}
+            component={EventsTodayTab}
+            initialParams={{ roomId }}
           />
           <Tab.Screen
             name="Upcoming"
-            children={() => <EventsUpcomingTab events={eventsUpcoming} />}
+            component={EventsUpcomingTab}
+            initialParams={{ roomId }}
           />
         </Tab.Navigator>
       </View>

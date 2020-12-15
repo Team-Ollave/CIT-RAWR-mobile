@@ -1,55 +1,39 @@
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
-import { Colors } from '../../../utils/colors';
 import styles from './styles';
 import NotificationCard from '../../../components/NotificationCard';
+import { useNotifications } from '../../../hooks';
 
-const DATA = [
-  {
-    id: 1,
-    roomName: 'Case Room',
-    status: 'A',
-    dateOfReservation: 'Fri Dec 25, 2020',
-  },
-  {
-    id: 2,
-    roomName: 'ST301',
-    status: 'D',
-    dateOfReservation: 'Sat Dec 26, 2020',
-  },
-  {
-    id: 3,
-    roomName: 'ST302',
-    status: 'D',
-    dateOfReservation: 'Sun Dec 27, 2020',
-  },
-  {
-    id: 4,
-    roomName: 'ST303',
-    status: 'A',
-    dateOfReservation: 'Mon Dec 28, 2020',
-  },
-];
+const NotificationsScreen = () => {
+  const { notifications } = useNotifications();
 
-const NotificationsScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Notifications</Text>
-      <FlatList
-        style={styles.notificationsList}
-        data={DATA}
-        keyExtractor={(item) => item?.id.toString()}
-        renderItem={({ item }) => (
-          <NotificationCard
-            roomName={item.roomName}
-            status={item.status}
-            dateOfReservation={item.dateOfReservation}
-          />
-        )}
-        ItemSeparatorComponent={() => (
-          <View style={{ height: 2, backgroundColor: Colors.gray0 }} />
-        )}
-      />
+      <View style={styles.notificationsList}>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={notifications}
+          keyExtractor={(item) => item?.id.toString()}
+          renderItem={({
+            item: {
+              id,
+              datetime_created: datetimeCreated,
+              reservation_data: reservation,
+              is_seen: isSeen,
+            },
+          }) => (
+            <NotificationCard
+              notificationId={id}
+              roomName={reservation.room_data.name}
+              status={reservation.status}
+              dateOfReservation={datetimeCreated}
+              reservation={reservation}
+              isSeen={isSeen}
+            />
+          )}
+        />
+      </View>
     </View>
   );
 };

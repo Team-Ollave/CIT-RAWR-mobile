@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import { Text, TouchableOpacity, ImageBackground } from 'react-native';
 import styles from './styles';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
@@ -22,6 +22,7 @@ export default function RoomCard({ room, style }) {
     <TouchableOpacity
       style={[styles.container, style]}
       onPress={() => navigation.navigate('ViewRoomScreen', room)}
+      activeOpacity={0.7}
     >
       <ImageBackground source={{ uri: roomImage }} style={{ flex: 1 }} />
       <LinearGradient

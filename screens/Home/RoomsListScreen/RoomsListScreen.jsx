@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import Search from '../../../components/Search';
@@ -13,13 +13,20 @@ export default function RoomsListScreen({ navigation }) {
   const [isloading, setIsloading] = useState(true);
   const [rooms, setRooms] = useState([]);
   const [buildings, setBuildings] = useState([]);
+  const allRooms = useRef([]);
 
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
+    setIsloading(true);
+
     axios
       .get(`${ipConfig}/api/rooms/`)
-      .then((res) => setRooms(res.data))
+      .then((res) => {
+        setRooms(res.data);
+        return res;
+      })
+      .then((res) => (allRooms.current = res.data))
       .catch((err) => console.error(err));
 
     axios
@@ -31,26 +38,12 @@ export default function RoomsListScreen({ navigation }) {
   }, []);
 
   useEffect(() => {
-    setIsloading(true);
-
-    axios
-      .get(`${ipConfig}/api/rooms/`)
-      .then((res) =>
-        setRooms(
-          res.data.filter((item) => {
-            const regexTemp = new RegExp(searchValue, 'i');
-            return item.name.search(regexTemp) !== -1;
-          }),
-        ),
-      )
-      .catch((err) => console.error(err));
-
-    axios
-      .get(`${ipConfig}/api/buildings/`)
-      .then((res) => setBuildings(res.data))
-      .catch((err) => console.error(err));
-
-    setIsloading(false);
+    setRooms(
+      allRooms.current.filter((item) => {
+        const regexTemp = new RegExp(searchValue, 'i');
+        return item.name.search(regexTemp) !== -1;
+      }),
+    );
   }, [searchValue, navigation]);
 
   const formattedData = buildings
@@ -112,7 +105,7 @@ export default function RoomsListScreen({ navigation }) {
         onPress={() => navigation.navigate('MapViewScreen')}
         style={[styles.exploreButton]}
       >
-        <Entypo name="location-pin" size={22} color="red" />
+        <Entypo name="location-pin" size={18} color="red" />
         <Text style={styles.exploreLabel}>Explore Map</Text>
       </TouchableOpacity>
     </View>

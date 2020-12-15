@@ -1,5 +1,6 @@
 import { Dimensions } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { Colors } from '../../../utils/colors';
 import { Typography } from '../../../utils/typography';
 
 const { width } = Dimensions.get('screen');
@@ -23,15 +24,15 @@ export default EStyleSheet.create({
     backgroundColor: 'white',
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
     borderRadius: 999,
-    paddingHorizontal: '0.5rem',
-    paddingVertical: '0.5rem',
+    padding: '0.4rem',
     elevation: 5,
   },
   exploreLabel: {
     ...Typography.small('Poppins_500Medium'),
     marginLeft: '0.2rem',
+    marginRight: '0.4rem',
+    color: Colors.black,
   },
   title: {
     ...Typography.screenTitle(),

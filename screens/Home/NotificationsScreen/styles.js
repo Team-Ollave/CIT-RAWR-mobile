@@ -14,6 +14,7 @@ export default EStyleSheet.create({
     color: Colors.black,
   },
   notificationsList: {
+    flex: 1,
     marginTop: '1.5rem',
     paddingTop: '1rem',
     borderTopColor: Colors.gray0,
