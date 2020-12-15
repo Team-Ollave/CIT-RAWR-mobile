@@ -22,7 +22,11 @@ export default function RoomsListScreen({ navigation }) {
 
     axios
       .get(`${ipConfig}/api/rooms/`)
-      .then((res) => setRooms(res.data))
+      .then((res) => {
+        setRooms(res.data);
+        return res;
+      })
+      .then((res) => (allRooms.current = res.data))
       .catch((err) => console.error(err));
 
     axios

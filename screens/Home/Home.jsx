@@ -20,7 +20,7 @@ export default function Home() {
   } = useUserData();
 
   useEffect(() => {
-    setInterval(() => {
+    const loop = setInterval(() => {
       axios
         .get(`${ipConfig}/api/notifications/count/`, {
           params: { is_seen: false, user_id: userId },
@@ -28,6 +28,8 @@ export default function Home() {
         .then((res) => setNotificationsCount(res.data))
         .catch((err) => console.error(err));
     }, 1000);
+
+    return () => clearInterval(loop);
   }, []);
 
   return (

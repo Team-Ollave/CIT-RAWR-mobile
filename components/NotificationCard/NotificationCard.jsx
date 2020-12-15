@@ -43,8 +43,9 @@ const NotificationCard = ({
     <TouchableOpacity onPress={handleOnPress}>
       <View style={[styles.cardContainer, !isSeen ? styles.notSeen : {}]}>
         <Text style={styles.mainText}>
-          Your reservation on <Text style={styles.boldText}>{roomName}</Text>{' '}
-          has been{' '}
+          Your reservation,{' '}
+          <Text style={styles.boldText}>{reservation.event_name}</Text> on{' '}
+          <Text style={styles.boldText}>{roomName}</Text> has been{' '}
           <Text
             style={[
               {
